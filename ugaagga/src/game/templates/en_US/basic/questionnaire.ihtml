@@ -1,0 +1,55 @@
+<tmpl:ACCOUNT>
+<table>
+  <tr>
+    <td>Snails you have granted so far:</td>
+    <tmpl:COPPER>
+    <td>{copper}x</td>
+    <td><img src="%gfx%/questionnaire/copper.gif" alt="Copper" title="Copper"></td>
+    </tmpl:COPPER>
+    <tmpl:SILVER>
+    <td>{silver}x</td>
+    <td><img src="%gfx%/questionnaire/silver.gif" alt="Silver" title="Silver"></td>
+    </tmpl:SILVER>
+    <tmpl:GOLD>
+    <td>{gold}x</td>
+    <td><img src="%gfx%/questionnaire/gold.gif" alt="Gold" title="Gold"></td>
+    </tmpl:GOLD>
+  </tr>
+</table>
+<br>
+</tmpl:ACCOUNT>
+
+<tmpl:MESSAGE>
+<br>
+<table class="message">
+  <tr><td>{message}</td></tr>
+</table>
+</tmpl:MESSAGE>
+
+<tmpl:QUESTIONS>
+<br>
+<form method="POST">
+<table cellspacing="0" cellpadding="3">
+  <tr><th colspan="5">Questionnaire</th></tr>
+  <tmpl:QUESTION>
+  <tr>
+    <td>Nr. {questionID}</td>
+    <td>{questionText}</td>
+    <td>{message}</td>
+    <td>
+      <select name="question[{questionID}]">
+          <option value="-1" selected>Your answer:</option>
+          <option value="-1">-----------------------</option>
+          <tmpl:CHOICE><option value="{choiceID}">{choiceText}</option></tmpl:CHOICE>
+      </select>
+    </td>
+    <td>{credits}</td>
+    <td><img src="%gfx%/questionnaire/copper.gif" alt="Copper" title="Copper"></td>
+  </tr>
+  </tmpl:QUESTION>
+  <tr><th colspan="5"><input type="submit" value="Off you go! UGH?"></th></tr>
+</table>
+<tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+</form>
+</tmpl:QUESTIONS>
+<p><a href="main.php?modus={QUESTIONNAIRE_PRESENTS}">to the gifts</a></p>

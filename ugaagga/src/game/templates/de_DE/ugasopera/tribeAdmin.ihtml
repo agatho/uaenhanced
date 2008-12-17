@@ -1,0 +1,256 @@
+<tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+
+<form name="data" method="POST" action="main.php">
+  <input type="hidden" name="{modus_name}" value="{modus_value}">
+
+  <tmpl:DATA_GROUP>
+    <table class="box">
+      <caption>{heading}</caption>
+  
+      <tmpl:ENTRY_INFO>
+      <tr>
+        <td width="40%"><b>{name}</b></td>
+        <td width="60%">{value}</td>
+      </tr>
+      </tmpl:ENTRY_INFO>
+  
+      <tmpl:ENTRY_INPUT>
+      <tr>
+        <td width="40%"><b>{name}</b></td>
+        <td width="60%"><input name="{dataarray}[{dataentry}]" value="{value}"  type="text" size="{size}" maxlength="{maxlength}"></td>
+      </tr>
+      </tmpl:ENTRY_INPUT>
+  
+      <tmpl:ENTRY_MEMO>
+      <tr>
+        <td width="40%"><b>{name}</b></td>
+        <td width="60%"><textarea name="{dataarray}[{dataentry}]" cols="{cols}" rows="{rows}">{value}</textarea></td>
+      </tr>
+      </tmpl:ENTRY_MEMO>
+  
+      <tmpl:ENTRY_INPUT_PWD>
+      <tr>
+        <td width="40%"><b>{name}</b></td>
+        <td width="60%"><input name="{dataarray}[{dataentry}]" value="{value}"  type="password" size="{size}" maxlength="{maxlength}"></td>
+      </tr>
+      </tmpl:ENTRY_INPUT_PWD>
+  
+      <tmpl:ENTRY_SELECTION>
+      <tr>
+        <td width="40%"><b>{name}</b></td>
+        <td width="60%">
+          <select name="{dataarray}[{dataentry}]">
+            <tmpl:SELECTOR><option value="{value}" {selected}>{text}</option></tmpl:SELECTOR>
+          </select>
+        </td>
+      </tr>
+      </tmpl:ENTRY_SELECTION>
+  
+    </table>
+    <br>
+  </tmpl:DATA_GROUP>
+
+  <input type="submit" value="Ugh!">
+</form>
+
+<tmpl:JUNIORADMIN>
+  <form method="POST" action="main.php">
+  <input type="hidden" name="{modus_name}" value="{modus}">
+  <table class="box">
+    <tr>
+      <td>Stellvertreter:</td>
+      
+      <tmpl:SELECTOR>
+        <td>
+          <select name="{dataarray}[{dataentry}]">
+            <tmpl:OPTION><option value="{value}" {selected}>{text}</option></tmpl:OPTION>
+          </select>
+        </td>
+      </tmpl:SELECTOR>
+      <td><input type="submit" value="{caption}"></td>
+    </tr>
+  </table>
+  </form>
+  <br>
+</tmpl:JUNIORADMIN>
+
+<tmpl:GOVERNMENT>
+  <form method="POST" action="main.php">
+  <input type="hidden" name="{modus_name}" value="{modus}">
+  <table class="box">
+    <tr>
+      <td>Regierungsform:</td>
+      
+      <tmpl:SELECTOR>
+        <td>
+          <select name="{dataarray}[{dataentry}]">
+            <tmpl:OPTION><option value="{value}" {selected}>{text}</option></tmpl:OPTION>
+          </select>
+        </td>
+      </tmpl:SELECTOR>
+      <td><input type="submit" value="{caption}"></td>
+    </tr>
+  </table>
+  </form>
+  <br>
+</tmpl:GOVERNMENT>
+
+<tmpl:GOVERNMENT_INFO>
+  <table class="box">
+    <tr>
+      <td>{name} bis mindestens {duration}</td>
+    </tr>
+  </table>
+  <br>
+</tmpl:GOVERNMENT_INFO>
+
+<table class="box">
+  <caption>Mitgliederliste</caption>
+
+  <tr>
+   <th align="right">Name</th>
+   <th>zuletzt gesehen am:</th>
+   <th>&nbsp;</th>
+  </tr>
+
+  <tmpl:MEMBERJUNIORADMIN>
+  <tr>
+     <td align="right"><a href="main.php?{player_link}">{name}</a></td>
+     <td align="center">{lastAction}</td>
+     <td>&nbsp;</td>
+  <tr>
+  </tmpl:MEMBERJUNIORADMIN>
+  <tmpl:MEMBERADMIN>
+  <tr>
+     <td align="right"><a href="main.php?{player_link}">{name}</a></td>
+     <td align="center">{lastAction}</td>
+     <td><a href="main.php?{player_kick_link}">[rauswerfen]</a></td>
+  <tr>
+  </tmpl:MEMBERADMIN>
+</table>
+<br>
+
+<tmpl:DELETE>
+<table class="box">
+  <caption>{heading}</caption>
+
+  <tr>
+    <td align="center">{text}</td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      <form name="delete" method="post" action="main.php">
+      <input type="hidden" name="{modus_name}" value="{modus}">
+      <input type="submit" value="{caption}">
+      </form>
+    </td>
+  <tr>
+</table>
+<br>
+</tmpl:DELETE>
+
+<table class="box">
+  <caption>Beziehungen</caption>
+
+  <tr>
+    <td align="center">
+
+      <tmpl:RELATION_NEW>
+      <form method="post" action="main.php">
+        <input type="hidden" name="{modus_name}" value="{modus}">
+        <table border="0">
+          <tr>
+            <td>Stammesabk&uuml;rzung:</td>
+            <td><input name="{dataarray}[{dataentry}]" value="{value}" type="text" size="{size}" maxlength="{maxlength}"></td>
+
+            <tmpl:SELECTOR>
+            <td>
+              <select name="{dataarray}[{dataentry}]">
+                <tmpl:OPTION><option value="{value}" {selected}>{text}</option></tmpl:OPTION>
+              </select>
+            </td>
+            </tmpl:SELECTOR>
+
+            <td><input type="submit" value="{caption}"></td>
+          </tr>
+        </table>
+      </form>
+      </tmpl:RELATION_NEW>
+
+      <tmpl:RELATION_INFO>
+      <table border="0">
+        <tr>
+          <td>{tag}</td>
+          <td>{relation} bis mindestens {duration}</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>Ihre Haltung uns gegen&uuml;ber: {their_relation}</td>
+        </tr>
+        <tmpl:WAR>
+        <tr>
+          <td>&nbsp;</td>
+          <td>Kriegspunkte: Unsere: {fame_own}. Ihre: {fame_target}.</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>Kriegsanteil: {percent_actual}&nbsp;%</td>
+        </tr>
+        </tmpl:WAR>
+      </table>
+      </tmpl:RELATION_INFO>
+
+      <tmpl:RELATION>
+      <form method="post" action="main.php">
+        <input type="hidden" name="{modus_name}" value="{modus}">
+        <input type="hidden" name="{dataarray}[{dataentry}]" value="{value}">
+
+        <table border="0">
+          <tr>
+            <td>{value}</td>
+
+            <tmpl:SELECTOR>
+            <td>
+              <select name="{dataarray}[{dataentry}]">
+                <tmpl:OPTION><option value="{value}" {selected}>{text}</option></tmpl:OPTION>
+              </select>
+            </td>
+            </tmpl:SELECTOR>
+
+            <td>
+              <input type="submit" value="{caption}">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">Ihre Haltung uns gegen&uuml;ber: {their_relation}</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">Punkte damals: Unsere: {tribe_points}. Ihre: {target_points}.</td>
+          </tr>
+          <tmpl:WAR>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">Kriegspunkte: Unsere: {fame_own}. Ihre: {fame_target}.</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">Kriegsanteil: {percent_actual}&nbsp;%
+              <tmpl:FORCEDSURRENDER>
+              <span class="{class}">({percent_estimated}&nbsp;% ben&ouml;tigt)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2"><input type="submit" name="forceSurrender" value="Kapitulation erzwingen">
+            </tmpl:FORCEDSURRENDER></td>
+          </tr>
+          </tmpl:WAR>
+        </table>
+      </form>
+      </tmpl:RELATION>
+    </td>
+  </tr>
+</table>

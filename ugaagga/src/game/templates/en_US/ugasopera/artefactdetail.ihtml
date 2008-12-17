@@ -1,0 +1,37 @@
+<p>{message}</p>
+<tmpl:ARTEFACT>
+<table class="grid">
+  <caption>{name}</caption>
+  <tr> 
+    <td><img src="images/artefacts/{resref}.gif" alt="{name}" title="{name}"></td>
+    <td class="description">
+      {description}<br>
+      {description_initiated}
+    </td>
+  </tr>
+
+  <tmpl:INITIATION>
+  <tr>
+    <td>{description}</td>
+    <td>
+      <form name="initiateArtefact" method="POST">      
+        <tmpl:COST>
+          {object}:
+          <tmpl:ENOUGH><span class="enough small">{amount}</span></tmpl:ENOUGH>
+          <tmpl:LESS><span class="less small">{amount}</span></tmpl:LESS>
+          <br>
+        </tmpl:COST>
+        Duration: {duration}<br>
+        <tmpl:HIDDEN><input type="hidden" name="{name}" value="{value}"></tmpl:HIDDEN>
+        <input type="submit" value="Ritual durchf&uuml;hren">
+      </form>        
+    </td>
+  </tr>
+  </tmpl:INITIATION>
+  <tmpl:NO_INITIATION>
+  <tr> 
+    <td colspan="2">An artifact is already being initiated in this cave.</td>
+  </tr>
+  </tmpl:NO_INITIATION>  
+</table>
+</tmpl:ARTEFACT>

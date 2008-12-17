@@ -1,0 +1,69 @@
+<script type="text/javascript">
+function disable_to(){
+  var r = document.newMessage.contactID;
+  var flag = false;
+  for (var i = 0; i < r.length; i++) if (r[i].selected && r[i].value != -1){ flag = true; break; }
+  document.newMessage.empfaenger.disabled = flag;
+}
+</script>
+<table class="message">
+    <tr>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=1"><img src="%gfx%/de_DE/t_slimfast/messages/inbox.png" alt="Posteingang" title="Posteingang"></a>
+        </td>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=2"><img src="%gfx%/de_DE/t_slimfast/messages/outbox.png" alt="Postausgang" title="Postausgang"></a>
+        </td>
+        <td align="center">
+          <a href="main.php?modus=new_message&amp;box=1"><img src="%gfx%/de_DE/t_slimfast/messages/new.png" alt="Neue Nachricht" title="Neue Nachricht"></a>
+        </td>
+    </tr>
+</table>
+<br/>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>
+      <form name="newMessage" method="post" action="main.php">
+        <table width="100%" border="0" cellspacing="0" cellpadding="2" class="box">
+          <tr>
+            <td align="right"><b>von:</b>&nbsp;</td>
+            <td>&nbsp;{sender}</td>
+          </tr>
+          <tr>
+            <td align="right"><b><a href="?modus=Contacts">Adressbuch:</a></b>&nbsp;</td>
+            <td>
+              &nbsp;<select name="contactID" onChange="disable_to(); return true;">
+                <option value="-1">Bitte wählen</option>
+                <tmpl:OPTION><option value="{contactID}">{contactname}</option></tmpl:OPTION>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td align="right"><b>an:</b>&nbsp;</td>
+            <td>&nbsp;<input name="empfaenger" type="text" style="width:450px;" value="{empfaenger}" size="35" maxlength="255"></td>
+          </tr>
+          <tr>
+            <td align="right"><b>Betreff:</b>&nbsp;</td>
+            <td>&nbsp;<input name="betreff" type="text" style="width:450px;" value="{betreff}" size="35" maxlength="255"></td>
+          </tr>
+        </table>
+        <br>
+        <input type="submit" name="senden" value="senden">
+        <br>
+        <br>
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td valign="top">
+              <textarea style="width:640px;" name="nachricht" rows="20" cols="61" wrap="physical">{nachricht}</textarea>
+            </td>
+          </tr>
+        </table>
+        <tmpl:HIDDEN><input type="hidden" name="{arg}" value="{value}"></tmpl:HIDDEN>
+      </form>
+    </td>
+  </tr>
+</table>
+<div align="right">
+  <br>
+  <a href="main.php{linkbackparams}">zur&uuml;ck zu den Nachrichten</a>
+</div>

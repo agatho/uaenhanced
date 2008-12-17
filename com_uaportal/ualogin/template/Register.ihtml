@@ -1,0 +1,148 @@
+<tmpl:REGISTER>{iterate}
+<div class="node">
+  <p>
+    Folgende W&ouml;rter d&uuml;rfen explizit nicht als Spielername oder als
+    Bestandteil des Spielernamens gew&auml;hlt werden, da sie Bestandteil des
+    Spiels sind. Zuwiderhandlung f&uuml;hrt zur L&ouml;schung:
+  </p><p>
+   {forbidden_names_list}
+  </p>
+</div>
+
+<div class="node">
+<p>
+  Bitte geben Sie Ihren gewünschten Spielernamen, Passwort und eine gültige
+  E-Mail-Adresse an.
+  <br/>
+  Ein Aktivierungskode wird Ihnen dann umgehend an die angegebene E-Mail-Adresse
+  zugeschickt. Eine <a target="_blank" href="{create_help}">ausführliche
+  Registrierungsanleitung</a> finden Sie im Wiki.
+</p>
+
+<p>
+  <strong>
+    Bitte beachten Sie, dass Sie nur einen Account bei Uga-Agga besitzen und
+    spielen dürfen! Die Weitergabe Ihrer Logindaten an Dritte kann zum Ausschluß
+    führen.
+  </strong>
+</p>
+
+<form id="ualogin_Register" name="ualogin_Register" action="?q=ualogin/Register" method="POST">
+
+  <tmpl:REFERERID>{iterate}<input type="hidden" value="{refererID}" name="refererID" /></tmpl:REFERERID>
+
+  <p>
+
+    <label for="username">Name deines Häuptlings:</label>
+    <br/>
+    <input id="username" name="username" value="{username}" size="15" maxlength="15"/>
+    <label for="username" class="small">
+      (nur Buchstaben, Zahlen, Leerzeichen, Bindestrich, Punkt)
+    </label>
+
+  </p><p>
+
+    <label for="sex">Geschlecht deines Häuptlings:</label>
+    <br/>
+    <select id="sex" name="sex">
+      <option selected value="-">Auswählen</option>
+      <option value="m">männlich</option>
+      <option value="w">weiblich</option>
+    </select>
+
+  </p><p>
+
+  <tmpl:EASY_START_OPTION>
+    <label for="easyStart">Starthöhle ausgebaut:</label>
+    <br/>
+    <tmpl:SELECTED>{iterate}
+      <input id="easyStart" name="easyStart" type="checkbox" value="1" checked="checked"/>
+    </tmpl:SELECTED>
+    <tmpl:UNSELECTED>{iterate}
+      <input id="easyStart" name="easyStart" type="checkbox" value="1"/>
+    </tmpl:UNSELECTED>
+    <label for="easyStart" class="small">
+      Ich möchte nicht von vorne anfangen, sondern die Herrschaft über einen
+      gut entwickelten Stamm übernehmen.
+    </label>
+
+  </p><p>
+  </tmpl:EASY_START_OPTION>
+
+    <label for="password">Passwort:</label>
+    <br/>
+    <input id="password" name="password" type="password" size="15" maxlength="15"/>
+    <label for="password" class="small">
+      (mind. 6 Buchstaben und/oder Zahlen)
+    </label>
+
+  </p><p>
+
+    <label for="password2">Passwort bestätigen:</label>
+    <br/>
+    <input id="password2" name="password2" type="password" size="15" maxlength="15"/>
+
+  </p><p>
+
+    <label for="email">E-Mail-Adresse:</label>
+    <br/>
+    <input id="email" name="email" value="{email}" size="50" maxlength="50"/>
+
+  </p><p>
+
+    <label for="email2">E-Mail-Adresse bestätigen:</label>
+    <br/>
+    <input id="email2" name="email2" value="{email2}" size="50" maxlength="50"/>
+
+  </p><p>
+
+  <tmpl:REGIONS>
+    Startregion:
+    <br/>
+    <table>
+      <tr>
+        <td><input type="radio" name="regionID" value="0" id="regionID0" checked><label for="regionID0">Bitte Auswählen</label></td>
+      </tr>
+    <tmpl:REGION>
+      <tr>
+        <td><input type="radio" name="regionID" value="{regionID}" id="regionID{regionID}"><label for="regionID{regionID}">{regionName}</label></td>
+        <td><label for="regionID{regionID}">[Die Region ist zu {regionPercentage}&nbsp;% voll]</label></td>
+      </tr>
+    </tmpl:REGION>
+    </table>
+    <br/>
+    <strong>Übersicht über die Regionen:</strong><br>
+    <img src="modules/ualogin/template/images/map_regions.png" alt="Regionsübersicht" border="0">
+
+  </p><p>
+  </tmpl:REGIONS>
+
+  <tmpl:REG_CODE>{iterate}
+    <label for="reg_code">Registrierungs-Code:</label>
+    <br/>
+    <input id="reg_code" name="reg_code" value="{reg_code}" size="20" maxlength="8"/>
+
+  </p><p>
+  </tmpl:REG_CODE>
+
+    <label for="agb">Nutzungsbedingungen:</label>
+    <br/>
+    <input id="agb" name="agb" type="checkbox" value="1"/>
+    <label for="agb" class="small">
+      Ich habe die <a href="?q=ualogin/TermsOfUse">Nutzungsbedingungen</a>
+      gelesen, verstanden und akzeptiert.
+    </label>
+
+  </p><p>
+
+    <input id="submit" name="submit" type="submit" value="Absenden">
+
+  </p>
+
+</form>
+</div>
+</tmpl:REGISTER>
+
+<tmpl:DISABLED>
+  <div class="messages">{message}</div>
+</tmpl:DISABLED>

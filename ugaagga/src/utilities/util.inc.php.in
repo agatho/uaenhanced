@@ -1,0 +1,5 @@
+<?php
+/**** for the cron jobs *****************************************************/
+define("_VALID_UA", 1);
+define("INC_DIR", "@prefix@/ugaagga/include/");
+?>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Uga Agga Menu</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="%gfx%/de_DE/t_ugasopera/style.css" rel="stylesheet" type="text/css">
+</head>
+<tmpl:TIME>
+<body id="top{month}">
+<div id="menu_logo" title="{day}. Tag des {monthName}-Monats im Jahre {year} um {hour} Uhr.">Uga<br>&nbsp; Agga</div>
+</tmpl:TIME>
+<div id="menu_select">
+  <form name="hoehlenwahl" method="post" action="ugastart.php" target="_top">
+    <select name="caveID" onChange="document.getElementsByName('hoehlenwahl')[0].submit(); return true;">
+      <tmpl:SELECT><option value="{value}" {selected}>{text}</option></tmpl:SELECT>
+    </select>
+    <noscript><input type="submit" name="&gt;" value="&gt;"></noscript>
+    <tmpl:HIDDEN><input name="{name}" type="hidden" value="{value}"></tmpl:HIDDEN>  
+  </form>
+</div>
+
+<div id="menu_icons">
+  <tmpl:ICON>
+    <a href="{link}" target="{target}"><img src="%gfx%/de_DE/t_ugasopera/menu/icon_{pic}.png" width="32" height="32" border="0" alt="{alt}" title="{alt}"></a>
+  </tmpl:ICON>
+</div>
+
+
+<div id="menu">
+  <tmpl:ITEM>
+  <a href="{link}" target="{target}"><nobr>{alt}</nobr></a>
+  </tmpl:ITEM>
+</div>
+</table>
+</body>
+</html>

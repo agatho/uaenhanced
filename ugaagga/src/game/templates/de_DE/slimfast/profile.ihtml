@@ -1,0 +1,146 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+
+// Based on: wikibits.js http://wikipedia.sourceforge.net/
+
+var clientPC = navigator.userAgent.toLowerCase();
+var is_khtml = (navigator.vendor == 'KDE' || ( document.childNodes && !document.all && !navigator.taintEnabled ));
+var is_opera = clientPC.indexOf('opera')!= -1;
+
+function onloadhook(){
+  if(!(document.getElementById && document.getElementsByTagName)) return;
+  tabbedprefs();
+}
+if (window.addEventListener) window.addEventListener("load",onloadhook,false);
+else if (window.attachEvent) window.attachEvent("onload",onloadhook);
+
+function tabbedprefs(){
+  prefform = document.getElementById('preferences');
+  if (!prefform || !document.createElement) return;
+  if (prefform.nodeName == 'A') return;
+  prefform.className = prefform.className + 'jsprefs';
+  var sections = new Array();
+  children = prefform.childNodes;
+  var seci = 0;
+  for(i = 0; i < children.length; i++){
+    if(children[i].nodeName.indexOf('FIELDSET') != -1){
+      children[i].id = 'prefsection-' + seci;
+      children[i].className = 'prefsection';
+      if (is_opera || is_khtml)
+        children[i].className = 'prefsection operaprefsection';
+      legends = children[i].getElementsByTagName('LEGEND');
+      sections[seci] = new Object();
+      if (legends[0] && legends[0].firstChild.nodeValue)
+        sections[seci].text = legends[0].firstChild.nodeValue;
+      else
+        sections[seci].text = '# ' + seci;
+      sections[seci].secid = children[i].id;
+      seci++;
+      if (sections.length != 1)
+        children[i].style.display = 'none';
+      else
+        var selectedid = children[i].id;
+    }
+  }
+  var toc = document.createElement('UL');
+  toc.id = 'preftoc';
+  toc.selectedid = selectedid;
+  for (i = 0; i < sections.length; i++){
+    var li = document.createElement('LI');
+    if (i == 0)
+      li.className = 'selected';
+    var a = document.createElement('A');
+    a.href = '#' + sections[i].secid;
+    a.onclick = uncoversection;
+    a.innerHTML = sections[i].text;
+    a.secid = sections[i].secid;
+    li.appendChild(a);
+    toc.appendChild(li);
+  }
+  prefform.insertBefore(toc, children[0]);
+  document.getElementById('prefsubmit').id = 'prefcontrol';
+}
+
+function uncoversection(){
+  oldsecid = this.parentNode.parentNode.selectedid;
+  newsec = document.getElementById(this.secid);
+  if (oldsecid != this.secid){
+    ul = document.getElementById('preftoc');
+    document.getElementById(oldsecid).style.display = 'none';
+    newsec.style.display = 'block';
+    ul.selectedid = this.secid;
+    lis = ul.getElementsByTagName('LI');
+    for (i = 0; i < lis.length; i++)
+      lis[i].className = '';
+    this.parentNode.className = 'selected';
+  }
+  return false;
+}
+//-->
+</script>
+<tmpl:MESSAGE><p>{message}</p></tmpl:MESSAGE>
+
+<form id="preferences" name="preferences" method="post" action="main.php">
+  <tmpl:DATA_GROUP>
+  <fieldset>
+  <legend>{heading}</legend>
+  <table class="profile">
+  <tmpl:ENTRY_INFO>
+    <tr>
+      <td class="labels">{name}</td>
+      <td class="fields">{value}</td>
+    </tr>
+  </tmpl:ENTRY_INFO>
+  <tmpl:ENTRY_INPUT>
+    <tr>
+      <td class="labels">{name}</td>
+      <td class="fields"><input name="{dataarray}[{dataentry}]" value="{value}"  type="text" size="{size}" maxlength="{maxlength}"></td>
+    </tr>
+  </tmpl:ENTRY_INPUT>
+  <tmpl:ENTRY_MEMO>
+    <tr>
+      <td class="labels">{name}</td>
+      <td class="fields"><textarea name="{dataarray}[{dataentry}]" cols="{cols}" rows="{rows}">{value}</textarea></td>
+    </tr>
+  </tmpl:ENTRY_MEMO>
+  <tmpl:ENTRY_INPUT_PWD>
+    <tr>
+      <td class="labels">{name}</td>
+      <td class="fields"><input name="{dataarray}[{dataentry}]" value="{value}"  type="password" size="{size}" maxlength="{maxlength}"></td>
+    </tr>
+  </tmpl:ENTRY_INPUT_PWD>
+  <tmpl:ENTRY_SELECTION>
+    <tr>
+      <td class="labels">{name}</td>
+      <td class="fields">
+        <select name="{dataarray}[{dataentry}]">
+          <tmpl:SELECTOR><option value="{key}"<tmpl:SELECTION>{iterate} selected="selected"</tmpl:SELECTION>>{text}</option></tmpl:SELECTOR>
+        </select>
+      </td>
+    </tr>
+  </tmpl:ENTRY_SELECTION>
+  <tmpl:ENTRY_CHECKBOX>
+    <tr>
+      <td class="labels">{name}</td>
+      <td class="fields">
+        <input name="{dataarray}[{dataentry}]" value="{value}" type="checkbox" <tmpl:SELECTION>{iterate}checked="checked" </tmpl:SELECTION>/>
+      </td>
+    </tr>
+  </tmpl:ENTRY_CHECKBOX>
+  </table>
+  </fieldset>
+  </tmpl:DATA_GROUP>
+  <br />
+  <input type="hidden" name="modus" value="user_profile">
+  <input type="hidden" name="task" value="change" />
+  <input type='submit' value="Speichern" />
+  <input type='reset' value="Zurücksetzen" />
+</form>
+
+<hr />
+<h1>Account Löschen</h1>
+<p>Ich habe keine Lust mehr!</p>
+<form name="delete" method="post" action="main.php">
+<input type="hidden" name="modus" value="delete_account" />
+<input type="submit" value="Den Account l&ouml;schen!" />
+</form>

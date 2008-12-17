@@ -1,0 +1,26 @@
+<fieldset>
+  <legend>Sie wollen ihr Angebot zurückziehen.</legend>
+  <p>
+    Entscheidest du dich wirklich dafür, dein Angebot zurückzuziehen? Sobald du 
+    dies getan hast, wird der Häuptling der bebotenen Höhle deine Zuwendungen 
+    vergessen haben und deine Bemühungen zunichte machen ...
+  </p>
+  <table>
+    <tr>
+      <td>
+        <form name="confirm" method="POST" action="main.php">
+          <input type="hidden" name="modus" value="takeover">
+          <input type="hidden" name="task" value="withdrawal">
+          <input type="hidden" name="check" value="{check}">
+          <input type="submit" value="'Überzeugungsarbeit' beenden">
+        </form>
+      </td>
+      <td>
+        <form name="cancel" method="POST" action="main.php">
+          <input type="hidden" name="modus" value="takeover">
+          <input type="submit" value="Lieber nicht ...">
+        </form>
+      </td>
+    </tr>
+  </table>
+</fieldset>

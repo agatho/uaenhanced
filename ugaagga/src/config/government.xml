@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tribeSystem SYSTEM "government.dtd">
+<tribeSystem>
+  <leaderDeterminations>
+    <leaderDetermination leaderDeterminationID="1">
+      <name>Macht des Stärkeren</name>
+      <description>
+        <p>Jeweils der stärkste Spieler eines Stammes gibt die Befehle, bis er von einem stärkeren abgelöst wird.</p>
+      </description>
+    </leaderDetermination>
+    <leaderDetermination leaderDeterminationID="2">
+      <name>Mehrheitsentscheid</name>
+      <description>
+        <p>Um Stammesführer zu sein, müssen mehr als 50% der Stammesangehörigen für einen Stimmen.</p>
+      </description>
+    </leaderDetermination>
+  </leaderDeterminations>
+  <governments>
+    <government governmentID="1">
+      <name>Brutokratie</name>
+      <resref>government_brutokratie</resref>
+      <leaderDeterminationID>1</leaderDeterminationID>
+      <description>
+        <p>In der Brutokratie gilt das Recht des Stärkeren.</p>
+      </description>
+    </government>
+    <government governmentID="2">
+      <name>Demokratie</name>
+      <resref>government_demokratie</resref>
+      <leaderDeterminationID>2</leaderDeterminationID>
+      <description>
+        <p>Der Stammesführer wird per Mehrheitsentscheid bestimmt.</p>
+      </description>
+    </government>
+  </governments>
+</tribeSystem>

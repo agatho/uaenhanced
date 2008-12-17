@@ -1,0 +1,19 @@
+<table border="0" align="center" cellpadding="5" cellspacing="0" width="95%">
+  <tr align="center"><td colspan="2"><b>Stammesgeschichte</b></td></tr>
+  
+  <tmpl:ROWS>
+    <tmpl:ROW>
+      <tr align="center" class="alternate">
+        <td>{ingameTime}</td>
+        <td align="left">{message}</td>
+      </tr>
+    </tmpl:ROW>
+    
+    <tmpl:ROW_ALTERNATE>
+      <tr align="center">
+        <td>{ingameTime}</td>
+        <td align="left">{message}</td>
+      </tr>
+    </tmpl:ROW_ALTERNATE>
+  </tmpl:ROWS>
+</table>

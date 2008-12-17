@@ -1,0 +1,46 @@
+<tmpl:TITLE>{iterate}Adressbuch</tmpl:TITLE>
+
+<tmpl:CONTENT>
+<tmpl:ERROR_NOSUCHPLAYER>{iterate}<h3>Dieser Spieler existiert nicht.</h3></tmpl:ERROR_NOSUCHPLAYER>
+<tmpl:ERROR_MAXREACHED><h3>Sie dürfen nicht mehr als {entries} Einträge in ihr Adressbuch aufnehmen.</h3></tmpl:ERROR_MAXREACHED>
+<tmpl:ERROR_INSERTFAILED>{iterate}<h3>Der Kontakt konnte nicht eingetragen werden oder war bereits vorhanden.</h3></tmpl:ERROR_INSERTFAILED>
+<tmpl:ERROR_DELETEFAILED>{iterate}<h3>Der Eintrag konnte nicht entfernt werden.</h3></tmpl:ERROR_DELETEFAILED>
+
+<table border="0" cellspacing="0" cellpadding="5" class="box">
+<tmpl:CONTACTS>
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Stamm</th>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tmpl:CONTACT><tr>
+    <td><a href="?modus=player_detail&amp;detailID={contactplayerID}">{contactname}</a></td>
+    <td>{contacttribe}</td>
+    <td>
+      <form method="POST" action="main.php">
+        <input type="hidden" name="modus" value="new_message">
+        <input type="hidden" name="empfaenger" value="{contactname}">
+        <input type="submit" value="Nachricht senden">
+      </form>
+    </td>
+    <td>
+      <form method="POST" action="main.php">
+        <input type="hidden" name="modus" value="Contacts">
+        <input type="hidden" name="task" value="Delete">
+        <input type="hidden" name="contactID" value="{contactID}">
+        <input type="submit" value="l&ouml;schen">
+      </form>
+    </td>
+  </tr></tmpl:CONTACT>
+</tmpl:CONTACTS>
+<tmpl:NOCONTACTS>{iterate}<tr><th>Bisher keine Kontakte eingetragen.</th></tr></tmpl:NOCONTACTS>
+</table>
+
+<form name="newContact" method="post" action="main.php">
+  <input name="contact" type="text" size="35" maxlength="90">
+  <input type="submit" name="add" value="Hinzufügen">
+  <input type="hidden" name="modus" value="Contacts" />
+  <input type="hidden" name="task" value="Add" />
+</form>
+</tmpl:CONTENT>

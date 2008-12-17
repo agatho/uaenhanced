@@ -1,0 +1,17 @@
+<table class="box">
+  <caption>Stammesgeschichte</caption>  
+  <tmpl:ROWS>
+    <tmpl:ROW>
+      <tr align="center" class="alternate">
+        <td>{ingameTime}</td>
+        <td align="left">{message}</td>
+      </tr>
+    </tmpl:ROW>
+    <tmpl:ROW_ALTERNATE>
+      <tr align="center">
+        <td>{ingameTime}</td>
+        <td align="left">{message}</td>
+      </tr>
+    </tmpl:ROW_ALTERNATE>
+  </tmpl:ROWS>
+</table>

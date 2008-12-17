@@ -1,0 +1,82 @@
+<tmpl:LOGIN>{iterate}
+
+<tmpl:GAME>{iterate}
+<div class="node">
+  <tmpl:GAMENAME>
+    <p>
+      <h3>{name}</h3>
+    </p><p>
+  </tmpl:GAMENAME>
+
+  <tmpl:GAMEIMAGE>
+    <p>
+      <div class="info"><img src="{image}" alt="RundenBild" /></div>
+    </p><p>
+  </tmpl:GAMEIMAGE>
+
+  <tmpl:GAMETEXT>
+    <p>
+      {text}
+    </p><p>
+  </tmpl:GAMETEXT>
+</div>
+</tmpl:GAME>
+
+<br class='clear' />
+
+<div class="node">
+  <form action="?q=ualogin/Login" method="post" name="ualogin_Login" id="ualogin_Login">
+
+    <p>
+
+      <label for="username">Spielername:</label>
+      <br />
+      <input id="username" name="username" class="form-text" type="text" maxlength="20" size="20" />
+
+    </p><p>
+
+      <label for="password">Password:</label>
+      <br />
+      <input id="password" name="password" class="form-text" type="password" maxlength="20" size="20" />
+
+    </p><p>
+
+    <tmpl:CAPTCHA>
+      <label for="captcha">
+        Captcha:
+        <br />
+        <img src="?q=ualogin/Captcha&amp;captcha_id={captcha_id}" alt="captcha" />
+       </label>
+      <br />
+      <input name="captcha_id" type="hidden" value="{captcha_id}" />
+      <input id="captcha" name="captcha" type="text" size="4" maxlength="4" />
+      <label for="captcha">(Geben Sie bitte die dargestellten Zeichen ein)</label>
+    </p><p>
+    </tmpl:CAPTCHA>
+
+      <label for="nogfx">Grafikpack:</label>
+      <br/>
+      <input id="nogfx" name="nogfx" type="checkbox" value="1" />
+      <label for="nogfx">ohne Grafikpack</label>
+
+    </p><p>
+
+      <noscript><input type="hidden" name="noscript" value="1"></noscript>
+      <input type="submit" name="submit" value="Login"/>
+
+    </p><p>
+
+      <ul>
+        <li><a href="?q=ualogin/Register" title="Create a new user account.">Create new account</a></li>
+        <li><a href="?q=ualogin/LostPassword" title="Request new password via e-mail.">Request new password</a></li>
+      </ul>
+
+    </p>
+
+  </form>
+</div>
+</tmpl:LOGIN>
+
+<tmpl:DISABLED>{iterate}
+  <div class="messages">Die Runde wurde beendet. Anmelden oder Spielen ist derzeit nicht möglich.</div>
+</tmpl:DISABLED>

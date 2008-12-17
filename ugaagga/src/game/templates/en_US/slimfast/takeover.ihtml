@@ -1,0 +1,247 @@
+<tmpl:MESSAGE><p><b>{message}</b></p></tmpl:MESSAGE>
+<tmpl:TAKEOVER>
+<table width="100%" border="0" cellpadding="3" cellspacing="3">
+
+  <tr>
+    <td colspan="2">
+      <div align="justfy">
+        Caves are the base of a chieftain's power. The more caves he
+        controls the more powerful and dangerous he may become. Every 
+        additional cave serves as training camp for troops and
+        a source of divine wonders.
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+
+  <tmpl:CHOSEN>
+  <tr>
+    <td colspan="2" class="box">
+      <b>Status</b>
+      <p>
+        Currently you are persuading the chieftain of the cave {caveName} ({xCoord}|{yCoord}).
+      </p>
+      
+      <p>
+        Your popularity there: <img src="%gfx%/en_US/t_basic/takeover/{status-img}.gif" border="0" alt="{status-txt}">
+      </p>
+
+      <table width="100%"><tr><td>
+        <form name="unit_movement" method="POST" action="main.php">
+          <input name="modus" type="hidden" value="unit_movement">
+          <input name="targetXCoord" type="hidden" value="{xCoord}">
+          <input name="targetYCoord" type="hidden" value="{yCoord}">
+          <input name="targetCaveName" type="hidden" value="{uh_caveName}">
+          <input type="submit" name="submit" value="Go there!">
+        </form>
+      </td><td align="right">
+        <form name="confirm_withdrawal" method="POST" action="main.php">
+          <input name="modus" type="hidden" value="takeover">
+          <input name="task" type="hidden" value="confirm_withdrawal">
+          <input type="submit" name="submit" value="Stop bidding for this cave">
+        </form>
+      </td></tr></table>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="box">
+      <p><b>Resources given so far</b></p>
+      <table>
+        <tmpl:RESOURCE><tr><td> {name} </td><td> {value} </td></tr></tmpl:RESOURCE>
+        <tmpl:NONE>{iterate}<tr><td><p>none</p></td></tr></tmpl:NONE>
+        <tmpl:SUM>
+          <tr><td colspan="2"><hr></td></tr>
+          <tr>
+            <td colspan="2" align="right"> {sum} points total</td>
+          </tr>
+        </tmpl:SUM>
+      </table>
+    </td>
+
+    <td valign="top" class="box">
+      <b>Competitors</b>
+      <ul>
+        <tmpl:BIDDER><li><a href="?modus=player_detail&amp;detailID={playerID}">{playername}</a> <img src="%gfx%/en_US/t_basic/takeover/{status-img}.gif" border="0" alt="{status-txt}"></li></tmpl:BIDDER>
+      </ul>
+      <tmpl:NOONE>{iterate}<p>No one is stupid enough to compete with you.</p></tmpl:NOONE>
+    </td>
+  </tr>
+  </tmpl:CHOSEN>
+
+  <tr>
+    <td colspan="2" class="box">
+      <b>Cave selection</b>
+      <form name="confirm_change" method="POST" action="main.php">
+      Choose a cave you want to take over:
+      <br>
+      x/y-coordinates:
+      <input name="xCoord" type="text" size="4" maxlength="4" value="{targetXCoord}">
+      &nbsp;
+      <input name="yCoord" type="text" size="4" maxlength="4" value="{targetYCoord}">
+      &nbsp;
+      <input name="currentXCoord" type="hidden" value="{currentXCoord}">
+      <input name="currentYCoord" type="hidden" value="{currentYCoord}">
+        <input name="modus" type="hidden" value="takeover">
+        <input name="task" type="hidden" value="confirm_change">
+      <input type="submit" name="submit" value="That's the one, Ughh!">
+      </form>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="box">
+      <p><b>Resource values</b></p>
+      <table>
+      <tmpl:RESOURCEVALUE>
+      <tr><td class="small"> {name} </td><td class="enough"> {value} </td></tr>
+      </tmpl:RESOURCEVALUE>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">
+      Everything about how to convert caves can be found at the
+      <a href="http://www.uga-agga.info/mwiki/index.php/Diskussion:Missionieren_%26_%DCbernahme" target="_blank">online help file</a>
+    .
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">
+      <p>
+        One way of conquering caves is to convert them. The following rules apply:
+      </p>
+    
+      <ul>
+        <li>
+          Every chieftain can rule over no more than {maxcaves} caves.
+        </li>
+        <li>
+          Only your first three caves can be "permanent" caves. All other caves
+          can be conquered by your enemies.
+        </li>
+        <li>
+          The cave to be converted has to be uninhabited and 
+          <b>be marked as "Free" on the map.</b>
+        </li>
+      </ul>
+    
+      <p>
+        Converting a cave can be done as follows:
+      </p>
+      
+      <ol>
+        <li>Search for a cave on the map marked as "Free"!</li>
+        <li>Select it as the cave you want to convert! We advise you against converting a cave that already has many competitors.</li>
+        <li>Transport resources into that cave to persuade the chieftain there!</li>
+        <li>Outbid all competitors on {beliebtheit} - not necessarily consecutive - days!</li>
+      </ol>
+      
+      <div align="justify">
+        In addition to that, there is a minimum daily amount of resources
+        that has to be delivered in order be eligible for obtaining a star.
+        This minimum daily amount is dependent on the number of caves you already possess.
+        If you deliver less resources at any given day, all resources delivered
+        on that day are wasted. However, the sought-after cave's chieftain will be
+        more impressed by offerings from weaker chieftains with less caves. They
+        will need less resources than chieftains with more caves. Important here is
+        the ratio between the minimum daily amount and the delivered resources.
+       </div>
+       
+      <br>
+      <br>
+
+      <div align="center">              
+        <table class="box">
+          <tr>
+            <th>Number of your caves</th>
+            <th>Min. daily amount</th>
+          </tr>
+          <tr>
+            <td align="center"> 1 </td>
+            <td align="center"> 200 </td>
+          </tr>
+          <tr>
+            <td align="center"> 2 </td>
+            <td align="center">200 * 2� = 800</td>
+          </tr>
+          <tr>
+            <td align="center"> 3 </td>
+            <td align="center">200 * 3� = 1800</td>
+          </tr>
+          <tr>
+            <td align="center"> 4 </td>
+            <td align="center">200 * 4� = 3200</td>
+          </tr>
+          <tr>
+            <td align="center"> 5 </td>
+            <td align="center">200 * 5� = 5000</td>
+          </tr>
+          <tr>
+            <td align="center"> 6 </td>
+            <td align="center"> --- </td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Example:</p>
+        
+      <div align="center">
+        <table class="box">
+          <tr>
+            <th>Bidder</th>
+            <th>Factor</th>
+            <th>Delivered resources</th>
+            <th>Ratio</th>
+          </tr>
+          <tr>
+            <td align="center"><b>1 cave</b></td>
+            <td align="center"><b>200</b></td>
+            <td align="center"><b>600</b></td>
+            <td align="center"><b>3.0</b></td>
+          </tr>
+          <tr>
+            <td align="center">5 caves</td>
+            <td align="center">5000</td>
+            <td align="center">7500</td>
+            <td align="center">1.5</td>
+          </tr>
+          <tr>
+            <td align="center">3 caves</td>
+            <td align="center">1800</td>
+            <td align="center">1800</td>
+            <td align="center">1.0</td>
+          </tr>
+          <tr>
+            <td align="center">4 caves</td>
+            <td align="center">3200</td>
+            <td align="center">8000</td>
+            <td align="center">2.5</td>
+          </tr>
+        </table>
+      </div>
+      
+      <p>The winner is the chieftain with the one cave.</p>
+
+      <div align="justify">
+        Sollte ein Missionierer selbst angreifen, reagieren die Bewohner sehr 
+        sauer und entfernen alle bisher vergebenen Sterne!
+      </div>
+    </td>
+  </tr>
+</table>
+</tmpl:TAKEOVER>
+        

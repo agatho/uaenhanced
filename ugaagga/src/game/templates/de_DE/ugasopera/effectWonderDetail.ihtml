@@ -1,0 +1,28 @@
+<table class="box">
+  <caption>Aktive Auswirkungen der Wunder</caption>
+  <tmpl:WONDER>
+  <tr><td align="center"><b>{name}</b>, wirkt noch bis: {end}</td></tr>
+  <tr>
+    <td>
+      <table>
+        <tmpl:EFFECT><tr><td>{name}</td><td>{value}</td></tr></tmpl:EFFECT>
+      </table>
+    </td>
+  </tr>
+  </tmpl:WONDER>
+  <tmpl:NOWONDER><tr><td align="center">{dummy}Derzeit wirken keinerlei Wunder auf Eure H&ouml;hle, H&auml;uptling!</td></tr></tmpl:NOWONDER>
+</table>
+
+<table class="box">
+  <caption>In der H&ouml;hle wirkende Effekte</caption>
+  <tmpl:EFFECT><tr><td>{name}</td><td>{value}</td></tr></tmpl:EFFECT>
+  <tmpl:NOEFFECT>
+  <tr><td align="center">{dummy}Derzeit wirken keinerlei Effekte auf Eure H&ouml;hle, H&auml;uptling!</td></tr>
+  </tmpl:NOEFFECT>
+</table>
+<table class="box">
+  <caption>Aktuelle Farmpunkte</caption>
+  <tr><td>Anzahl: {farmpoints}</td></tr>
+</table>
+<br>
+<a class="description" href="{rules_path}">weitere Informationen zu allen Wundern</a>

@@ -1,0 +1,35 @@
+<p>... of the tribe {tribe}</p>
+
+<table border="0" align="center" cellpadding="5" cellspacing="0" width="400" style="border: thin groove #000000;">
+    <tr align="center" bgcolor="#99CCCC">
+      <td>Rank</td>
+      <td>Name</td>
+      <td>&nbsp;</td>
+      <td>Score</td>
+      <td>Caves</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tmpl:ROWS>
+    <tmpl:ROW>
+    <tr align="center" bgcolor="#CCFFCC">
+      <td>{rank}</td>
+      <td><a href="{link}">{name}</a></td>
+      <td><img src="%gfx%/en_US/t_basic/ranking/{religion}.gif" alt="{religion}" width="15" height="15" border="0" title="{religion}"></td>
+      <td>{points}</td>
+      <td>{caves}</td>
+      <td>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+    </tr>
+    </tmpl:ROW>
+    
+    <tmpl:ROW_ALTERNATE>
+    <tr align="center">
+      <td>{rank}</td>
+      <td><a href="{link}">{name}</a></td>
+      <td><img src="%gfx%/en_US/t_basic/ranking/{religion}.gif" alt="{religion}" width="15" height="15" border="0" title="{religion}"></td>
+      <td>{points}</td>
+      <td>{caves}</td>
+      <td>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+    </tr>
+    </tmpl:ROW_ALTERNATE>
+    </tmpl:ROWS>
+</table>

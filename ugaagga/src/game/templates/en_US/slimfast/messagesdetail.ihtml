@@ -1,0 +1,104 @@
+<table class="message">
+    <tr>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=1"><img src="%gfx%/en_US/t_slimfast/messages/inbox.png" alt="Inbox" title="Inbox"></a>
+        </td>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=2"><img src="%gfx%/en_US/t_slimfast/messages/outbox.png" alt="Outbox" title="Outbox"></a>
+        </td>
+        <td align="center">
+          <a href="main.php?modus=new_message&amp;box=1"><img src="%gfx%/en_US/t_slimfast/messages/new.png" alt="New message" title="New message"></a>
+        </td>
+    </tr>
+</table>
+<br/>
+<tmpl:OBEN>
+  <div align="left">
+  <table border="0" cellspacing="1" cellpadding="1">
+    <tr> 
+      <td>
+        <tmpl:ANTWORTEN>
+          <form name="antworten" method="post" action="main.php">
+            <input type="submit" name="antworten" value="Reply">
+            <tmpl:HIDDEN>          
+              <input name="{arg}" type="hidden" value="{value}">
+            </tmpl:HIDDEN>
+          </form>
+        </tmpl:ANTWORTEN>
+      </td>
+      
+      <td>
+        <tmpl:LOESCHEN>
+          <form name="loeschen" method="post" action="main.php">
+            <input type="submit" name="delete" value="Delete">
+            <tmpl:HIDDEN>          
+              <input name="{arg}" type="hidden" value="{value}">
+            </tmpl:HIDDEN>
+          </form>
+        </tmpl:LOESCHEN>
+      </td>
+
+      <td>
+        <tmpl:CONTACTS>
+        <form name="newContact" method="post" action="main.php">
+          <input type="submit" name="add" value="Add to address book">
+          <input type="hidden" name="contact" value="{contact}">
+          <input type="hidden" name="modus" value="Contacts" />
+          <input type="hidden" name="task" value="Add" />
+        </form>
+        </tmpl:CONTACTS>
+      </td>
+    </tr>
+  </table>
+  </div>
+</tmpl:OBEN>
+
+<table width="100%" height="100%" border="0" cellpadding="2" cellspacing="0" class="box">
+  <tr> 
+    <td><b>Subject:</b></td>
+    <td>&nbsp;{betreff}</td>
+  </tr>
+  <tr> 
+    <td><b>From:</b></td>
+    <td>&nbsp;{sender}</td>
+  </tr>
+  <tr> 
+    <td><b>To:</b></td>
+    <td>&nbsp;{empfaenger}</td>
+  </tr>
+  <tr> 
+    <td><b>Date:</b></td>
+    <td>&nbsp;{datum}</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0">
+  <tr> 
+    <td>
+      <tmpl:BILD>
+        <img src="%gfx%/en_US/t_slimfast/{bild}" align="left">
+      </tmpl:BILD>
+    </td>
+  </tr>
+  <tr> 
+    <td>
+      {nachricht}
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-7711109527486774";
+google_ad_slot = "2391673668";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<br>
+<div align="right"><br>
+  <a href="main.php{linkbackparams}">back to mailbox</a>
+</div>

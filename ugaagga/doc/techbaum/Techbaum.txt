@@ -1,0 +1,67 @@
+Faustkämpfer: [Trainingsgelände 1]
+Bemannte Transporttrage: Materialbearbeitung 1 [Trainingsgelände 1]
+Knüppelkrieger: [Trainingsgelände 2 Knüppelmanufaktur 1]
+Steineschleuderer: Fliehkraft 1 [Steinbrecher 6 Trainingsgelände 2]
+Baumstammramme: [Holzfäller 8 Trainingsgelände 3]
+Lasttier: Fallenstellerei 2 Uga 1 [Trainingsgelände 3]
+Riesenschildkrötenschildträger: [Trainingsgelände 4 Schildkrötenschildausgräber 1]
+Rollende Transporttrage: Rad 1 [Trainingsgelände 5]
+Bogenschütze: Schnitzerei 1 [Trainingsgelände 5 Projektilbearbeiter 1]
+Speerwerfer: Schnitzerei 3 [Trainingsgelände 6 Projektilbearbeiter 1]
+Mobiles Katapult: Höhere Konstruktionskunst 1 [Trainingsgelände 7 Konstruktionszentrum 1]
+Berittener Säbelzahntiger: Tierzähmung 3 [Trainingsgelände 7 Knüppelmanufaktur 3 Bestiarium 1]
+Baumhirte: Uga 3 [Trainingsgelände 7 Uga Weihstätte 3 Schöpfungsgelehrter 3]
+Gepanzerter Berserker: Metallverarbeitung 2 [Trainingsgelände 8 Knüppelmanufaktur 3 Schildkrötenschildausgräber 2]
+Tollwütige Vampirfledermaus: Agga 2 Tierzähmung 2 [Trainingsgelände 8 Agga Opferstätte 2 Bestiarium 2]
+Brandpfeilschütze: Schnitzerei 3 Feuer 3 [Trainingsgelände 8 Projektilbearbeiter 3]
+Kampfmammut: Uga 1 Tierzähmung 3 [Trainingsgelände 9 Bestiarium 2]
+Rollender Panzerwagen: Agga 1 Höhere Konstruktionskunst 3 [Trainingsgelände 9 Konstruktionszentrum 2]
+
+Schlafstätte 40:
+Sammler 20:
+Trainingsgelände 10:
+Uga Weihstätte 5: Uga 1
+Agga Opferstätte 5: Agga 1
+Feuerstelle 5: Feuer 1
+Konstruktionszentrum 10: Höhere Konstruktionskunst 1
+Lagerhöhle 10: [Schlafstätte 3]
+Facharbeiterausbildungsstätte 10: Materialbearbeitung 1 [Sammler 6]
+Knüppelmanufaktur 8: Materialbearbeitung 1 [Sammler 6]
+Steinbrecher 50: Höhere Steineskunde 1 [Facharbeiterausbildungsstätte 1]
+Holzfäller 50: Keilwerkzeuge 1 [Facharbeiterausbildungsstätte 1]
+Jäger 50: Fallenstellerei 1 [Facharbeiterausbildungsstätte 1]
+Bestiarium 10: Feuer 5 Tierzähmung 1 [Jäger 12]
+Schildkrötenschildausgräber 10: Keilwerkzeuge 2 [Facharbeiterausbildungsstätte 2]
+Projektilbearbeiter 10: Fliehkraft 4 Keilwerkzeuge 5 Schnitzerei 1 [Facharbeiterausbildungsstätte 2]
+Schöpfungsgelehrter 10: Uga 4 [Facharbeiterausbildungsstätte 5 Uga Weihstätte 1]
+Metallschmelzer 13: Feuer 5 Metallverarbeitung 1 [Feuerstelle 4 Facharbeiterausbildungsstätte 6]
+Schwefelgewinner 6: Schwefelgewinnung 1 [Facharbeiterausbildungsstätte 7]
+
+Erdwall 10:
+Geröllfeld 10: Höhere Steineskunde 3
+Schützenturm 8: Höhere Steineskunde 1 Fliehkraft 2 [Steinbrecher 6 Trainingsgelände 2]
+Holzpiekser 100: Fallenstellerei 2 Schnitzerei 1 [Trainingsgelände 3]
+Todesfallgruben 100: Fallenstellerei 6 [Trainingsgelände 5]
+Zweibaumschleuder 5: Fliehkraft 7 Uga 1 Höhere Konstruktionskunst 1 [Konstruktionszentrum 1 Projektilbearbeiter 4]
+Wassergraben 10: Uga 1 Höhere Konstruktionskunst 1 [Konstruktionszentrum 1]
+Brandlachen 10: Agga 1 Feuer 5 Schwefelgewinnung 2 [Trainingsgelände 7]
+Massiver Zerkugeler 2: Höhere Steineskunde 10 Keilwerkzeuge 10 Rad 10 Höhere Konstruktionskunst 3 [Konstruktionszentrum 4]
+
+Höhlenmalerei 10:
+Materialbearbeitung 3: Höhlenmalerei 1
+Höhere Steineskunde 10: Höhlenmalerei 1
+Mühstik 1: Höhlenmalerei 1
+Fliehkraft 7: Höhlenmalerei 2
+Keilwerkzeuge 10: Höhlenmalerei 2 Materialbearbeitung 1
+Fallenstellerei 6: Höhlenmalerei 2 Materialbearbeitung 1 [Sammler 4]
+Uga 4: Höhlenmalerei 2 Mühstik 1
+Agga 2: Höhlenmalerei 2 Mühstik 1
+Rad 10: Höhlenmalerei 3 Fliehkraft 2 Keilwerkzeuge 2
+Schnitzerei 3: Höhlenmalerei 3 Materialbearbeitung 3 Keilwerkzeuge 2
+Feuer 5: Höhlenmalerei 3 Höhere Steineskunde 3 Keilwerkzeuge 2
+Bewirtschaftung 5: Höhlenmalerei 3 Keilwerkzeuge 6 [Sammler 14 Jäger 14]
+Höhere Konstruktionskunst 3: Höhlenmalerei 4 Rad 2 Schnitzerei 2
+Tierzähmung 3: Höhlenmalerei 4 Fallenstellerei 3 Feuer 3
+Metallverarbeitung 2: Höhlenmalerei 4 Höhere Steineskunde 5 Feuer 3
+Schwefelgewinnung 2: Höhlenmalerei 5 Höhere Steineskunde 6 Feuer 4
+

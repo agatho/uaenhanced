@@ -1,0 +1,78 @@
+<table class="box">
+  <caption>Dies ist der Landstrich <strong>{caveName}</strong> ({xCoord} | {yCoord}) - {terrain}</caption>
+  <tr>
+    <th><strong>Region:</strong> {region}</th>
+  </tr>
+  <tr>
+    <th><img src="%gfx%/de_DE/t_ugasopera/map/{terrain}.jpg" alt="{terrain}" title="{terrain}"></th>
+  </tr>
+  <tmpl:PROPERTY>
+    <tr>
+      <th>{text}</th>
+    </tr>
+  </tmpl:PROPERTY>
+  <tr>
+    <td align="center"><a href="main.php{movementLink}">dorthin bewegen!</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="main.php?modus=CaveBookmarks&amp;task=Add&amp;xCoord={xCoord}&amp;yCoord={yCoord}">zur Höhlenliste hinzufügen!</a></td>
+  </tr>
+  <tmpl:TAKEOVERABLE>
+    <tr>
+      <td align="center">
+        Dieser Landstrich ist bewohnbar. Er kann
+        <a href="main.php?modus={modus}&amp;caveID={caveID}&amp;targetXCoord={targetXCoord}&amp;targetYCoord={targetYCoord}">missioniert</a>
+        werden.
+      </td>
+    </tr>
+  </tmpl:TAKEOVERABLE>
+
+<tmpl:OCCUPIED>
+  <tr>
+    <td align="center">
+      Sie geh&ouml;rt dem H&auml;uptling
+      <a href="main.php{playerLink}"><strong>{caveOwner}</strong></a>
+      <tmpl:TRIBE>vom Stamme  <a href="main.php{tribeLink}"><strong>{ownersTribe}</strong></a></tmpl:TRIBE>.
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center"><a href="main.php?modus=Contacts&amp;task=Add&amp;contact={caveOwner}">Zum Adressbuch hinzufügen</a></td>
+  </tr>
+
+  <tmpl:ARTEFACT>
+  <tr>
+    <td align="center">In dieser H&ouml;hle wird <a href="main.php{artefactLink}">ein seltenes Artefakt</a> aufbewahrt.</td>
+  </tr>
+  </tmpl:ARTEFACT>
+</table>
+<br>
+<table class="box">
+  <caption>Alle H&ouml;hlen dieses H&auml;uptlings</caption>
+  <tr>
+    <th align="left">H&ouml;hle</td>
+    <th>Terrain</td>
+    <th>Gr&ouml;&szlig;e</td>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tmpl:CAVES>
+    <tr>
+      <td>{caveName} ({xCoord} | {yCoord})</td>
+      <td align="center">{terrain}</td>
+      <td align="center">{caveSize}</td>
+      <td><tmpl:PROPERTY><b>{text}</b></tmpl:PROPERTY>&nbsp;<tmpl:ARTEFACT>&nbsp;<a href="main.php{artefactLink}">Artefakte!!</a></tmpl:ARTEFACT></td>
+      <td>
+        <a href="main.php{movementLink}">dorthin bewegen!</a>
+      </td>
+      <td>
+        <a href="main.php?modus=CaveBookmarks&amp;task=Add&amp;xCoord={xCoord}&amp;yCoord={yCoord}">zur Höhlenliste hinzufügen!</a>
+      </td>
+    </tr>
+  </tmpl:CAVES>
+</tmpl:OCCUPIED>
+</table>
+
+<p>
+  <a href="main.php{backLink}">zur&uuml;ck zur Karte</a>
+</p>

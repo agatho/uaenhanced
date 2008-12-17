@@ -1,0 +1,46 @@
+<tmpl:STATUS_MESSAGE><p>{status_message}</p></tmpl:STATUS_MESSAGE>
+
+<tmpl:REPORT_DETAIL>
+<table class="message">
+  <tr> 
+    <th>Betreff:</th>
+    <td>&nbsp;{reportTitle}</td>
+  </tr>
+  <tr> 
+    <th>Datum:</th>
+    <td>&nbsp;{date}</td>
+  </tr>
+  <tr>
+    <td colspan="2">{report}</td>
+  </tr>
+</table>
+<br>
+<table class="message">
+  <tr> 
+    <th colspan="2">Was sollte ich das nächste mal in so einer Situation tun?</th>
+  </tr>
+	<tmpl:TARGET>
+		<tr>
+			<td nowrap>&nbsp;</td>
+			<td nowrap><a href="?modus={modus}&amp;submode=report_revise&amp;choiceID={choiceID}">{description}</a></td>
+		</tr>
+	</tmpl:TARGET>
+</table>
+<p><a href="?modus={modus}">zur&uuml;ck zu den Nachrichten</a><p>
+</tmpl:REPORT_DETAIL>
+
+<tmpl:REPORT_LIST>
+<table class="messagebox">
+	<tr>
+		<th>Datum</th>
+		<th>Betreff</th>
+	</tr>
+	<tmpl:MESSAGE>
+		<tr>
+			<td nowrap>{date}</td>
+			<td nowrap><a href="?modus={modus}&amp;submode=report_detail&amp;reportID={reportID}">{reportTitle}</a></td>
+		</tr>
+	</tmpl:MESSAGE>
+</table>
+</tmpl:REPORT_LIST>
+

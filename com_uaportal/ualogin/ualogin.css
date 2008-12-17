@@ -1,0 +1,11 @@
+.stats div table {
+  width: 30em;
+}
+
+.stats div table tr td.amount {
+  text-align: right;
+}
+
+.stats div table td td {
+  line-height: 1.2;
+}

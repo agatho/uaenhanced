@@ -1,0 +1,12 @@
+<tmpl:MESSAGE><h3>{message}</h3></tmpl:MESSAGE>
+<tmpl:AWARD>
+
+<table class="grid">
+  <caption>{title}</caption>
+  <tr> 
+    <td><img src="images/awards/{tag}_large.png" alt="{title}" title="{title}" hspace="20" hspace="20" width="128" height="128"></td>
+    <td class="description">{description}</td>
+  </tr>
+</table>
+
+</tmpl:AWARD>

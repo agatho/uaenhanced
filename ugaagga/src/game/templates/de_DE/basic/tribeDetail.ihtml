@@ -1,0 +1,62 @@
+<tmpl:DETAILS>
+<div align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="400">
+  <tr>
+    <td width="42"><img src="%gfx%/de_DE/t_basic/profile/links_oben.gif"></td><!--- Don't insert linebreaks in this line --->
+    <td background="%gfx%/de_DE/t_basic/profile/oben.gif" width="317">
+      &nbsp;
+    </td>
+    <td width="41"><img src="%gfx%/de_DE/t_basic/profile/rechts_oben.gif"></td>
+  </tr> 
+  <tr>
+    <td width="42" background="%gfx%/de_DE/t_basic/profile/links.gif">
+      &nbsp;
+    </td>
+    <td class="profile" width="317">
+      <table border="0" width="100%">
+        <tr>
+          <td align="center" valign="top">
+            <img src="%gfx%/de_DE/t_basic/profile/ugaagga.gif" cellspacing="6">          
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <tmpl:LOGO>
+              <img src="{logo}" width="{width}" height="{height}" border="0"><br>
+            </tmpl:LOGO>
+            &nbsp;
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="font-family: Verdana, Arial; color: white">
+            <span style="font-size: large">
+              {tag}<br>
+              {name}<br><br>
+            </span >
+            <tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}_large.png" width="128" height="128" border="0" hspace="8"></a></tmpl:AWARD>
+            <br><br>
+            <a href="main.php?modus={playerList_modus}&tag={urltag}">Liste der Mitglieder</a><br><br>
+            <a href="main.php?modus={tribeRelationList_modus}&tag={urltag}">&Uuml;bersicht &uuml;ber die Beziehungen</a><br><br>
+            <a href="main.php?modus={tribeHistory_modus}&tag={urltag}">&Uuml;bersicht &uuml;ber die Stammesgeschichte</a><br><br>
+            Anf&uuml;hrer: <a href="main.php?modus={playerDetail_modus}&detailID={playerID}">{leaderName}</a><br>
+            Stellvertreter: <a href="main.php?modus={playerDetail_modus}&detailID={juniorLeaderID}">{juniorLeaderName}</a><br><br>
+      
+            <b>Beschreibung:</b><br><br>{description}<br><br>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td width="41" background="%gfx%/de_DE/t_basic/profile/rechts.gif">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td width="42"><img src="%gfx%/de_DE/t_basic/profile/links_unten.gif"></td><!--- Don't insert linebreaks in this line!!!! --->
+    <td background="%gfx%/de_DE/t_basic/profile/unten.gif" width="317">
+      &nbsp;
+    </td>
+    <td width="41"><img src="%gfx%/de_DE/t_basic/profile/rechts_unten.gif"></td>
+  </tr>
+</table>
+</div>
+</tmpl:DETAILS>

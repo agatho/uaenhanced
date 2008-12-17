@@ -1,0 +1,9 @@
+<tmpl:LEADERDETERMINATION>
+  <div class="status_message">{message}</div>
+  <table class="box">
+    <caption>{name}</caption>
+    <tr> 
+      <td align="justify" class="small">{description}</td>
+    </tr>
+  </table>
+</tmpl:LEADERDETERMINATION>

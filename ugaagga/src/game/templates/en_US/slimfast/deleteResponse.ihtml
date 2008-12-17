@@ -1,0 +1,2 @@
+<p>{message}</p>
+<p>Onwards to <a href="{link}">{link}</a></p>

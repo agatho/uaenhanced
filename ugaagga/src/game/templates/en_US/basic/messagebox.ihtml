@@ -1,0 +1,81 @@
+<script language="javascript">
+<!--
+function checkall(){
+    if(document.deletemessages.all) var c = document.deletemessages.all.checked;
+    for (var i=0;i<document.deletemessages.elements.length;i++){
+        var e = document.deletemessages.elements[i];
+                if(e.name != 'all') e.checked = c;
+        }
+}
+//-->
+</script>
+
+<tmpl:STATUS_MESSAGE><p>{status_message}</p></tmpl:STATUS_MESSAGE>
+
+<table class="message">
+    <tr>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=1"><img src="%gfx%/en_US/t_basic/messages/inbox.png" alt="Inbox" title="Inbox"></a>
+        </td>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=2"><img src="%gfx%/en_US/t_basic/messages/outbox.png" alt="Outbox" title="Outbox"></a>
+        </td>
+        <td align="center">
+          <a href="main.php?modus=new_message&amp;box=1"><img src="%gfx%/en_US/t_basic/messages/new.png" alt="New message" title="New message"></a>
+        </td>
+    </tr>
+</table>
+<br/>
+<form name="deletemessages" method="post" action="main.php">
+    <table class="messagebox">
+        <tr>
+            <th><img src="%gfx%/en_US/t_basic/messages/arrow1.gif" width="35" height="15"></th>
+            <th colspan="2">
+              <input type="submit" name="mail_and_delete" value="Send email &amp; delete">
+              <input type="submit" name="delete" value="Delete">
+            </th>
+            <th colspan="2">
+              <select name="messageClass">
+                <option value="-2" selected="selected">Please choose</option>
+                <option value="-1">All</option>
+                <tmpl:MESSAGECLASS>
+                  <option value="{id}" {selected}>{text}</option>
+                </tmpl:MESSAGECLASS>
+              </select>
+              <input type="submit" name="delete_all" value="Empty {boxname}">
+            </th>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th>{von_an}</th>
+            <th>Type</th>
+            <th>Subject</th>
+            <th>Date</th>
+        </tr>
+      <tr>
+            <td><input name="all" type="checkbox" value="Check all" onclick="checkall();"></td>
+            <td><b>Select all</b></td>
+            <td colspan="3" align="right">
+              Message {message_min} - {message_max} of {message_count} &nbsp; 
+                <tmpl:PREVIOUS><a href="?offset={offset}&modus={modus}&box={box}">&lt;&lt;&lt; previous</a></tmpl:PREVIOUS>
+                <tmpl:PREVIOUS_DEACTIVATED>{dummy}&lt;&lt;&lt; previous</tmpl:PREVIOUS_DEACTIVATED>
+                <tmpl:NEXT><a href="?offset={offset}&modus={modus}&box={box}">next &gt;&gt;&gt;</a></tmpl:NEXT>
+                <tmpl:NEXT_DEACTIVATED>{dummy}next &gt;&gt;&gt;</tmpl:NEXT_DEACTIVATED>
+            </td>
+        </tr>
+        <tmpl:MESSAGE>
+            <tr class="m_{messageClass} read{read}">
+        				<td nowrap>
+        				  <input type="checkbox" name="deletebox[{messageID}]" value="{messageID}">
+                  <tmpl:FLAGGED></tmpl:FLAGGED>
+                  <tmpl:UNFLAGGED></tmpl:UNFLAGGED>
+        				</td>
+                <td>{absender_empfaenger}<br></td>
+                <td>{nachrichtenart}</td>
+                <td><a href="main.php{linkparams}">{betreff}</a></td>
+                <td nowrap>{datum}</td>
+            </tr>
+        </tmpl:MESSAGE>
+    </table>
+    <tmpl:HIDDEN><input name="{arg}" type="hidden" value="{value}"></tmpl:HIDDEN>
+</form>

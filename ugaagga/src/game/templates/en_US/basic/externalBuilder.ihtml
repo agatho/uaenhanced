@@ -1,0 +1,125 @@
+<tmpl:DEFENSESYSTEM_QUEUE>
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" class="message">
+    <tr>
+      <td colspan="2">Construction</td>
+    </tr>
+    <tr>
+      <td>Current task: Upgrading {name} at level {size} (finished at: {finish})</td>
+      <td><a href="main.php?eventID={eventID}&modus=external_builder">Cancel</a></td>
+    </tr>
+  </table>
+</tmpl:DEFENSESYSTEM_QUEUE>
+
+<br>
+
+<tmpl:MESSAGE>
+  <b>{message}</b>
+</tmpl:MESSAGE>
+
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td>
+      <a href="main.php?modus=external_properties&externalID={externalID}" target="_blank"><b>{name}</b></a><br>
+
+        <img src="%gfx%/spacer.gif" width="1" height="20">
+        <tmpl:RESSOURCECOST>
+          <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+		      &nbsp;
+        </tmpl:RESSOURCECOST>
+        <tmpl:UNITCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:UNITCOST>
+        <tmpl:BUILDINGCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:BUILDINGCOST>
+        <tmpl:EXTERNALCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:EXTERNALCOST>
+    </td>
+
+    <td><img src="%gfx%/en_US/t_basic/clock.gif" width="15" height="15" border="0" alt="Duration:">{time} &nbsp; &nbsp;</td>
+    <td>Level: {size}</td>
+
+    <td>
+      <tmpl:BREAK_DOWN_LINK>
+        <a href="main.php?modus=external_demolish&externalID={externalID}">Tear down</a>
+      </tmpl:BREAK_DOWN_LINK>
+      &nbsp;
+    </td>
+
+    <td>
+      <tmpl:BUILD_LINK>
+        <a href="main.php?modus=external_builder&externalID={externalID}&tstamp={tstamp}">Upgrade</a>
+      </tmpl:BUILD_LINK>
+      <tmpl:BUILD_LINK_NO>
+        {message}
+      </tmpl:BUILD_LINK_NO>
+    </td>
+
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+
+<tmpl:UNQUALIFIEDDEFENSESYSTEMS>
+
+<p><strong>Defenses that cannot be built yet:</strong></p>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus=external_properties&externalID={externalID}" target="_blank"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+
+</tmpl:UNQUALIFIEDDEFENSESYSTEMS>
+
+<tmpl:UNWANTEDDEFENSESYSTEMS>
+<p><strong>Relics:</strong></p>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus=external_properties&externalID={externalID}" target="_blank"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+    <td align="right">Level: {size}</td>
+    <td align="center"><a href="main.php?modus=external_demolish&externalID={externalID}">Tear down</a></td>
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+</tmpl:UNWANTEDDEFENSESYSTEMS>
+
+<a href="{rules_path}" target="_blank"><small>More info about all defenses</small></a>
+<br>

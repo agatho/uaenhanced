@@ -1,0 +1,16 @@
+<div class="header">
+  <table class="message">
+      <tr>
+          <td align="center">
+              <a href="main.php?modus=messages&amp;box=1"><img src="%gfx%/en_US/t_ugasopera/messages/inbox.png" alt="Inbox" title="Inbox"></a>
+          </td>
+          <td align="center">
+              <a href="main.php?modus=messages&amp;box=2"><img src="%gfx%/en_US/t_ugasopera/messages/outbox.png" alt="Outbox" title="Outbox"></a>
+          </td>
+          <td align="center">
+            <a href="main.php?modus=new_message&amp;box=1"><img src="%gfx%/en_US/t_ugasopera/messages/new.png" alt="New message" title="New message"></a>
+          </td>
+      </tr>
+  </table>
+</div>
+<div class="status_message">{success}</div> 

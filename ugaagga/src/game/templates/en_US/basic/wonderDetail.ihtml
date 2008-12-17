@@ -1,0 +1,83 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ol.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/en_US/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/or.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="100%" background="%gfx%/en_US/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="100%" height="100%" background="%gfx%/en_US/t_basic/tablet/m.gif">
+  <!-- begin main content -->
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td align="center"><b>{name}</b> &nbsp; <i>{offensiveness}</i></td>
+    </tr>
+    <tr>
+      <td>
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+          <tr>
+            <td><strong>Chance of success:</strong> {chance}</td>
+          </tr>
+          <tr>
+            <td><strong>Possible targets:</strong> {target}</td>
+          </tr>
+          <tr>
+            <td><strong>Description:</strong><br>{description}</td>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td>
+                    <tmpl:RESOURCECOST>
+                    <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+                    {value} &nbsp;
+                    </tmpl:RESOURCECOST>
+                    <tmpl:UNITCOST>
+                    {name}: {value} &nbsp;
+                    </tmpl:UNITCOST>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Dependencies:</strong><br>
+              <table border="0" width="60%" cellpadding="0" cellspacing="4">
+              <tmpl:DEPGROUP>
+                <tr>
+                  <td colspan="2">This wonder depends on the following {name} :</td>
+                </tr>
+                <tr>
+                      <td><em>Name</em></td>
+                      <td><em>Level</em></td>
+                </tr>
+                <tmpl:DEP>
+                  <tr>
+                    <td>{name}</td>
+                    <td>{level}</td>
+                  </tr>
+                </tmpl:DEP>
+              </tmpl:DEPGROUP>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-- end main content -->
+  </td>
+    <td width="11" height="100%" background="%gfx%/en_US/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ul.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/en_US/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ur.gif" width="11" height="11"></td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>More info about all wonders</small></a>
+

@@ -1,0 +1,61 @@
+<tmpl:DETAILS>
+
+<table class="box">
+  <caption>{name} vom Stamme "{tribe}"</caption>
+  <tr><td>
+    <table>
+      <tr>
+        <td rowspan="6"><tmpl:AVATAR_IMG><div class="player_avatar"><img src="{avatar}" width="{width}" height="{height}" border="0"></div></tmpl:AVATAR_IMG></td>
+        <td class="player_attr">Geschlecht:</td><td>{sex}</td></tr>
+      </tr>
+      <tr><td class="player_attr">Herkunft:   </td><td>{origin}</td></tr>
+      <tr><td class="player_attr">Uga-Agga-Alter:      </td><td>{age}</td></tr>
+      <tr><td class="player_attr">ICQ:        </td><td>{icq}</td></tr>
+      <tr><td class="player_attr">Nachricht:  </td><td><a href="main.php?modus={mail_modus}&empfaenger={mail_receiver}&caveID={caveID}">senden</a></td></tr>
+      <tr><td class="player_attr">Adressbuch: </td><td><a href="main.php?modus=Contacts&amp;task=Add&amp;contact={name}">hinzufügen</a></td></tr>
+      <tr><td class="player_attr">Orden:      </td><td><tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD>&nbsp;</td></tr>
+    </table>
+  </td></tr>
+</table>
+<br>
+<table class="box">
+  <caption>Beschreibung</caption>
+  <tr><td align="center">{description}</td></tr>
+</table>
+<br>
+<table class="box">
+  <caption>Höhlen</caption>
+  <tbody>
+    <tmpl:CAVES>
+    <tr>
+      <td><a href="main.php?modus=map&xCoord={xCoord}&yCoord={yCoord}">{name} ({xCoord}|{yCoord})</a></td>
+      <td><a href="main.php?modus=unit_movement&amp;targetXCoord={xCoord}&amp;targetYCoord={yCoord}&amp;targetCaveName={name}">Marsch!</a></td>
+      <td><a href="main.php?modus=CaveBookmarks&amp;task=Add&amp;xCoord={xCoord}&amp;yCoord={yCoord}">Höhlenliste+</a></td>
+    </tr>
+    </tmpl:CAVES>
+  </tbody>
+</table>
+<br>
+<tmpl:BODYCOUNT>
+<table class="box">
+  <caption>Get&ouml;tete Einheiten</caption>
+  <tr><td>{body_count}</td></tr>
+</table>
+</tmpl:BODYCOUNT>
+<tmpl:HISTORY>
+<table class="box">
+  <caption>Spieler-Geschichte</caption>
+  <tmpl:NOENTRIES>{iterate}
+  <tr>
+    <td>Keine Einträge</td>
+  </tr>
+  </tmpl:NOENTRIES>
+  <tmpl:ENTRY>
+  <tr>
+    <td>{timestamp}</td>
+    <td>{entry}</td>
+  </tr>
+  </tmpl:ENTRY>
+</table>
+</tmpl:HISTORY>
+</tmpl:DETAILS>

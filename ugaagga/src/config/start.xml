@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE StartValues SYSTEM "start.dtd">
+<StartValues averageMultiplier="0.5">
+  <StartValue id="soybean" max="100"/>
+  <StartValue id="acre"/>
+  <StartValue id="agriculture"/>
+  <StartValue id="feeder"/>
+</StartValues>

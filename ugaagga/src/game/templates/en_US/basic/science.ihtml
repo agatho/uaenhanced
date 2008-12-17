@@ -1,0 +1,98 @@
+<tmpl:SCIENCE_QUEUE>
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="1" class="message">
+  <tr><td colspan="2">M&uuml;h's Henge</td></tr>
+  <tr>
+    <td>Current task: Researching {name} at level {size} (finished at: {finish})</td>
+    <td><a href="main.php?eventID={eventID}&modus={action}&caveID={caveID}">Cancel</a></td>
+  </tr>
+</table>
+</tmpl:SCIENCE_QUEUE>
+<br>
+
+<tmpl:MESSAGE>
+  <b>{message}</b>
+</tmpl:MESSAGE>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:SCIENCE>
+  <tr class="{alternate}">
+    <td>
+      <a href="main.php?modus={modus}&scienceID={scienceID}&caveID={caveID}" target="_blank"><b>{name}</b></a><br>
+
+        <img src="%gfx%/spacer.gif" width="1" height="20">
+        <tmpl:RESSOURCECOST>
+          <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+              &nbsp;
+        </tmpl:RESSOURCECOST>
+        <tmpl:UNITCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:UNITCOST>
+        <tmpl:BUILDINGCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:BUILDINGCOST>
+        <tmpl:EXTERNALCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:EXTERNALCOST>
+
+    </td>
+
+    <td><img src="%gfx%/en_US/t_basic/clock.gif" width="15" height="15" border="0" alt="Duration:">{time} &nbsp; &nbsp;</td>
+    <td>Level: {size}</td>
+
+    <td>
+      <tmpl:RESEARCH_LINK>
+        <a href="main.php?modus={action}&scienceID={scienceID}&caveID={caveID}">Research</a>
+      </tmpl:RESEARCH_LINK>
+      <tmpl:RESEARCH_LINK_NO>
+        {message}
+      </tmpl:RESEARCH_LINK_NO>
+    </td>
+
+  </tr>
+  </tmpl:SCIENCE>
+</table>
+
+<tmpl:UNQUALIFIEDSCIENCES>
+
+<p><strong>Secrets that can't be discovered yet:</strong></p>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:SCIENCE>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus}&scienceID={scienceID}&caveID={caveID}" target="_blank"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+  </tr>
+  </tmpl:SCIENCE>
+</table>
+<br>
+
+</tmpl:UNQUALIFIEDSCIENCES>
+<a href="{rules_path}" target="_blank"><small>More info about all discoveries</small></a>
+<br>

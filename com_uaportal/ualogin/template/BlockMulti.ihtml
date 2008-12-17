@@ -1,0 +1,7 @@
+<tmpl:MULTI>{iterate}
+  {multi}
+</tmpl:MULTI>
+
+<tmpl:DISABLED>{iterate}
+  {message}
+</tmpl:DISABLED>

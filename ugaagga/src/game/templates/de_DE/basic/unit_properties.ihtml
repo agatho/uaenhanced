@@ -1,0 +1,133 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/ol.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/de_DE/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/or.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="100%" background="%gfx%/de_DE/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="100%" height="100%" background="%gfx%/de_DE/t_basic/tablet/m.gif">
+  <!-- begin main content -->
+
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td align="center"><b>{name}</b></td>
+    </tr>
+    <tr>
+     <td>
+      <img src="%gfx%/units/{dbFieldName}_large.gif" align="right" alt="{name}" title="{name}">
+      <strong>Beschreibung:</strong><br>{description}
+      <p><strong>Kosten:</strong><br>
+        <tmpl:RESSOURCECOST>
+          <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+          {value} &nbsp;
+        </tmpl:RESSOURCECOST>
+        <tmpl:UNITCOST>
+          <br>
+          {name}: {value}
+        </tmpl:UNITCOST>
+        <tmpl:BUILDINGCOST>
+          <br>
+          {name}: {value}
+        </tmpl:BUILDINGCOST>
+        <tmpl:EXTERNALCOST>
+          <br>
+          {name}: {value}
+        </tmpl:EXTERNALCOST>
+        <br><br>Dauer: {duration}<br><br>
+        <p><strong>Eigenschaften:</strong><br>
+        <table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td>Fernangriffsschaden</td>
+          <td>{rangeAttack}</td>
+        </tr>
+        <tr>
+          <td>Geb&auml;udeschaden</td>
+          <td>{arealAttack}</td>
+        </tr>
+        <tr>
+         <td>Get&uuml;mmelschaden</td>
+         <td>{attackRate}</td>
+        </tr>
+        <tr>
+         <td>Fernkampf-Widerstand</td>
+         <td>{rd_resist}</td>
+        </tr>
+        <tr>
+         <td>Nahkampf-Widerstand</td>
+         <td>{defenseRate}</td>
+        </tr>
+        <tr>
+         <td>Gr&ouml;&szlig;e</td>
+         <td>{size}</td>
+        </tr>
+        <tr>
+         <td>Reiseproviant:</td>
+         <td>{fuelFactor}x <img src="%gfx%/resources/{fuelName}_icon.gif" width="15" height="15" border="0"></td>
+        </tr>
+        <tr>
+         <td>Geschwindigkeit</td>
+         <td>{wayCost}</td>
+        </tr>
+	<tmpl:INVISIBLE>
+        <tr>
+         <td><b>{text}</b></td>
+        </tr>
+        </tmpl:INVISIBLE>
+        </table>
+        <p><strong>Spionagefertigkeiten:</strong><br>
+        <table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td>Spionageklasse</td>
+          <td>{spyValue}</td>
+        </tr>
+        <tr>
+          <td>Spionagequalität</td>
+          <td>{spyQuality}</td>
+        </tr>
+        <tr>
+          <td>Spionagefertigkeit</td>
+          <td>{spyChance}</td>
+        </tr>
+        <tr>
+          <td>Gegenspionagefertigkeit</td>
+          <td>{antiSpyChance}</td>
+        </tr>
+	</table>
+        <p><strong>Abhängigkeiten:</strong><br>
+        <table border="0" width="60%" cellpadding="0" cellspacing="4">
+        <tmpl:DEPGROUP>
+          <tr>
+            <td colspan="2">Die Einheit h&auml;ngt von folgenden {name} ab:</td>
+          </tr>
+          <tr>
+                <td><em>Name</em></td>
+                <td><em>Stufe</em></td>
+          </tr>
+          <tmpl:DEP>
+            <tr>
+              <td>{name}</td>
+              <td>{level}</td>
+            </tr>
+          </tmpl:DEP>
+        </tmpl:DEPGROUP>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+
+  <!-- end main content -->
+  </td>
+    <td width="11" height="100%" background="%gfx%/de_DE/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/ul.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/de_DE/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/ur.gif" width="11" height="11"></td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>weitere Informationen zu allen Einheiten</small></a>
+

@@ -1,0 +1,28 @@
+<p>... vom Stamme {tribe}</p>
+
+<table class="box">
+    <tr>
+      <th>Stamm</th>
+      <th>Haltung von {tribe}</th>
+      <th>Haltung gegen&uuml;ber {tribe}</th>
+    </tr>
+    <tmpl:ROWS>
+      <tmpl:ROW>
+      <tr class="alternate">
+        <td><a href="{link}">{tribe}</a></td>
+        <td>{relationTo}</td>
+        <td>{relationFrom}</td>
+      </tr>
+      </tmpl:ROW>
+
+      <tmpl:ROW_ALTERNATE>
+      <tr>
+        <td><a href="{link}">{tribe}</a></td>
+        <td>{relationTo}</td>
+        <td>{relationFrom}</td>
+      </tr>
+      </tmpl:ROW_ALTERNATE>
+    </tmpl:ROWS>
+</table>
+
+<p><a href="http://srv05.uga-agga.de/sieben/rules/" target="_blank">Beschreibung aller Beziehungen</a></p>

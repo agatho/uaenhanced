@@ -1,0 +1,61 @@
+<tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+<table class="box">
+  <caption>Wonders that can be invoked:</caption>
+  <tmpl:WONDER>
+  <tr class="{alternate}">
+    <td valign="center">
+      <a href="main.php?modus={modus}&wonderID={wonderID}&caveID={caveID}"><b>{name}</b></a><br>
+      <img src="%gfx%/spacer.gif" width="1" height="20">
+      <tmpl:RESSOURCECOST>
+        <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+        <tmpl:ENOUGH><span class="enough small">{value}</span></tmpl:ENOUGH>
+        <tmpl:LESS><span class="less small">{value}</span></tmpl:LESS>&nbsp;
+      </tmpl:RESSOURCECOST>
+      <tmpl:UNITCOST>
+        <br><span class="small">{name}</span>
+        <tmpl:ENOUGH><span class="enough small">{value}</span></tmpl:ENOUGH>
+        <tmpl:LESS><span class="less small">{value}</span></tmpl:LESS>&nbsp;
+      </tmpl:UNITCOST>
+    </td>
+    <td>
+      <tmpl:BUILD_LINK>
+        <form action="main.php" method="post">
+          <input type="hidden" name="modus" value="{action}">
+          <input type="hidden" name="wonderID" value="{wonderID}">
+          <input type="hidden" name="caveID" value="{caveID}">
+          <table width="100%">
+            <tr>
+	      <tmpl:TARGET>
+                <td>
+                  Coordinates of target cave:<br>
+                  X:<input type="text" name="xCoord" size="3" maxlength="6">
+                  Y:<input type="text" name="yCoord" size="3" maxlength="6">  
+                </td>
+	      </tmpl:TARGET>
+              <td valign="center">
+                <input type="submit" value="Invoke">
+              </td>
+            </tr>
+          </table>
+        </form>
+      </tmpl:BUILD_LINK>
+      <tmpl:BUILD_LINK_NO>{message}</tmpl:BUILD_LINK_NO>
+    </td>
+  </tr>
+  </tmpl:WONDER>
+</table>
+<tmpl:UNQUALIFIEDWONDERS>
+<br>
+<table class="box">
+  <caption>Wonders that can not be invoked yet:</caption>
+  <tmpl:WONDER>
+    <tr class="{alternate}">
+      <td><a href="main.php?modus={modus}&wonderID={wonderID}&caveID={caveID}"><b>{name}</b></a></td>
+      <td align="center">{dependencies}</td>
+    </tr>
+  </tmpl:WONDER>
+</table>
+</tmpl:UNQUALIFIEDWONDERS>
+<br>
+<a href="{rules_path}" target="_blank"><small>More info about all wonders</small></a>
+<br>

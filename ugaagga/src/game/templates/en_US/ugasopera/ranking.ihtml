@@ -1,0 +1,60 @@
+<p><a href="main.php?modus={modus}&caveID={caveID}">Show tribe ranking</a></p>
+<table class="box">
+  <tr>
+    <th align="left">Rank</th>
+    <th align="left">Name</th>
+    <th>&nbsp;</th>
+    <th align="left">Score</th>
+    <th>&nbsp;</th>
+    <th align="left">Tribe</th>
+    <th align="left">Caves</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tmpl:ROWS>
+  <tmpl:ROW>
+  <tr class="alt0">
+    <td>{rank}</td>
+    <td NOWRAP><a href="main.php{link}">{name}</a></td>
+    <td><img src="%gfx%/en_US/t_ugasopera/ranking/{religion}.png" alt="{religion}" width="15" height="15" border="0" title="{religion}"></td>
+    <td>{points}</td>
+    <td><img src="%gfx%/en_US/t_basic/ranking/leader{is_leader}.gif" width="15" height="15" border="0"></td>
+    <td NOWRAP><a href="main.php{tribelink}">{tribe}</a></td>
+    <td>{caves}</td>
+    <td>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+  </tr>
+  </tmpl:ROW>
+
+  <tmpl:ROW_ALTERNATE>
+  <tr class="alt1">
+    <td>{rank}</td>
+    <td NOWRAP><a href="main.php{link}">{name}</a></td>
+    <td><img src="%gfx%/en_US/t_ugasopera/ranking/{religion}.png" alt="{religion}" width="15" height="15" border="0" title="{religion}"></td>
+    <td>{points}</td>
+    <td><img src="%gfx%/en_US/t_basic/ranking/leader{is_leader}.gif" width="15" height="15" border="0"></td>
+    <td NOWRAP><a href="main.php{tribelink}">{tribe}</a></td>
+    <td>{caves}</td>
+    <td>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+  </tr>
+  </tmpl:ROW_ALTERNATE>
+  </tmpl:ROWS>
+</table>
+
+<table class="box">
+  <tr>
+    <th>&nbsp;<tmpl:UP><a href="main.php{link}">&lt;&lt;&lt;</a></tmpl:UP></th>
+    <th>
+      <form name="scrolljump" method="get" action="main.php">
+        Jump to:
+        <input name="offset" type="text" id="offset" size="15" maxlength="30">
+        &nbsp;
+        <input name="submit" type="submit" id="submit" value="Ugh!">
+        <tmpl:HIDDEN><input name="{name}" type="hidden" value="{value}"></tmpl:HIDDEN>
+      </form>
+    </th>
+    <th>&nbsp;<tmpl:DOWN><a href="main.php{link}">&gt;&gt;&gt;</a></tmpl:DOWN></th>
+  </tr>
+</table>
+
+<tmpl:RELIGIOUS_DISTRIBUTION>
+<p><img src="images/religious_distribution/religious_distribution.php?ugapercent={ugapercent}&aggapercent={aggapercent}" title="Uga: {ugapercent}% Agga: {aggapercent}%"></p>
+</tmpl:RELIGIOUS_DISTRIBUTION>

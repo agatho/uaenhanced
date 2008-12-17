@@ -1,0 +1,28 @@
+<table class="box">
+  <tr>
+    <td colspan="2" align="center">
+      <p><b>You want to withdraw your offer.</b></p>
+      <p>
+        Are you sure to withdraw your offer? The moment you do this, the chieftain
+        of the cave will forget all your offerings
+        and put paid to your plans ...
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="right">
+      <form name="confirm" method="POST" action="main.php">
+        <input type="hidden" name="modus" value="takeover">
+        <input type="hidden" name="task" value="withdrawal">
+        <input type="hidden" name="check" value="{check}">
+        <input type="submit" value="Withdraw">
+      </form>
+    </td>
+    <td width="50%" align="left">
+      <form name="cancel" method="POST" action="main.php">
+        <input type="hidden" name="modus" value="takeover">
+        <input type="submit" value="Cancel">
+      </form>
+    </td>
+  </tr>
+</table> 

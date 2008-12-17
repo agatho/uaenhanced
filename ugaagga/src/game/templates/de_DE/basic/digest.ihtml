@@ -1,0 +1,210 @@
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function findObj(n,d){
+  var p,i,x;if(!d)d=document;if((p=n.indexOf("?"))>0&&parent.frames.length){
+  d=parent.frames[n.substring(p+1)].document;n=n.substring(0,p);}if(!(x=d[n])
+  &&d.all)x=d.all[n];for(i=0;!x&&i<d.forms.length;i++)x=d.forms[i][n];for(i=0;
+  !x&&d.layers&&i<d.layers.length;i++)x=findObj(n,d.layers[i].document);if(!x
+  &&d.getElementById)x=d.getElementById(n);return x;
+}
+
+function TimeString(time)
+{
+  var hours = Math.floor(time/3600);
+  var minutes = Math.floor((time%3600)/60);
+  var seconds= time%60;
+  if(!hours) return minutes+":"+((seconds<10)?"0":"")+seconds;
+  return hours+":"+((minutes<10)?"0":"")+minutes+":"+((seconds<10)?"0":"")+seconds;
+}
+
+var domcomp = document.childNodes ? true : false;
+var Timers = new Object();
+function MultiTimer(){
+  for(Timer in Timers){    
+    var obj = findObj(Timer); 
+    if (!obj) continue;    
+    if (Timers[Timer] <= 10) obj.style.color = 'red';    
+    if (Timers[Timer] <= 0){
+      delete Timers[Timer];
+      if (domcomp) obj.innerHTML = "Fertig";
+      else obj.value = "Fertig";
+    } else {
+      if (domcomp) obj.innerHTML = TimeString(Timers[Timer]--);
+      else obj.value = TimeString(Timers[Timer]--);
+    }
+  }
+}
+//-->
+</script>
+
+<div class="message" style="width:90%;margin-bottom:1em;padding:1em;">
+  <a href="?modus=EventReports&amp;task=Movements">zur Bewegungsübersicht</a>
+</div>
+
+<tmpl:OPPONENT_MOVEMENTS>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+    <tr>
+      <th colspan="5"> Fremde Bewegungen </th>
+    </tr>
+    <tmpl:MOVEMENT>
+      <tr>
+        <td>{source_player_name} <small>{source_player_tribe}</small><br><nobr>{source_cave_name} ({source_xCoord}|{source_yCoord})</nobr></td>
+        <td><div align="center">&gt; {movementID_description} &gt;</div></td>
+        <td>{target_player_name} <small>{target_player_tribe}</small><br><nobr>{target_cave_name} ({target_xCoord}|{target_yCoord})</nobr></td>
+        <td>{event_end}</td>
+        <td>
+          <script language="JavaScript" type="text/JavaScript">
+            <!--
+            if (domcomp) document.write("<div id='movement{eventID}' style='text-align:right'>---</div>");
+            else document.write("<input name='movement{eventID}' id='movement{eventID}' style='text-align:right' size='9'>");
+            Timers['movement{eventID}']={seconds_before_end};
+            //-->
+          </script>
+        </td>
+      </tr>
+    </tmpl:MOVEMENT>
+  </table>
+<br>
+</tmpl:OPPONENT_MOVEMENTS>
+
+<tmpl:MOVEMENTS>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+    <tr>
+      <th colspan="5"> Eigene Bewegungen </th>
+    </tr>
+    <tmpl:MOVEMENT>
+      <tr>
+        <td>{source_player_name} <small>{source_player_tribe}</small><br><nobr>{source_cave_name} ({source_xCoord}|{source_yCoord})</nobr></td>
+        <td><div align="center">&gt; {movementID_description} &gt;</div></td>
+        <td>{target_player_name} <small>{target_player_tribe}</small><br><nobr>{target_cave_name} ({target_xCoord}|{target_yCoord})</nobr></td>
+        <td>{event_end}</td>
+        <td>
+          <script language="JavaScript" type="text/JavaScript">
+            <!--
+            if (domcomp) document.write("<div id='movement{eventID}' style='text-align:right'>---</div>");
+            else document.write("<input name='movement{eventID}' id='movement{eventID}' style='text-align:right' size='9'>");
+            Timers['movement{eventID}']={seconds_before_end};
+            //-->
+          </script>
+        </td>
+      </tr>
+    </tmpl:MOVEMENT>
+  </table>
+<br>
+</tmpl:MOVEMENTS>
+
+<tmpl:INITIATIONS>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+    <tr>
+      <th colspan="3"> Artefakte </th>
+    </tr>
+    <tmpl:INITIATION>
+      <tr>
+        <td width="50%">{name} ({caveID})</td>
+        <td width="25%">{artefactName}</td>
+        <td width="25%">{event_end}</td>
+      </tr>
+    </tmpl:INITIATION>
+  </table>
+<br>
+</tmpl:INITIATIONS>
+
+<tmpl:APPOINTMENTS>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1">
+    <tr>
+      <th colspan="4" class="message">Ausstehende Termine</th>
+    </tr>
+    <tmpl:APPOINTMENT>
+      <tr class="digest_{category}">
+        <td>{event_name}</td>
+        <td><a href="ugastart.php?modus={modus}&amp;caveID={caveID}" target="_top">{cave_name}</a></td>
+        <td>{event_end}</td>
+        <td>
+          <script language="JavaScript" type="text/JavaScript">
+            <!--
+            if (domcomp) document.write("<div id='appointment{eventID}' style='text-align:right'>---</div>");
+            else document.write("<input name='appointment{eventID}' id='movement{eventID}' style='text-align:right' size='9'>");
+            Timers['appointment{eventID}']={seconds_before_end};
+            //-->
+          </script>
+        </td>
+      </tr>
+    </tmpl:APPOINTMENT>
+  </table>
+<br>
+</tmpl:APPOINTMENTS>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-7711109527486774";
+google_ad_slot = "1979077863";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br>
+<br>
+<tmpl:BUILDINGS>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+    <tr>
+      <th colspan="4">Kein Erweiterungsbau:</th>
+    </tr>
+    <tmpl:BUILDING>
+    <tr>
+      <td><a href="ugastart.php?caveID={caveID}&amp;modus={modus}" target="_top">{cave_name}</a></td>
+    </tr>
+    </tmpl:BUILDING>
+  </table>
+  <br>
+</tmpl:BUILDINGS>
+
+<tmpl:UNITS>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+    <tr>
+      <th colspan="4">Keine Einheitenproduktion:</th>
+    </tr>
+    <tmpl:UNIT>
+    <tr>
+      <td><a href="ugastart.php?caveID={caveID}&amp;modus={modus}" target="_top">{cave_name}</a></td>
+    </tr>
+    </tmpl:UNIT>
+  </table>
+  <br>
+</tmpl:UNITS>
+
+<tmpl:DEFENSES>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+    <tr>
+      <th colspan="4">Kein Verteidigungsbau:</th>
+    </tr>
+    <tmpl:DEFENSE>
+    <tr>
+      <td><a href="ugastart.php?caveID={caveID}&amp;modus={modus}" target="_top">{cave_name}</a></td>
+    </tr>
+    </tmpl:DEFENSE>
+  </table>
+  <br>
+</tmpl:DEFENSES>
+
+<tmpl:SCIENCES>
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+    <tr>
+      <th colspan="4">Keine Forschung:</th>
+    </tr>
+    <tmpl:SCIENCE>
+    <tr>
+      <td><a href="ugastart.php?caveID={caveID}&amp;modus={modus}" target="_top">{cave_name}</a></td>
+    </tr>
+    </tmpl:SCIENCE>
+  </table>
+  <br>
+</tmpl:SCIENCES>
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+MultiTimer();
+window.setInterval("MultiTimer()", 1000);
+//-->
+</script>

@@ -1,0 +1,62 @@
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td align="center"><b>{name}</b> &nbsp; <i>{offensiveness}</i></td>
+    </tr>
+    <tr>
+      <td>
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+          <tr>
+            <td><strong>Erfolgswahrscheinlichkeit:</strong> {chance}</td>
+          </tr>
+          <tr>
+            <td><strong>M&ouml;gliche Ziele:</strong> {target}</td
+          </tr>
+          <tr>
+            <td><strong>Beschreibung:</strong><br>{description}</td>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td>
+                    <tmpl:RESOURCECOST>
+                    <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+                    {value} &nbsp;
+                    </tmpl:RESOURCECOST>
+                    <tmpl:UNITCOST>
+                    {name}: {value} &nbsp;
+                    </tmpl:UNITCOST>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Abhängigkeiten:</strong><br>
+              <table border="0" width="60%" cellpadding="0" cellspacing="4">
+              <tmpl:DEPGROUP>
+                <tr>
+                  <td colspan="2">Die Erweiterung h&auml;ngt von folgenden {name} ab:</td>
+                </tr>
+                <tr>
+                      <td><em>Name</em></td>
+                      <td><em>Stufe</em></td>
+                </tr>
+                <tmpl:DEP>
+                  <tr>
+                    <td>{name}</td>
+                    <td>{level}</td>
+                  </tr>
+                </tmpl:DEP>
+              </tmpl:DEPGROUP>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+<br>
+<a href="{rules_path}"><small>weitere Informationen zu allen Wundern</small></a>

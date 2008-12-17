@@ -1,0 +1,33 @@
+<tmpl:TITLE>{iterate}Suggestions</tmpl:TITLE>
+
+<tmpl:CONTENT>
+
+<p>
+  This is the place where you can make suggestions on upcoming changes in
+  the game. To prevent misuse of this feature you are resticted to a
+  maximum of {max_count} suggestions. Use them wisely and don't expect that
+  the a suggestion would be more appreciated or helpful if you submit it
+  {max_count} times.
+</p>
+
+<tmpl:MAX_SUGGESTIONS_REACHED>
+<p>
+  You have reached your maximum of possible suggestions.{iterate}
+</p>
+</tmpl:MAX_SUGGESTIONS_REACHED>
+
+<tmpl:SUGGESTIONS>
+<p>
+  <form method="POST" action="main.php">
+    <input type="hidden" name="modus" value="Suggestions">
+    <input type="hidden" name="task" value="Send">
+    <tmpl:SUGGESTION>
+    <p>
+      Suggestion {num}:<br />
+      <textarea style="width:640px;" name="suggestion{num}" rows="20" cols="61" wrap="physical"></textarea>
+    </p>
+    </tmpl:SUGGESTION>
+    <input type="submit" value="Send">
+  </form>
+</tmpl:SUGGESTIONS>
+</tmpl:CONTENT>

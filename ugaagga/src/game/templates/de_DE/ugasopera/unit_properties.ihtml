@@ -1,0 +1,131 @@
+<table class="box">
+  <caption>{name}</caption>
+  <tr>
+    <td><img src="%gfx%/units/{dbFieldName}_large.gif" alt="{name}" title="{name}"></td>
+    <td>
+      <table class="box">
+        <tr><td><strong>Beschreibung:</strong><br>{description}</td></tr>
+        <tr><td><strong>Maximale Stufe:</strong> {maxlevel} (derzeit: {currentlevel})</td></tr>
+        <tr>
+          <td>
+            <table class="box">
+              <caption>Kosten:</caption>
+              <tr>
+                <td>
+                  <tmpl:RESSOURCECOST>
+                    <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+                    {value} &nbsp;
+                  </tmpl:RESSOURCECOST>
+                  <tmpl:UNITCOST>
+                    <br>
+                    {name}: {value}
+                  </tmpl:UNITCOST>
+                  <tmpl:BUILDINGCOST>
+                    <br>
+                    {name}: {value}
+                  </tmpl:BUILDINGCOST>
+                  <tmpl:EXTERNALCOST>
+                    <br>
+                    {name}: {value}
+                  </tmpl:EXTERNALCOST>
+                  <br><br>Dauer: {duration}<br><br>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table class="box">
+              <caption>Eigenschaften:</caption>
+              <tr>
+                <td>Fernangriffsschaden</td>
+                <td>{rangeAttack}</td>
+              </tr>
+              <tr>
+                <td>Geb&auml;udeschaden</td>
+                <td>{arealAttack}</td>
+              </tr>
+              <tr>
+               <td>Get&uuml;mmelschaden</td>
+               <td>{attackRate}</td>
+              </tr>
+              <tr>
+               <td>Fernkampf-Widerstand</td>
+               <td>{rd_resist}</td>
+              </tr>
+              <tr>
+               <td>Nahkampf-Widerstand</td>
+               <td>{defenseRate}</td>
+              </tr>
+              <tr>
+               <td>Gr&ouml;&szlig;e</td>
+               <td>{size}</td>
+              </tr>
+              <tr>
+               <td>Reiseproviant:</td>
+               <td>{fuelFactor}x <img src="%gfx%/resources/{fuelName}_icon.gif" width="15" height="15" border="0"></td>
+              </tr>
+              <tr>
+               <td>Geschwindigkeit</td>
+               <td>{wayCost}</td>
+              </tr>
+              <tmpl:INVISIBLE>
+                <tr>
+                  <td><b>{text}</b></td>
+                </tr>
+              </tmpl:INVISIBLE>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table class="box">
+              <caption>Spionagefertigkeiten:</caption>
+              <tr>
+                <td>Spionageklasse</td>
+                <td>{spyValue}</td>
+              </tr>
+              <tr>
+                <td>Spionagefertigkeit</td>
+                <td>{spyChance}</td>
+              </tr>
+              <tr>
+                <td>Gegenspionagefertigkeit</td>
+                <td>{antiSpyChance}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>
+            <table class="box">
+            <caption>Abhängigkeiten:</caption>
+            <tmpl:DEPGROUP>
+              <tr>
+                <th colspan="2">Die Einheit h&auml;ngt von folgenden {name} ab:</th>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <th>Stufe</th>
+              </tr>
+              <tmpl:DEP>
+                <tr>
+                  <td>{name}</td>
+                  <td>{level}</td>
+                </tr>
+              </tmpl:DEP>
+            </tmpl:DEPGROUP>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>weitere Informationen zu allen Einheiten</small></a>

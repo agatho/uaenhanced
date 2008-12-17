@@ -1,0 +1,133 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ol.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/en_US/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/or.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="100%" background="%gfx%/en_US/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="100%" height="100%" background="%gfx%/en_US/t_basic/tablet/m.gif">
+  <!-- begin main content -->
+
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td align="center"><b>{name}</b></td>
+    </tr>
+    <tr>
+     <td>
+      <img src="%gfx%/units/{dbFieldName}_large.gif" align="right" alt="{name}" title="{name}">
+      <strong>Description:</strong><br>{description}
+      <p><strong>Cost:</strong><br>
+        <tmpl:RESSOURCECOST>
+          <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+          {value} &nbsp;
+        </tmpl:RESSOURCECOST>
+        <tmpl:UNITCOST>
+          <br>
+          {name}: {value}
+        </tmpl:UNITCOST>
+        <tmpl:BUILDINGCOST>
+          <br>
+          {name}: {value}
+        </tmpl:BUILDINGCOST>
+        <tmpl:EXTERNALCOST>
+          <br>
+          {name}: {value}
+        </tmpl:EXTERNALCOST>
+        <br><br>Duration: {duration}<br><br>
+        <p><strong>Properties:</strong><br>
+        <table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td>Ranged attack damage</td>
+          <td>{rangeAttack}</td>
+        </tr>
+        <tr>
+          <td>Building damage</td>
+          <td>{arealAttack}</td>
+        </tr>
+        <tr>
+         <td>Melee damage</td>
+         <td>{attackRate}</td>
+        </tr>
+        <tr>
+         <td>Ranged damage resistance</td>
+         <td>{rd_resist}</td>
+        </tr>
+        <tr>
+         <td>Melee damage resistance</td>
+         <td>{defenseRate}</td>
+        </tr>
+        <tr>
+         <td>Size</td>
+         <td>{size}</td>
+        </tr>
+        <tr>
+         <td>Rations:</td>
+         <td>{fuelFactor}x <img src="%gfx%/resources/{fuelName}_icon.gif" width="15" height="15" border="0"></td>
+        </tr>
+        <tr>
+         <td>Speed</td>
+         <td>{wayCost}</td>
+        </tr>
+    <tmpl:INVISIBLE>
+        <tr>
+         <td><b>{text}</b></td>
+        </tr>
+        </tmpl:INVISIBLE>
+        </table>
+        <p><strong>Espionage properties:</strong><br>
+        <table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td>Espionage class</td>
+          <td>{spyValue}</td>
+        </tr>
+        <tr>
+          <td>Espionage quality</td>
+          <td>{spyQuality}</td>
+        </tr>
+        <tr>
+          <td>Espionage ability</td>
+          <td>{spyChance}</td>
+        </tr>
+        <tr>
+          <td>Counter-espionage ability</td>
+          <td>{antiSpyChance}</td>
+        </tr>
+    </table>
+        <p><strong>Dependencies:</strong><br>
+        <table border="0" width="60%" cellpadding="0" cellspacing="4">
+        <tmpl:DEPGROUP>
+          <tr>
+            <td colspan="2">This unit depends on the following {name}:</td>
+          </tr>
+          <tr>
+                <td><em>Name</em></td>
+                <td><em>Level</em></td>
+          </tr>
+          <tmpl:DEP>
+            <tr>
+              <td>{name}</td>
+              <td>{level}</td>
+            </tr>
+          </tmpl:DEP>
+        </tmpl:DEPGROUP>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+
+  <!-- end main content -->
+  </td>
+    <td width="11" height="100%" background="%gfx%/en_US/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ul.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/en_US/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ur.gif" width="11" height="11"></td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>More info about all units</small></a>
+

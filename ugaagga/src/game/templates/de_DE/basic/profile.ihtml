@@ -1,0 +1,86 @@
+<tmpl:MESSAGE>
+<b>{message}</b>	
+</tmpl:MESSAGE>
+
+<form name="data" method="post" action="main.php">
+<input type="hidden" name="modus" value="user_profile" />
+<input type="hidden" name="task" value="change" />
+
+<tmpl:DATA_GROUP>
+<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+<tr>
+  <td colspan="2"><strong>{heading}</strong></td>	
+</tr>
+
+<tmpl:ENTRY_INFO>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    {value}
+  </td>
+</tr>
+</tmpl:ENTRY_INFO>
+
+<tmpl:ENTRY_INPUT>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <input name="{dataarray}[{dataentry}]" value="{value}"  type="text" size="{size}" maxlength="{maxlength}">
+  </td>
+</tr>
+</tmpl:ENTRY_INPUT>
+
+<tmpl:ENTRY_MEMO>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <textarea name="{dataarray}[{dataentry}]" cols="{cols}" rows="{rows}">{value}</textarea>
+  </td>
+</tr>
+</tmpl:ENTRY_MEMO>
+
+
+<tmpl:ENTRY_INPUT_PWD>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <input name="{dataarray}[{dataentry}]" value="{value}"  type="password" size="{size}" maxlength="{maxlength}">
+  </td>
+</tr>
+</tmpl:ENTRY_INPUT_PWD>
+
+<tmpl:ENTRY_SELECTION>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <select name="{dataarray}[{dataentry}]">
+      <tmpl:SELECTOR>
+      <option value="{key}"<tmpl:SELECTION>{iterate} selected="selected"</tmpl:SELECTION>>{text}</option>
+      </tmpl:SELECTOR>
+    </select>
+  </td>
+</tr>
+</tmpl:ENTRY_SELECTION>
+
+<tmpl:ENTRY_CHECKBOX>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <input name="{dataarray}[{dataentry}]" value="{value}" type="checkbox" <tmpl:SELECTION>{iterate}checked="checked" </tmpl:SELECTION>/>
+  </td>
+</tr>
+</tmpl:ENTRY_CHECKBOX>
+
+</table>
+</tmpl:DATA_GROUP>
+
+<input type="submit" value="Ugh!">
+</form>
+
+<hr />
+<h1>Account Löschen</h1>
+<p>Ich habe keine Lust mehr!</p>
+<form name="delete" method="post" action="main.php">
+<input type="hidden" name="modus" value="delete_account" />
+<input type="submit" value="Den Account l&ouml;schen!" />
+</form>

@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * Implementation of hook_install().
+ */
+function ualogin_install() {
+
+  switch ($GLOBALS['db_type']) {
+    case 'mysql':
+    case 'mysqli':
+      db_query("CREATE TABLE {ualogin_game_stats} (
+        name varchar(100) NOT NULL default '',
+        value int(11) NOT NULL default '0',
+        type varchar(30) NOT NULL default '',
+        KEY type (type)
+      ) /*!40100 DEFAULT CHARACTER SET UTF8 */ ");
+
+      db_query("CREATE TABLE {ualogin_captcha} (
+        captcha varchar(10) NOT NULL,
+        captcha_id char(32) NOT NULL,
+        ip varchar(128) NOT NULL,
+        time int(11) NOT NULL default '0',
+        KEY type (captcha_id)
+      ) /*!40100 DEFAULT CHARACTER SET UTF8 */ ");
+      break;
+    case 'pgsql':
+      db_query("CREATE TABLE {ualogin_game_stats} (
+        captcha varchar(100) NOT NULL default '',
+        value int(11) NOT NULL default '0',
+        type varchar(30) NOT NULL default '',
+        KEY type (type)
+      )");
+
+      db_query("CREATE TABLE {ualogin_captcha} (
+        name varchar(10) NOT NULL,
+        captcha_id char(32) NOT NULL,
+        ip varchar(128) NOT NULL,
+        time int(11) NOT NULL default '0',
+        KEY type (captcha_id)
+      )");
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function ualogin_uninstall() {
+
+  db_query('DROP TABLE {ualogin_game_stats}');
+  db_query('DROP TABLE {ualogin_captcha}');
+  variable_del('ualogin_disable_game');
+  variable_del('ualogin_disable_login');
+  variable_del('ualogin_disable_register');
+  variable_del('ualogin_disable_statistik');
+  variable_del('ualogin_email');
+  variable_del('ualogin_show_captcha');
+  variable_del('ualogin_game_enable');
+  variable_del('ualogin_game_mame');
+  variable_del('ualogin_game_image');
+  variable_del('ualogin_game_text');
+  variable_del('ualogin_statistik_secret_names');
+  variable_del('ualogin_statistik_gods');
+  variable_del('ualogin_statistik_halfgods');
+  variable_del('ualogin_max_users');
+  variable_del('ualogin_secure_cave_credits');
+  variable_del('ualogin_takeover_max_caves');
+  variable_del('ualogin_pwd_resend_timeout');
+  variable_del('ualogin_beginner_protect');
+  variable_del('ualogin_gfx_path');
+  variable_del('ualogin_easy_start_enabled');
+  variable_del('ualogin_easy_start_selected');
+  variable_del('ualogin_reg_code_enabled');
+  variable_del('ualogin_start_setting');
+  variable_del('ualogin_forbidden_names');
+  variable_del('ualogin_welcome_message_class');
+  variable_del('ualogin_welcome_message_subjekt');
+  variable_del('ualogin_welcome_message_text');
+  variable_del('ualogin_db_login');
+  variable_del('ualogin_db_game');
+  variable_del('ualogin_statistik_storage_last_update');
+  variable_del('ualogin_statistik_unit_last_update');
+  variable_del('ualogin_statistik_gods_last_update');
+  variable_del('ualogin_statistik_halfgods_last_update');
+
+  $num_servers = variable_get('ualogin_game_servers', 1);
+  for ($i = 1; $i <= $num_servers; ++$i) {
+
+    variable_del('ualogin_game_password_' . $i);
+    variable_del('ualogin_game_base_' . $i);
+    variable_del('ualogin_game_url_' . $i);
+  }
+
+  variable_del('ualogin_game_servers');
+}

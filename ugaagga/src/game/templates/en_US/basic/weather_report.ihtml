@@ -1,0 +1,23 @@
+<tmpl:CONTENT>
+<p align="left">
+  Every month the leading shamans from all larger regions gather together and bring the carefully treated weather stones with them.
+  Those are evaluated and analyzed and the results are chiseled in stone so each shaman is able to spread the news of the whole valley's
+  weather in every region.
+</p>
+
+<table border="0" cellspacing="0" cellpadding="5" class="grid">
+  <caption>Wetterbericht</caption>
+<tmpl:WEATHER>
+  <tbody>
+    <tmpl:ROW>
+    <tr class="alt{alternate}"><th>{region}</td><td>{weather}</td></tr>
+    </tmpl:ROW>
+  </tbody>
+</tmpl:WEATHER>
+<tmpl:NOWEATHER>{iterate}
+  <tbody>
+    <tr><td>No special weather conditions at the moment</td></tr>
+  </tbody>
+</tmpl:NOWEATHER>
+</table>
+</tmpl:CONTENT>

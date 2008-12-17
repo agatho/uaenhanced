@@ -1,0 +1,53 @@
+<tmpl:STATISTIK>{iterate}
+<tmpl:GODS>
+    <div class="node stats">
+      <h2>G&ouml;tter</h2>
+      <div class="content">
+        <table>
+          <tmpl:ITEM><tr><td>{name}</td><td class="amount">{count}</td></tr></tmpl:ITEM>
+        </table>
+      </div>
+    </div>
+    <br class='clear' />
+</tmpl:GODS>
+
+<tmpl:HALFGODS>
+    <div class="node stats">
+      <h2>Halbg&ouml;tter</h2>
+      <div class="content">
+        <table>
+          <tmpl:ITEM><tr><td>{name}</td><td class="amount">{count}</td></tr></tmpl:ITEM>
+        </table>
+      </div>
+    </div>
+    <br class='clear' />
+</tmpl:HALFGODS>
+
+<tmpl:UNITS>
+    <div class="node stats">
+      <h2>Einheiten</h2>
+      <div class="content">
+        <table>
+          <tmpl:ITEM><tr><td>{name}</td><td class="amount">{count}</td></tr></tmpl:ITEM>
+        </table>
+      </div>
+    </div>
+    <br class='clear' />
+</tmpl:UNITS>
+
+<tmpl:STORAGE>
+    <div class="node stats">
+      <h2>Lagerstufen:</h2>
+      <div class="content">
+        <table>
+          <tmpl:ITEM><tr><td>{name}</td><td class="amount">{count}</td></tr></tmpl:ITEM>
+        </table>
+      </div>
+    </div>
+    <br class='clear' />
+</tmpl:STORAGE>
+</tmpl:STATISTIK>
+
+<tmpl:DISABLED>{iterate}
+  <div class="messages">{message}</div>
+</tmpl:DISABLED>

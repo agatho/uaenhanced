@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>UGA AGGA ONLINE GAME</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="shortcut icon" href="./images/favicon.ico">
+<link href="mapstyle.php" rel="stylesheet" type="text/css">
+<link href="%gfx%/de_DE/t_slimfast/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function logMeOut(){
+  top.location = 'logout.php';
+  return true;
+}
+
+try {
+  if (top.frames.length != 0){
+    if (parent != top){
+      logMeOut();
+    } else {
+      onError = logMeOut;
+      parent.location.host;
+      onError = null;    
+    }
+  }
+} catch (e) {
+  logMeOut();
+}
+</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3360177-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</head>
+<body>
+<tmpl:RESOURCES>
+  <div align="center">
+  <tmpl:RESOURCE>
+  <img src="%gfx%/resources/{dbFieldName}_icon.gif" alt="{name} (max. {maxLevel})" title="{name} (max. {maxLevel})" border="0" width="15" height="15">:
+  {amount} ({delta})
+  </tmpl:RESOURCE>
+  </div>
+</tmpl:RESOURCES>
+<h1>{pagetitle}</h1>
+<table width="40%" cellspacing="0" border="0" cellpadding="0" align="center">
+  <tr>
+    <td align="left">
+    <tmpl:PREVCAVE>
+      <a href="ugastart.php?caveID={id}" target="_top" accesskey="v" title="Alt+V"> &lt;&lt; {name} </a>
+    </tmpl:PREVCAVE>
+    </td>
+    <td align="right">
+    <tmpl:NEXTCAVE>
+      <a href="ugastart.php?caveID={id}" target="_top" accesskey="n" title="Alt+N"> {name} &gt;&gt; </a>
+    </tmpl:NEXTCAVE>
+  </tr>
+</table>
+<div id="new_mail">{new_mail}</div>
+<p>
+<table width="100%" cellspacing="0" border="0" cellpadding="3" align="center" class="uberbox">
+  <tr>
+    <td colspan="2" align="center" valign="MIDDLE">
+      {content}
+    </td>
+  </tr>
+  <tr><td colspan="2">&nbsp;</td></tr>
+  <tr><td colspan="2" align="right">&nbsp;{bottom}</td></tr>
+  <tr>
+    <td align="left" valign="bottom" class="small">{cave_name} ({cave_x_coord}|{cave_y_coord})</td>
+    <td align="right" valign="bottom" class="small">
+      <a href="{help_path}" target="_blank">Hilfe</a> &amp; <a href="{rules_path}" target="_blank">Regeln</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

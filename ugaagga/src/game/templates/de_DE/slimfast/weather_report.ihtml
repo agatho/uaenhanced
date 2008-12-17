@@ -1,0 +1,23 @@
+<tmpl:CONTENT>
+<p align="left">
+  Allmonatlich treffen talweit führende Schamanen aus allen größeren Gebieten zusammen und bringen die sorgfältig aufbewahrten
+  Wettersteine mit, welche dann ausgewertet werden. Alsdann werden die Ergebnisse gesammelt, in Stein gemeißelt und dann jedem
+  mitgegeben, damit sich die Kunde vom Talwetter überall verbreiten kann.
+</p>
+
+<table border="0" cellspacing="0" cellpadding="5" class="grid">
+  <caption>Wetterbericht</caption>
+<tmpl:WEATHER>
+  <tbody>
+    <tmpl:ROW>
+    <tr class="alt{alternate}"><th>{region}</td><td>{weather}</td></tr>
+    </tmpl:ROW>
+  </tbody>
+</tmpl:WEATHER>
+<tmpl:NOWEATHER>{iterate}
+  <tbody>
+    <tr><td>Zur Zeit kein besonderes Wetter</td></tr>
+  </tbody>
+</tmpl:NOWEATHER>
+</table>
+</tmpl:CONTENT>

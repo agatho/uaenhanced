@@ -1,0 +1,14 @@
+<tmpl:STATISTIK>{iterate}
+  <div class="item-list"><ul>
+  <tmpl:ITEM>
+    <li>{count} {name}</li>
+  </tmpl:ITEM>
+  <tmpl:EXTRA_STATISTIK>{iterate}
+    <li><a href="?q=ualogin/Statistik">Statistik</a>
+  </tmpl:EXTRA_STATISTIK>
+  </ul></div>
+</tmpl:STATISTIK>
+
+<tmpl:DISABLED>{iterate}
+  Es gibt zur Zeit keine Statistiken.
+</tmpl:DISABLED>

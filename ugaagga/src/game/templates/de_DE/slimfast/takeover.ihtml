@@ -1,0 +1,257 @@
+<tmpl:MESSAGE><p><b>{message}</b></p></tmpl:MESSAGE>
+<tmpl:TAKEOVER>
+<table width="100%" border="0" cellpadding="3" cellspacing="3">
+
+  <tr>
+    <td colspan="2">
+      <div align="justfy">
+        Höhlen sind die Basis der Macht eines jeden Stammeshäuptlings. Je mehr 
+        er davon kontrolliert, umso mächtiger und gefährlicher kann er werden. 
+        Jede zusätzlich errungene Höhle dient als Ausbildungsstätte für Truppen 
+        und als Quelle göttlicher Wunder.
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+
+  <tmpl:CHOSEN>
+  <tr>
+    <td colspan="2" class="box">
+      <b>Status</b>
+      <p>
+        Du leistest derzeit "Überzeugungsarbeit" in H&ouml;hle {caveName} ({xCoord}|{yCoord}).
+      </p>
+      
+      <p>
+        Dortige Beliebtheit: <img src="%gfx%/de_DE/t_basic/takeover/{status-img}.gif" border="0" alt="{status-txt}">
+      </p>
+
+      <table width="100%"><tr><td>
+        <form name="unit_movement" method="POST" action="main.php">
+          <input name="modus" type="hidden" value="unit_movement">
+          <input name="targetXCoord" type="hidden" value="{xCoord}">
+          <input name="targetYCoord" type="hidden" value="{yCoord}">
+          <input name="targetCaveName" type="hidden" value="{uh_caveName}">
+          <input type="submit" name="submit" value="Dorthin bewegen!">
+        </form>
+      </td><td align="right">
+        <form name="confirm_withdrawal" method="POST" action="main.php">
+          <input name="modus" type="hidden" value="takeover">
+          <input name="task" type="hidden" value="confirm_withdrawal">
+          <input type="submit" name="submit" value="'Überzeugungsarbeit' beenden">
+        </form>
+      </td></tr></table>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="box">
+      <p><b>Verschenkte Rohstoffe</b></p>
+      <table>
+        <tmpl:RESOURCE><tr><td> {name} </td><td> {value} </td></tr></tmpl:RESOURCE>
+        <tmpl:NONE>{iterate}<tr><td><p>keine</p></td></tr></tmpl:NONE>
+        <tmpl:SUM>
+          <tr><td colspan="2"><hr></td></tr>
+          <tr>
+            <td colspan="2" align="right">insgesamt {sum} Wertpunkte</td>
+          </tr>
+        </tmpl:SUM>
+      </table>
+    </td>
+
+    <td valign="top" class="box">
+      <b>Konkurrenz</b>
+      <ul>
+        <tmpl:BIDDER><li><a href="?modus=player_detail&amp;detailID={playerID}">{playername}</a> <img src="%gfx%/de_DE/t_basic/takeover/{status-img}.gif" border="0" alt="{status-txt}"></li></tmpl:BIDDER>
+      </ul>
+      <tmpl:NOONE>{iterate}<p>Niemand ist dumm genug, gegen euch anzutreten.</p></tmpl:NOONE>
+    </td>
+  </tr>
+  </tmpl:CHOSEN>
+
+  <tr>
+    <td colspan="2" class="box">
+      <b>Höhlenauswahl</b>
+      <form name="confirm_change" method="POST" action="main.php">
+      Wähle eine Höhle, die du übernehmen möchtest:
+      <br>
+      x/y-Koordinate:
+      <input name="xCoord" type="text" size="4" maxlength="4" value="{targetXCoord}">
+      &nbsp;
+      <input name="yCoord" type="text" size="4" maxlength="4" value="{targetYCoord}">
+      &nbsp;
+      <input name="currentXCoord" type="hidden" value="{currentXCoord}">
+      <input name="currentYCoord" type="hidden" value="{currentYCoord}">
+        <input name="modus" type="hidden" value="takeover">
+        <input name="task" type="hidden" value="confirm_change">
+      <input type="submit" name="submit" value="die will ich, Ughh!">
+      </form>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="box">
+      <p><b>Rohstoffwerte</b></p>
+      <table>
+      <tmpl:RESOURCEVALUE>
+      <tr><td class="small"> {name} </td><td class="enough"> {value} </td></tr>
+      </tmpl:RESOURCEVALUE>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">
+      Alles über das Missionieren von Höhlen kann bequem in der
+      <a href="http://www.uga-agga.info/mwiki/index.php/Missionieren_%26_%DCbernahme" target="_blank">Online-Hilfe</a>
+      nachgelesen werden.
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">
+      <p>
+        Ein Weg, Höhlen zu erobern, ist sie zu missionieren. Dabei gelten jedoch 
+        folgende Einschränkungen:
+      </p>
+    
+      <ul>
+        <li>
+          Jeder Häuptling kann nur über maximal {maxcaves} H&ouml;hlen gebieten.
+        </li>
+      	<li>
+      	  Nur maximal 3 Höhlen können feste Höhlen sein. Alle Anderen können von 
+      	  Feinden übernommen werden.
+      	</li>
+      	<li>
+      	  Die Höhle muss frei und <b>auf der Karte als bewohnbar gekennzeichnet 
+      	  sein.</b>
+      	</li>
+      </ul>
+    
+      <p>
+        Die Missionierung einer Höhle geht nun wie folgt von statten:
+      </p>
+      
+      <ol>
+        <li>Suche auf der Karte eine Höhle die als "frei" markiert ist!</li>
+        <li>Wähle sie als Missionierungshöhle! Von Höhlen mit vielen Mitbewerbern ist meist abzuraten.</li>
+        <li>Transportiere Ressourcen in die Höhle, um den dortigen Häuptling dir gewogen zu stimmen!</li>
+        <li>Überbiete alle Mitbewerber an {beliebtheit} - nicht zwingend aufeinander folgenden - Tagen!</li>
+      </ol>
+      
+      <div align="justify">
+        Dabei muss man jedoch darauf achten, dass pro Tag eine gewisse 
+        Mindestmenge an Ressourcen nötig ist um einen Stern zu erhalten. Diese 
+        Menge ist von der Anzahl der Höhlen abhängig die du schon besitzt. 
+        Solltest du an einem Tag weniger als diese Mindestmenge in eine Höhle 
+        tragen, so sind die Ressourcen verschwendet. Allerdings sind die 
+        Häuptlinge eher von den Gaben schwächerer Stammesführer beeindruckt, so 
+        das diese deutlich weniger Ressourcen benötigen als ein stärkerer 
+        Mitbieter. Das Verhältnis zwischen Mindestwert und eingesetzten 
+        Ressourcen ist entscheidend.
+       </div>
+       
+      <br>
+      <br>
+
+      <div align="center">              
+        <table class="box">
+          <tr>
+            <th>Anzahl deiner Höhlen</th>
+            <th>Mindestwertpunkte</th>
+          </tr>
+          <tr>
+            <td align="center"> 1 </td>
+            <td align="center"> 200 </td>
+          </tr>
+          <tr>
+            <td align="center"> 2 </td>
+            <td align="center">200 * 2² = 800</td>
+          </tr>
+          <tr>
+            <td align="center"> 3 </td>
+            <td align="center">200 * 3² = 1800</td>
+          </tr>
+          <tr>
+            <td align="center"> 4 </td>
+            <td align="center">200 * 4² = 3200</td>
+          </tr>
+          <tr>
+            <td align="center"> 5 </td>
+            <td align="center">200 * 5² = 5000</td>
+          </tr>
+          <tr>
+            <td align="center"> 6 </td>
+            <td align="center"> 200 * 6² = 7200</td>
+          </tr>
+          <tr>
+            <td align="center"> 7 </td>
+            <td align="center"> 200 * 7² = 9800</td>
+          </tr>
+          <tr>
+            <td align="center"> 8 </td>
+            <td align="center"> --- </td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Beispiel:</p>
+        
+      <div align="center">
+        <table class="box">
+          <tr>
+            <th>Bieter</th>
+            <th>Berechnungswert</th>
+            <th>Eingesetzte Ressourcen</th>
+            <th>Verhältnis</th>
+          </tr>
+          <tr>
+            <td align="center"><b>1 Höhle</b></td>
+            <td align="center"><b>200</b></td>
+            <td align="center"><b>600</b></td>
+            <td align="center"><b>3.0</b></td>
+          </tr>
+          <tr>
+            <td align="center">5 Höhlen</td>
+            <td align="center">5000</td>
+            <td align="center">7500</td>
+            <td align="center">1.5</td>
+          </tr>
+          <tr>
+            <td align="center">3 Höhlen</td>
+            <td align="center">1800</td>
+            <td align="center">1800</td>
+            <td align="center">1.0</td>
+          </tr>
+          <tr>
+            <td align="center">4 Höhlen</td>
+            <td align="center">3200</td>
+            <td align="center">8000</td>
+            <td align="center">2.5</td>
+          </tr>
+        </table>
+      </div>
+      
+      <p>Sieger ist der Stammesführer mit 1 Höhle.</p>
+
+      <div align="justify">
+        <p>Die geschenkten Ressourcen verbleiben übrigens (nach Abzug eines 25%-Opfers an die Götter) in der freien Höhle, soweit deren Lager sie zu fassen vermag. Kluge Häuptlinge schicken daher öfter Truppen in die freien Höhlen der Umgebung und sorgen dafür dass wertvolle Ressourcen nicht ungenutzt bleiben. Besonders erfolgreich sind sie dabei wenn sie Informationen über Menge und Ankunftszeit der Geschenke von den Missionierern erhalten.</p>
+	<p> Sollte allerdings ein Missionierer selbst angreifen, reagieren die Bewohner der freien Höhle sehr sauer und entfernen alle bisher vergebenen Sterne!</p>
+
+      </div>
+    </td>
+  </tr>
+</table>
+</tmpl:TAKEOVER>

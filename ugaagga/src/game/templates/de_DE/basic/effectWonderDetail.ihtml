@@ -1,0 +1,77 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/ol.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/de_DE/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/or.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="100%" background="%gfx%/de_DE/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="100%" height="100%" background="%gfx%/de_DE/t_basic/tablet/m.gif">
+
+  <!-- begin main content -->
+  <h2>Aktive Auswirkungen der Wunder</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:WONDER>
+    <tr>
+      <td align="center"><b>{name}</b>, wirkt noch bis: {end}</td>
+    </tr>
+    <tr>
+      <td>
+        <table border="0" cellpadding="0" cellspacing="5">
+        <tmpl:EFFECT>
+	<tr><td>
+	  {name}
+        </td><td>
+	  {value}
+	</td></tr>
+        </tmpl:EFFECT>
+        </table>
+      </td>
+    </tr>
+</tmpl:WONDER>
+  <tmpl:NOWONDER>
+    <tr>
+      <td align="center">{dummy}Derzeit wirken keinerlei Wunder auf Eure H&ouml;hle, H&auml;uptling!</td>
+    </tr>
+  </tmpl:NOWONDER>
+    </table>
+
+    <h2>In der H&ouml;hle wirkende Effekte</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:EFFECT>
+    <tr><td>
+      {name}
+    </td><td>
+      {value}
+    </td></tr>
+</tmpl:EFFECT>
+  <tmpl:NOEFFECT>
+    <tr>
+      <td align="center">{dummy}Derzeit wirken keinerlei Effekte auf Eure H&ouml;hle, H&auml;uptling!</td>
+    </tr>
+  </tmpl:NOEFFECT>
+
+   </table>
+
+    <h2>Aktuelle Farmpunkte</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+    <tr><td>
+      Anzahl:
+    </td><td>
+      {farmpoints}
+    </td></tr>
+   </table>
+
+  <!-- end main content -->
+  </td>
+    <td width="11" height="100%" background="%gfx%/de_DE/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/ul.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/de_DE/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/de_DE/t_basic/tablet/ur.gif" width="11" height="11"></td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>weitere Informationen zu allen Wundern</small></a>
+

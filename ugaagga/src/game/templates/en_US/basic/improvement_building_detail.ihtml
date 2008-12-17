@@ -1,0 +1,88 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ol.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/en_US/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/or.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="100%" background="%gfx%/en_US/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="100%" height="100%" background="%gfx%/en_US/t_basic/tablet/m.gif">
+  <!-- begin main content -->
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td align="center"><b>{name}</b></td>
+    </tr>
+    <tr>
+      <td><img src="%gfx%/buildings/{dbFieldName}_large.gif" align="right" alt="{name}" title="{name}">
+            <strong>Description:</strong><br>{description}
+            <p><strong>Maximum level:</strong> {maxlevel} (currently: {currentlevel})
+
+          <tmpl:LEVELS>
+              <p><strong>Cost per level with {population} population:</strong><br>
+              <table>
+                <tr>
+                  <td>Level</td>
+                  <td>Cost</td>
+                </tr>
+                <tmpl:LEVEL>
+                <tr>
+                  <td>{level}</td>
+                  <td>
+                    <tmpl:RESOURCECOST>
+                    <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+                    {value} &nbsp;
+                    </tmpl:RESOURCECOST>
+                    <tmpl:UNITCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:UNITCOST>
+                    <tmpl:BUILDINGCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:BUILDINGCOST>
+                    <tmpl:EXTERNALCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:EXTERNALCOST>
+                   <img src="%gfx%/en_US/t_basic/clock.gif" width="15" height="15" border="0" alt="Duration:">{time}
+                  </td>
+                </tr>
+                </tmpl:LEVEL>
+              </table>
+          </tmpl:LEVELS>
+
+              <p><strong>Dependencies:</strong><br>
+              <table border="0" width="60%" cellpadding="0" cellspacing="4">
+              <tmpl:DEPGROUP>
+                <tr>
+                  <td colspan="2">This building depends on the following {name}:</td>
+                </tr>
+                <tr>
+                      <td><em>Name</em></td>
+                      <td><em>Level</em></td>
+                </tr>
+                <tmpl:DEP>
+                  <tr>
+                    <td>{name}</td>
+                    <td>{level}</td>
+                  </tr>
+                </tmpl:DEP>
+              </tmpl:DEPGROUP>
+              </table>
+
+      </td>
+    </tr>
+  </table>
+  <!-- end main content -->
+  </td>
+    <td width="11" height="100%" background="%gfx%/en_US/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ul.gif" width="11" height="11"></td>
+    <td width="100%" height="11" background="%gfx%/en_US/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="11" height="11"><img src="%gfx%/en_US/t_basic/tablet/ur.gif" width="11" height="11"></td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>More info about all buildings</small></a>
+

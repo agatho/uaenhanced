@@ -1,0 +1,78 @@
+<tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+
+<tmpl:CAVE>
+  <div class="header">
+    H&ouml;hle <a href="ugastart.php?caveID={caveID}" target="_top">{name}</a> in ({xCoord}|{yCoord})
+    <tmpl:PROPERTY>&nbsp;{text}</tmpl:PROPERTY><br>
+    Sie liegt in der Region <em>{region}</em>.
+  </div>
+
+  <tmpl:RESOURCES>
+  <table class="box">
+  <caption>Ressourcen</caption>
+  <tr>
+    <td>
+      <tmpl:RESOURCE>
+      <div class="imageplustitle"><img src="%gfx%/resources/{file}_icon.gif" alt="{name}" title="{name}"><br>{value}</div>
+      </tmpl:RESOURCE>
+    </td>
+  </tr>
+  </table>
+  </tmpl:RESOURCES>
+
+  <tmpl:UNITS>
+  <table class="box">
+  <caption>Einheiten</caption>
+  <tr>
+    <td>
+      <tmpl:UNIT>
+      <div class="imageplustitle"><img src="%gfx%/units/{file}_small.gif" alt="{name}" title="{name}"><br>{value}</div>
+      </tmpl:UNIT>
+    </td>
+  </tr>
+  </table>
+  </tmpl:UNITS>
+
+  <tmpl:BUILDINGS>
+  <table class="box">
+  <caption>Erweiterung</caption>
+  <tr>
+    <td>
+      <tmpl:BUILDING>
+      <div class="imageplustitle"><img src="%gfx%/buildings/{file}_small.gif" alt="{name}" title="{name}"><br>{value}</div>
+      </tmpl:BUILDING>
+    </td>
+  </tr>
+  </table>
+  </tmpl:BUILDINGS>
+
+  <tmpl:DEFENSES>
+  <table class="box">
+  <caption>Verteidigungsanlagen</caption>
+  <tr>
+    <td>
+      <tmpl:DEFENSE>
+      <div class="imageplustitle"><img src="%gfx%/externals/{file}_small.gif" alt="{name}" title="{name}"><br>{value}</div>
+      </tmpl:DEFENSE>
+    </td>
+  </tr>
+  </table>
+  </tmpl:DEFENSES>
+</tmpl:CAVE>
+<tmpl:GIVE_UP>
+<div style="text-align: center;">
+  <form method="post" action="main.php">
+    <input type="hidden" name="giveUpCaveID" value="{caveID}">
+    <input type="hidden" name="modus" value="cave_give_up_confirm">
+    <input type="submit" value="H&ouml;hle {name} aufgeben">
+  </form>
+</div>
+</tmpl:GIVE_UP>
+<tmpl:UNPROTECT>{iterate}
+<div style="text-align: center;">
+  <form method="post" action="main.php">
+    <input type="hidden" name="modus" value="end_protection_confirm">
+    <input type="submit" value="Anf&auml;ngerschutz vorzeitig beenden.">
+  </form>
+</div>
+</tmpl:UNPROTECT>

@@ -1,0 +1,11 @@
+<tmpl:ELEM>
+<fieldset>
+<legend><b>Wu&szlig;test du schon, ...</b></legend>
+<b>{header}</b><br><br>
+{text}
+</fieldset>
+</tmpl:ELEM>
+<tmpl:LINKLIST>
+<a href="?modus=doYouKnow&show=all">Alle Infos anzeigen</a>
+</tmpl:LINKLIST>
+

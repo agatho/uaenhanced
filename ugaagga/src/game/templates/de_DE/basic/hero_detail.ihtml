@@ -1,0 +1,124 @@
+<tmpl:HERO>
+	<tmpl:HERO_DETAIL>
+		<table width="95%" cellpadding="5">
+			<tr>
+				<td align="center">{name}</td>
+			<tmpl:DETAIL>
+				<td align="center">{name}{value}</td>
+			</tmpl:DETAIL>
+			</tr>
+		</table>
+	</tmpl:HERO_DETAIL>
+
+	<tmpl:MESSAGE>
+		<p>{message}</p>
+	</tmpl:MESSAGE>
+
+	<tmpl:BONUSPOINTS>
+	<p align="left"><b>{message}</b></p>
+	<form name="heroBonus" method="POST">
+	<table width="100%">
+		<tr>
+		<tmpl:VERTEILE>
+			<td width="22%" align="center">
+				{vor_input}<input type="text" name="{name}" size="2" maxlength="2">
+			</td>
+		</tmpl:VERTEILE>
+			<td align="center"><input type="submit" name="tue" value="Verteile"></td>
+		</tr>
+	</table>
+    <tmpl:PARAMS>
+      <input type="hidden" name="{name}" value="{value}">
+    </tmpl:PARAMS>
+	</form>
+	</tmpl:BONUSPOINTS>
+
+	<tmpl:FLUCHT>
+	<p align="left"><b>{message}</b></p>
+	<form name="flucht" method="POST">
+	<table width="60%">
+		<tr>
+			<td align="center">
+				Fluchtgrenze : <input type="text" name="flucht" size="2" maxlength="2" value="{value}">
+			</td>
+			<td align="left"><input type="submit" value="setze Fluchtgrenze"></td>
+		</tr>
+	</table>
+	<tmpl:PARAMS>
+		<input type="hidden" name="{name}" value="{value}">
+	</tmpl:PARAMS>
+	</form>
+	</tmpl:FLUCHT>
+
+	<tmpl:SCHAETZE>
+	<p align="left"><b>Sch&auml;tze des Helden</b></p>
+	<table width="100%" border="1" cellpadding="5" cellspacing="0">
+		<tmpl:SCHATZ>
+		<tr>
+			<td width="15%"><b>{body_part}</b></td>
+			<td align="center">{artefact}<span class="small">{artefact_value}</span></td>
+		</tr>
+		</tmpl:SCHATZ>
+	</table>
+	</tmpl:SCHAETZE>
+
+	<tmpl:TURNIERBUTTON>
+		<tmpl:MESSAGE><p>{message}</p></tmpl:MESSAGE>
+		<form name="turnier" method="POST">
+			<button type="submit">HeldenHandlungen</button>
+			<tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+		</form>
+	</tmpl:TURNIERBUTTON>
+
+	<tmpl:BUY>
+		<form name="kaufe" method="POST">
+			<input type="submit" value="Helden kaufen">
+			<tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+		</form>
+	</tmpl:BUY>
+
+	<tmpl:ZUMTURNIER>
+	<p align="left">{message}</p>
+	<form name="zum_turnier" method="POST">
+	<tmpl:SELECTION>
+	<table width="100%" cellpadding="5" cellspacing="0" border="1"><tr><td width="75%" align="center">
+			<select name="turniere">
+				<!--option value="-1" selected>- - - W&auml;hle einen Turnier - - -</option-->
+				<tmpl:SELECT>
+					<option value="{id}" {selected}>{turnier_name}</option>
+				</tmpl:SELECT>
+			</select>
+		</td>
+		<td align="center">Gebot :
+			<input type="text" name="meinGebot" size="5" maxlength="5" value="{value}">
+		</td></tr>
+	</table>
+	</tmpl:SELECTION>
+	<tmpl:BUTTON>
+		<input type="submit" value="{button_value}">
+		<tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+	</tmpl:BUTTON>
+	</form>
+	</tmpl:ZUMTURNIER>
+
+	<tmpl:MONSTER>
+	<br>
+	<p align="left">{message}</p>
+	<form name="zum_monster" method="POST">
+	<tmpl:MONSTERFIELD>
+	<table width="100%" cellpadding="5" cellspacing="0" border="1"><tr>
+		<td width="75%" align="center">in die H&ouml;hle  x :
+			<input type="text" name="xCoord" size="5" maxlength="5">
+			 y :
+			<input type="text" name="yCoord" size="5" maxlength="5">
+			oder mit dem Namen :
+			<input type="text" name="cName" size="15" maxlength="35">
+		</td><td align="center">
+			<input type="submit" value="{button_value}">
+			<tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+		</td></tr>
+	</table>
+	</tmpl:MONSTERFIELD>
+	</form>
+	</tmpl:MONSTER>
+</tmpl:HERO>

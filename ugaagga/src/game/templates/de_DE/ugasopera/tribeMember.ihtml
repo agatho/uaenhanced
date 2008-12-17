@@ -1,0 +1,131 @@
+<tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+
+<tmpl:ADMIN>
+  <table class="box">
+
+  <caption>Sie sind der Stammesanf&uuml;hrer!</caption>
+
+  <tr>
+    <td style="text-align: center;"><a href="main.php?{modus_name}={modus_value}">Den Stamm verwalten.</a></td>
+  </tr>
+
+  <tr>
+    <td style="text-align: center;">
+    <tmpl:TRIBEMESSAGEFORM>
+      <form name="data" method="post" action="main.php">
+        <input type="hidden" name="{modus_name}" value="{modus_value}">
+        <input type="hidden" name="{action_name}" value="{action_value}">
+
+        Nachricht an alle Mitglieder<br>
+        <textarea name="{message_name}" cols="40" rows="8">{message_value}</textarea><br>
+        <input type="submit" value="Absenden"><br>
+        <input type="submit" name="ingame" value="Als Nachricht an jedes Stammesmitglied senden">
+      </form>
+    </tmpl:TRIBEMESSAGEFORM>
+    </td>
+  </tr>
+  </table><br>
+</tmpl:ADMIN>
+
+<tmpl:NORMAL>
+  <table class="box">
+
+  <caption><a href="main.php?{link_tribe}" title="Mein Stamm">{name} [{tag}]</a></caption>
+
+  <tmpl:LEADER>
+  <tr>
+    <td>Anf&uuml;hrer:</td>
+    <td><a href="main.php?{modus_name}={modus_value}&amp;{leaderid_name}={leaderid_value}">{name}</a></td>
+  </tr>
+  <tr>
+    <td>Stellvertreter:</td>
+    <td><a href="main.php?{modus_name}={modus_value}&amp;{juniorLeaderID_name}={juniorLeaderID_value}">{juniorLeaderName}</a></td>
+  </tr>
+  </tmpl:LEADER>
+
+  <tmpl:NOLEADER>
+  <tr>
+    <td colspan="2">{message}</td>
+  </tr>
+  </tmpl:NOLEADER>
+
+  <tmpl:LEADERDETERMINATION>
+  <tr>
+    <td colspan="2"><a href="main.php?{modus_name}={modus_value}">Anf&uuml;hrer bestimmen</a></td>
+  </tr>
+  </tmpl:LEADERDETERMINATION>
+
+  <tmpl:GOVERNMENT>
+  <tr>
+    <td>Regierung:</td>
+    <td>
+      <a href="http://srv05.uga-agga.de/sieben/rules/?modus=governments">{name}</a>
+    </td>
+  </tr>
+  </tmpl:GOVERNMENT>
+
+  <tmpl:MEMBERS>
+  <tr>
+    <td colspan="2"><a href="main.php?{modus_name}={modus_value}&amp;{tag_name}={tag_value}">Mitgliederliste</a></td>
+  </tr>
+  </tmpl:MEMBERS>
+
+  <tmpl:WAR>
+    <tr><td>Aktuelle Kriege</td></tr>
+    <tr>
+      <td colspan="2">
+        <table border="0" width="75%">
+        <tbody>
+
+        <tmpl:TARGET>
+          <tr>
+            <td><strong>Krieg gegen {target}</strong></td>
+          </tr><tr>
+            <td>Unsere Kriegspunkte: {fame_own} Ihre Kriegspunkte: {fame_target}</td>
+          </tr><tr>
+            <td>Kriegsanteil: {percent_actual}&nbsp;%
+              <tmpl:FORCEDSURRENDER>
+                <span class="{class}">({percent_estimated}&nbsp;% ben&ouml;tigt)</span>
+              </tmpl:FORCEDSURRENDER>
+            </td>
+          </tr>
+        </tmpl:TARGET>
+        
+        </tbody></table>
+      </td>
+    </tr>
+  </tmpl:WAR>
+
+  <tr>
+    <td colspan="2">
+      <table border="0">
+
+      <tmpl:TRIBEMESSAGE>
+        <tr>
+          <td class="emphasized">{time}</td>
+          <td class="emphasized">{subject}</td>
+        </tr>
+        <tr>
+          <td colspan="2">{message}</td>
+        </tr>
+      </tmpl:TRIBEMESSAGE>
+
+      </table>
+    </td>
+  </tr>
+
+  <tmpl:LEAVE>
+  <tr>
+    <td colspan="2">
+      <form name="data" method="post" action="main.php">
+      <input type="hidden" name="{modus_name}" value="{modus_value}">
+      <input type="hidden" name="{action_name}" value="{action_value}">
+
+      <input type="submit" value="Diesen Stamm verlassen!">
+      </form>
+    </td>
+  </tr>
+  </tmpl:LEAVE>
+
+</table>
+</tmpl:NORMAL>

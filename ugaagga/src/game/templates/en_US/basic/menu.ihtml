@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Uga Agga Menu</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="%gfx%/en_US/t_basic/style.css" rel="stylesheet" type="text/css">
+</head>
+<body leftmargin="5" topmargin="5" marginwidth="5" marginheight="5">
+<table border="0" cellpadding="0" cellspacing="0" width="250">
+  <tr>
+   <td><img src="%gfx%/spacer.gif" width="31" height="1" border="0" alt=""></td>
+   <td><img src="%gfx%/spacer.gif" width="188" height="1" border="0" alt=""></td>
+   <td><img src="%gfx%/spacer.gif" width="31" height="1" border="0" alt=""></td>
+   <td><img src="%gfx%/spacer.gif" width="1" height="1" border="0" alt=""></td>
+  </tr>
+
+  <tr>
+    <td colspan="3"><tmpl:TIME><img src="%gfx%/en_US/t_basic/menu/top{month}.gif" width="250" height="106" border="0" alt="{day}. day of month {monthName} in the year {year} at {hour} hrs." title="{day}. day of month {monthName} in the year {year} at {hour} hrs."></tmpl:TIME></td>
+    <td><img src="%gfx%/spacer.gif" width="1" height="106" border="0" alt=""></td>
+  </tr>
+
+  <tr>
+    <td background="%gfx%/en_US/t_basic/menu/links.gif">&nbsp;</td>
+    <td class="menu" align="center">
+
+      <form name="hoehlenwahl" method="post" action="ugastart.php" target="_top">
+
+        <select name="caveID" onChange="document.getElementsByName('hoehlenwahl')[0].submit(); return true;" style="font-size: small;">
+
+          <tmpl:SELECT>
+          <option value="{value}" {selected}>{text}</option>
+          </tmpl:SELECT>
+
+        </select>
+        <input type="submit" name="go" value="go">
+
+        <tmpl:HIDDEN>
+        <input name="{name}" type="hidden" value="{value}">
+        </tmpl:HIDDEN>
+
+      </form>
+
+    </td>
+    <td background="%gfx%/en_US/t_basic/menu/rechts.gif">&nbsp;</td>
+    <td><img src="%gfx%/spacer.gif" width="1" height="34" border="0" alt=""></td>
+  </tr>
+
+  <tr>
+    <td background="%gfx%/en_US/t_basic/menu/links.gif">&nbsp;</td>
+    <td class="menu" align="center">
+      <tmpl:ICON>
+        <a href="{link}" target="{target}"><img src="%gfx%/en_US/t_basic/menu/icon_{pic}.gif" width="32" height="32" border="0" alt="{alt}" title="{alt}"></a>
+      </tmpl:ICON>
+    </td>
+    <td background="%gfx%/en_US/t_basic/menu/rechts.gif">&nbsp;</td>
+    <td><img src="%gfx%/spacer.gif" width="1" height="34" border="0" alt=""></td>
+  </tr>
+
+  <tmpl:ITEM>
+  <tr>
+    <td background="%gfx%/en_US/t_basic/menu/links.gif">&nbsp;</td>
+    <td><a href="{link}" target="{target}"><img src="%gfx%/en_US/t_basic/menu/item_{pic}.gif" width="188" height="34" border="0" alt="{alt}" title="{alt}"></a></td>
+    <td background="%gfx%/en_US/t_basic/menu/rechts.gif">&nbsp;</td>
+    <td><img src="%gfx%/spacer.gif" width="1" height="34" border="0" alt=""></td>
+  </tr>
+  </tmpl:ITEM>
+
+  <tr>
+   <td colspan="3"><img src="%gfx%/en_US/t_basic/menu/unten.gif" width="250" height="44" border="0" alt=""></td>
+   <td><img src="%gfx%/spacer.gif" width="1" height="44" border="0" alt=""></td>
+  </tr>
+</table>
+</body>
+</html>

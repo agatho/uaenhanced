@@ -1,0 +1,130 @@
+<tmpl:ARTEFACT_OWN>
+<table width="95%" cellpadding="0" cellspacing="3" class="small">
+  <tr>
+    <th colspan="3">Eigene Artefakte</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Höhle</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tmpl:ARTEFACT>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus_artefact_detail}&artefactID={artefactID}">{artefactname}</a></td>
+    <td align="center"><a href="main.php?modus={modus_map_detail}&targetCaveID={caveID}">{cavename} ({xCoord}|{yCoord})</a></td>
+    <td align="center">
+      <tmpl:INITIATION_NOT_POSSIBLE>
+        {status}
+      </tmpl:INITIATION_NOT_POSSIBLE>
+
+      <tmpl:INITIATION_POSSIBLE>
+        <a href="main.php?modus={modus_artefact_detail}&artefactID={artefactID}">uneingeweiht</a>
+      </tmpl:INITIATION_POSSIBLE>
+    </td>
+  </tr>
+  </tmpl:ARTEFACT>
+</table>
+</tmpl:ARTEFACT_OWN>
+
+<tmpl:ARTEFACT_OTHER>
+<br>
+<table width="95%" cellpadding="0" cellspacing="3" class="small">
+  <tr>
+    <th colspan="4">Artefakte</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Höhle</th>
+    <th>Besitzer</th>
+    <th>Stamm</th>
+  </tr>
+  <tmpl:ARTEFACT>
+    <tr class="{alternate}">
+      <td width="25%"><a href="main.php?modus={modus_artefact_detail}&artefactID={artefactID}">{artefactname}</a></td>
+      <td width="25%"><a href="main.php?modus={modus_map_detail}&targetCaveID={caveID}">{cavename} ({xCoord}|{yCoord})</a></td>
+      <td width="25%"><a href="main.php?modus={modus_player_detail}&detailID={playerID}">{name}</a></td>
+      <td width="25%"><a href="main.php?modus={modus_tribe_detail}&tribe={tribe}">{tribe}</a></td>
+    </tr>
+  </tmpl:ARTEFACT>
+</table>
+</tmpl:ARTEFACT_OTHER>
+
+<tmpl:ARTEFACT_HIDDEN>
+<br>
+<table width="95%" cellpadding="0" cellspacing="3" class="small">
+  <tr>
+    <th colspan="2">Versteckte Artefakte</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Höhle</th>
+  </tr>
+  <tmpl:ARTEFACT>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus_artefact_detail}&artefactID={artefactID}">{artefactname}</a></td>
+    <td><div align="center"><a href="main.php?modus={modus_map_detail}&targetCaveID={caveID}">{cavename} ({xCoord}|{yCoord})</a></div></td>
+  </tr>
+  </tmpl:ARTEFACT>
+</table>
+</tmpl:ARTEFACT_HIDDEN>
+
+<tmpl:ARTEFACT_MOVING>
+<br>
+<table width="95%" cellpadding="0" cellspacing="3" class="small">
+  <tr>
+    <th colspan="3">Artefakte, die transportiert werden</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>von:</th>
+    <th>nach:</th>
+  </tr>
+  <tmpl:ARTEFACT>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus_artefact_detail}&artefactID={artefactID}">{artefactname}</a></td>
+    <td><a href="main.php?modus={modus_player_detail}&detailID={source_playerID}">{source_name}</a> <small><a href="main.php?modus={modus_tribe_detail}&tribe={source_tribe}">{source_tribe}</a></small><br><a href="main.php?modus={modus_map_detail}&targetCaveID={source_caveID}">{source_cavename}({source_xCoord}|{source_yCoord})</a></td>
+    <td><a href="main.php?modus={modus_player_detail}&detailID={destination_playerID}">{destination_name}</a> <small><a href="main.php?modus={modus_tribe_detail}&tribe={destination_tribe}">{destination_tribe}</a></small><br><a href="main.php?modus={modus_map_detail}&targetCaveID={target_caveID}">{destination_cavename}({destination_xCoord}|{destination_yCoord})</a></td>
+  </tr>
+  </tmpl:ARTEFACT>
+</table>
+</tmpl:ARTEFACT_MOVING>
+
+<tmpl:ARTEFACT_MOVING_ETA>
+<br>
+<table width="95%" cellpadding="0" cellspacing="3" class="small">
+  <tr>
+    <th colspan="4">Artefakte, die transportiert werden</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>von:</th>
+    <th>nach:</th>
+    <th>Ankunft</th>
+  </tr>
+  <tmpl:ARTEFACT>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus_artefact_detail}&artefactID={artefactID}">{artefactname}</a></td>
+    <td><a href="main.php?modus={modus_player_detail}&detailID={source_playerID}">{source_name}</a> <small><a href="main.php?modus={modus_tribe_detail}&tribe={source_tribe}">{source_tribe}</a></small><br><a href="main.php?modus={modus_map_detail}&targetCaveID={source_caveID}">{source_cavename}({source_xCoord}|{source_yCoord})</a></td>
+    <td><a href="main.php?modus={modus_player_detail}&detailID={destination_playerID}">{destination_name}</a> <small><a href="main.php?modus={modus_tribe_detail}&tribe={destination_tribe}">{destination_tribe}</a></small><br><a href="main.php?modus={modus_map_detail}&targetCaveID={target_caveID}">{destination_cavename}({destination_xCoord}|{destination_yCoord})</a></td>
+    <td>{event_end}</td>
+  </tr>
+  </tmpl:ARTEFACT>
+</table>
+</tmpl:ARTEFACT_MOVING_ETA>
+
+<tmpl:ARTEFACT_LIMBUS>
+<br>
+<table width="95%" cellpadding="0" cellspacing="3" class="small">
+  <tr>
+    <th>Artefakte, die sich nicht im Spiel befinden</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <tmpl:ARTEFACT>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus_artefact_detail}&artefactID={artefactID}">{artefactname}</a></td>
+  </tr>
+  </tmpl:ARTEFACT>
+</table>
+</tmpl:ARTEFACT_LIMBUS>

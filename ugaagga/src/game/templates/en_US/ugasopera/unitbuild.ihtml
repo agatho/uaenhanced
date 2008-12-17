@@ -1,0 +1,71 @@
+<tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+<tmpl:UNIT_QUEUE>
+  <table class="box">
+    <caption>Barracks</caption>
+    <tr>
+      <td>Current task: Training {quantity} {name}(s) (finished at: {finish})</td>
+      <td><a href="main.php?eventID={eventID}&modus={action}&caveID={caveID}">Cancel</a></td>
+    </tr>
+  </table>
+<br>
+</tmpl:UNIT_QUEUE>
+<table class="box">
+  <caption>Units that can be trained:</caption>
+  <tmpl:UNIT>
+  <tr class="{alternate}">
+    <td><img src="%gfx%/units/{dbFieldName}_small.gif" width="20" height="30" border="0" alt="{name}" title="{name}"></td>
+    <td>
+      <a href="main.php?modus={modus}&unitID={unitID}&caveID={caveID}"><b>{name}</b></a><br>
+      <img src="%gfx%/spacer.gif" width="1" height="20">
+      <tmpl:RESSOURCECOST>
+        <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+        <tmpl:ENOUGH><span class="enough small">{value}</span></tmpl:ENOUGH>
+        <tmpl:LESS><span class="less small">{value}</span></tmpl:LESS>
+        &nbsp;
+      </tmpl:RESSOURCECOST>
+      <tmpl:UNITCOST>
+        <br><span class="small">{name}</span>
+        <tmpl:ENOUGH><span class="enough small">{value}</span></tmpl:ENOUGH>
+        <tmpl:LESS><span class="less small">{value}</span></tmpl:LESS>
+      </tmpl:UNITCOST>
+      <tmpl:BUILDINGCOST>
+        <br><span class="small">{name}</span>
+        <tmpl:ENOUGH><span class="enough small">{value}</span></tmpl:ENOUGH>
+        <tmpl:LESS><span class="less small">{value}</span></tmpl:LESS>
+      </tmpl:BUILDINGCOST>
+      <tmpl:EXTERNALCOST>
+        <br><span class="small">{name}</span>
+        <tmpl:ENOUGH><span class="enough small">{value}</span></tmpl:ENOUGH>
+        <tmpl:LESS><span class="less small">{value}</span></tmpl:LESS>
+      </tmpl:EXTERNALCOST>
+    </td>
+    <td><img src="%gfx%/en_US/t_ugasopera/clock.gif" width="15" height="15" border="0" alt="Duration:">{time} &nbsp; &nbsp;</td>
+    <td>Bestand: {size}</td>
+    <td align="right">
+      <tmpl:UNIT_LINK>
+        <form method="POST" action="main.php">
+          Anzahl: <input type="text" name="quantity" size="2" maxlength="2">
+          <input type="submit" value="Train">
+          <tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+        </form>
+      </tmpl:UNIT_LINK>
+      <tmpl:UNIT_LINK_NO>{message}</tmpl:UNIT_LINK_NO>
+    </td>
+  </tr>
+  </tmpl:UNIT>
+</table>
+<br>
+<tmpl:UNQUALIFIEDUNITS>
+<table class="box">
+  <caption>Units that can not be trained yet:</caption>
+  <tmpl:UNIT>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus}&unitID={unitID}&caveID={caveID}"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+  </tr>
+  </tmpl:UNIT>
+</table>
+<br>
+</tmpl:UNQUALIFIEDUNITS>
+<a href="{rules_path}" target="_blank"><small>More info about all units</small></a>
+<br> 

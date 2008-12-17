@@ -1,0 +1,10 @@
+<tmpl:DOWNLOAD>
+  <tmpl:ITEM>
+    <div class="node">
+      <h2>{name}</h2>
+      <div class="content">{desc}</div>
+      <div class="info"><a href="{link}">[Link]</a></div>
+    </div>
+    <br class='clear' />
+  </tmpl:ITEM>
+</tmpl:DOWNLOAD>

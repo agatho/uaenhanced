@@ -1,0 +1,27 @@
+Rev116:
+-> Fehler bei der Modul installation behoben
+
+Rev115:
+-> Einheiten Statistik wird nun nach Namen sortiert.
+-> Überprüfung der IP im Captcha geändert (Keine Probleme mehr bei AOL Usern)
+-> MySQL Timeout auf 5sek gesetzt.
+-> Debug? Brauchen wir wohl nicht....
+-> Möglicher Fehler bei den Start Ressourcen behoben.
+-> Kleiner Bug fixes
+
+Rev114:
+-> Bug bei der Server überprüfung behoben
+-> Captcha Bug fixes
+-> Kleine Big fixes
+
+Rev113:
+-> Captcha überarbeitet
+-> Datenbanknamen geändert
+-> parsen der string in der statistik geändert
+
+Rev112:
+-> Statistik Seite deaktivierbar. Statistik Block ist weiterhin sichtbar.
+-> Mögliche Fehleraushabe bei der automatischen Server auswahl behoben.
+-> Ausgabe der Server last geändert. php5 >= 5.2.0 => Safe Mode kann auf off stehen.
+-> Server Auswahl geändert.
+-> Bei der E-Mail Überprüfung ein fclose() hinzugefügt

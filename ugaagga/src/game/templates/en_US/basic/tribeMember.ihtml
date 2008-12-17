@@ -1,0 +1,102 @@
+<tmpl:MESSAGE>
+<b>{message}</b>
+</tmpl:MESSAGE>
+
+<tmpl:ADMIN>
+<h2>You are the chieftain!</h2>
+<a href="main.php?{modus_name}={modus_value}">Tribe administration</a>
+
+<tmpl:TRIBEMESSAGEFORM>
+<form name="data" method="post" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}">
+<input type="hidden" name="{action_name}" value="{action_value}">
+
+<table border="0">
+<tr>
+<td align="center"><h3>Message to all members</h3></td>
+</tr>
+<tr>
+  <td align="center">
+    <textarea name="{message_name}" cols="40" rows="8">{message_value}</textarea>
+  </td>
+</tr>
+<tr><td align="center"><input type="submit" value="Send">&nbsp;<input type="submit" name="ingame" value="Send as message to every tribe member"></td></tr>
+</table>
+
+</form>
+</tmpl:TRIBEMESSAGEFORM>
+
+<hr>
+</tmpl:ADMIN>
+
+<tmpl:NORMAL>
+  <h2><a href="main.php?{link_tribe}" title="My tribe">{name} [{tag}]</a></h2>
+
+  <tmpl:LEADER>
+    <p>Chieftain: <a href="main.php?{modus_name}={modus_value}&{leaderID_name}={leaderID_value}">{name}</a></p>
+    <p>Deputy Chieftain: <a href="main.php?{modus_name}={modus_value}&{juniorLeaderID_name}={juniorLeaderID_value}">{juniorLeaderName}</a></p>
+  </tmpl:LEADER>
+  <tmpl:NOLEADER>
+    <p>{message}</p>
+  </tmpl:NOLEADER>
+
+  <tmpl:LEADERDETERMINATION>
+    <p><a href="main.php?{modus_name}={modus_value}">Elect chieftain</a></p>
+  </tmpl:LEADERDETERMINATION>
+
+  <tmpl:GOVERNMENT>
+    <p>Government: <a href="http://srv05.uga-agga.de/sieben/rules/?modus=governments">{name}</a></p>
+  </tmpl:GOVERNMENT>
+
+  <tmpl:MEMBERS>
+    <p><a href="main.php?{modus_name}={modus_value}&{tag_name}={tag_value}">Show member list</a></p>
+  </tmpl:MEMBERS>
+
+  <tmpl:WAR>
+    <hr>
+    <h2> Current wars </h2>
+    <table border="0" width="75%">
+    <tbody>
+
+    <tmpl:TARGET>
+      <tr>
+        <td align="center"><strong>War against {target}</strong></td>
+      </tr><tr>
+        <td align="center">Our war points: {fame_own} Their war points: {fame_target}</td>
+      </tr><tr>
+        <td align="center">Share in the war: {percent_actual}&nbsp;%
+          <tmpl:FORCEDSURRENDER>
+            <span class="{class}">({percent_estimated}&nbsp;% required)</span>
+          </tmpl:FORCEDSURRENDER>
+        </td>
+      </tr>
+    </tmpl:TARGET>
+    
+    </tbody></table>
+  </tmpl:WAR>
+<hr>
+<h2> Tribe news </h2>
+<table border="0" width="75%">
+<tmpl:TRIBEMESSAGE>
+<tr>
+<td align="center"><b>On {time}: {subject}</b></td>
+</tr><tr>
+<td align="center">{message}</td>
+</tr>
+<tr><td><hr></td></tr>
+</tmpl:TRIBEMESSAGE>
+</table>
+<hr>
+
+
+<tmpl:LEAVE>
+
+<form name="data" method="post" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}">
+<input type="hidden" name="{action_name}" value="{action_value}">
+
+<input type="submit" value="Leave this tribe!">
+</form>
+
+</tmpl:LEAVE>
+</tmpl:NORMAL>

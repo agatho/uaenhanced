@@ -1,0 +1,102 @@
+<tmpl:MESSAGE>
+<b>{message}</b>
+</tmpl:MESSAGE>
+
+<tmpl:ADMIN>
+<h2>Sie sind in der Stammesf&uuml;hrung</h2>
+<a href="main.php?{modus_name}={modus_value}">Den Stamm verwalten.</a>
+
+<tmpl:TRIBEMESSAGEFORM>
+<form name="data" method="post" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}">
+<input type="hidden" name="{action_name}" value="{action_value}">
+
+<table border="0">
+<tr>
+<td align="center"><h3>Nachricht an alle Mitglieder</h3></td>
+</tr>
+<tr>
+  <td align="center">
+    <textarea name="{message_name}" cols="40" rows="8">{message_value}</textarea>
+  </td>
+</tr>
+<tr><td align="center"><input type="submit" value="Absenden">&nbsp;<input type="submit" name="ingame" value="Als Nachricht an jedes Stammesmitglied senden"></td></tr>
+</table>
+
+</form>
+</tmpl:TRIBEMESSAGEFORM>
+
+<hr>
+</tmpl:ADMIN>
+
+<tmpl:NORMAL>
+  <h2><a href="main.php?{link_tribe}" title="Mein Stamm">{name} [{tag}]</a></h2>
+
+  <tmpl:LEADER>
+    <p>Anf&uuml;hrer: <a href="main.php?{modus_name}={modus_value}&{leaderID_name}={leaderID_value}">{name}</a></p>
+    <p>Stellvertreter: <a href="main.php?{modus_name}={modus_value}&{juniorLeaderID_name}={juniorLeaderID_value}">{juniorLeaderName}</a></p>
+  </tmpl:LEADER>
+  <tmpl:NOLEADER>
+    <p>{message}</p>
+  </tmpl:NOLEADER>
+
+  <tmpl:LEADERDETERMINATION>
+    <p><a href="main.php?{modus_name}={modus_value}">Anf&uuml;hrer bestimmen</a></p>
+  </tmpl:LEADERDETERMINATION>
+
+  <tmpl:GOVERNMENT>
+    <p>Regierung: <a href="http://srv05.uga-agga.de/rules/?modus=governments">{name}</a></p>
+  </tmpl:GOVERNMENT>
+
+  <tmpl:MEMBERS>
+    <p><a href="main.php?{modus_name}={modus_value}&{tag_name}={tag_value}">Mitgliederliste ansehen.</a></p>
+  </tmpl:MEMBERS>
+
+  <tmpl:WAR>
+    <hr>
+    <h2> Aktuelle Kriege </h2>
+    <table border="0" width="75%">
+    <tbody>
+
+    <tmpl:TARGET>
+      <tr>
+        <td align="center"><strong>Krieg gegen {target}</strong></td>
+      </tr><tr>
+        <td align="center">Unsere Kriegspunkte: {fame_own} Ihre Kriegspunkte: {fame_target}</td>
+      </tr><tr>
+        <td align="center">Kriegsanteil: {percent_actual}&nbsp;%
+          <tmpl:FORCEDSURRENDER>
+            <span class="{class}">({percent_estimated}&nbsp;% ben&ouml;tigt)</span>
+          </tmpl:FORCEDSURRENDER>
+        </td>
+      </tr>
+    </tmpl:TARGET>
+    
+    </tbody></table>
+  </tmpl:WAR>
+<hr>
+<h2> Stammesnachrichten </h2>
+<table border="0" width="75%">
+<tmpl:TRIBEMESSAGE>
+<tr>
+<td align="center"><b>Am {time}: {subject}</b></td>
+</tr><tr>
+<td align="center">{message}</td>
+</tr>
+<tr><td><hr></td></tr>
+</tmpl:TRIBEMESSAGE>
+</table>
+<hr>
+
+
+<tmpl:LEAVE>
+
+<form name="data" method="post" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}">
+<input type="hidden" name="{action_name}" value="{action_value}">
+
+<input type="submit" value="Diesen Stamm verlassen!">
+</form>
+
+</tmpl:LEAVE>
+</tmpl:NORMAL>

@@ -1,0 +1,2 @@
+<div class="status_message">{message}</div>
+<p>Weiter zu <a href="{link}">{link}</a></p>

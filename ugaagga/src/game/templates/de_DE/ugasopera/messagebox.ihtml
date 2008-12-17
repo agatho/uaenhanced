@@ -1,0 +1,76 @@
+<script language="javascript">
+<!--
+function checkall(){
+  if(document.deletemessages.all) var c = document.deletemessages.all.checked;
+  for (var i=0;i<document.deletemessages.elements.length;i++){
+    var e = document.deletemessages.elements[i];
+        if(e.name != 'all') e.checked = c;
+    } 
+} 
+//--> 
+</script> 
+
+<tmpl:STATUS_MESSAGE><div class="status_message">{status_message}</div></tmpl:STATUS_MESSAGE>
+
+<div class="header">
+<table class="message">
+    <tr>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=1"><img src="%gfx%/de_DE/t_ugasopera/messages/inbox.png" alt="Posteingang" title="Posteingang"></a>
+        </td>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=2"><img src="%gfx%/de_DE/t_ugasopera/messages/outbox.png" alt="Postausgang" title="Postausgang"></a>
+        </td>
+        <td align="center">
+          <a href="main.php?modus=new_message&amp;box=1"><img src="%gfx%/de_DE/t_ugasopera/messages/new.png" alt="Neue Nachricht" title="Neue Nachricht"></a>
+        </td>
+    </tr>
+</table>
+</div>
+<form name="deletemessages" id="deletemessages" method="post" action="main.php">
+  <input type="submit" name="delete" value="l&ouml;schen">
+  <input type="submit" name="mail_and_delete" value="E-mail &amp; l&ouml;schen">
+  &nbsp;
+  <select name="messageClass">
+    <option value="-2" selected="selected">Bitte wählen</option>
+    <option value="-1">Alle</option>
+    <tmpl:MESSAGECLASS>
+      <option value="{id}" {selected}>{text}</option>
+    </tmpl:MESSAGECLASS>
+  </select>
+  <input type="submit" name="delete_all" value="{boxname} leeren">
+  <table class="box"> 
+    <tr>
+      <th>&nbsp;</th> 
+      <th>{von_an}</th> 
+      <th>Nachrichtenart</th> 
+      <th>&nbsp; &nbsp;Betreff</th> 
+      <th>Datum</th>
+    </tr> 
+   <tr> 
+      <td><input name="all" type="checkbox" value="check all" onclick="checkall();"></td> 
+      <td>alle ausw&auml;hlen</td>
+      <td colspan="3" align="right">
+        Nachrichten {message_min} - {message_max} von {message_count} &nbsp; 
+        <tmpl:PREVIOUS><a href="?offset={offset}&modus={modus}&box={box}">&lt;&lt;&lt; zurück</a></tmpl:PREVIOUS>
+        <tmpl:PREVIOUS_DEACTIVATED>{dummy}&lt;&lt;&lt; zurück</tmpl:PREVIOUS_DEACTIVATED>
+        <tmpl:NEXT><a href="?offset={offset}&modus={modus}&box={box}">weiter &gt;&gt;&gt;</a></tmpl:NEXT>
+        <tmpl:NEXT_DEACTIVATED>{dummy}weiter &gt;&gt;&gt;</tmpl:NEXT_DEACTIVATED>
+      </td>
+    </tr> 
+    <tmpl:MESSAGE>
+      <tr class="m_{messageClass} read{read}">
+				<td nowrap>
+				  <input type="checkbox" name="deletebox[{messageID}]" value="{messageID}">
+          <tmpl:FLAGGED></tmpl:FLAGGED>
+          <tmpl:UNFLAGGED></tmpl:UNFLAGGED>
+				</td>
+        <td>{absender_empfaenger}<br> </td> 
+        <td>{nachrichtenart}</td> 
+        <td>&nbsp; &nbsp;<a href="main.php{linkparams}">{betreff}</a></td>
+        <td>{datum}</td>
+      </tr> 
+    </tmpl:MESSAGE> 
+  </table>
+  <tmpl:HIDDEN><input name="{arg}" type="hidden" value="{value}"></tmpl:HIDDEN> 
+</form>

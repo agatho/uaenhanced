@@ -1,0 +1,59 @@
+<script type="text/javascript">
+function disable_to(){
+  var r = document.newMessage.contactID;
+  var flag = false;
+  for (var i = 0; i < r.length; i++) if (r[i].selected && r[i].value != -1){ flag = true; break; }
+  document.newMessage.empfaenger.disabled = flag;
+}
+</script>
+<div class="header">
+  <table class="message">
+      <tr>
+          <td align="center">
+              <a href="main.php?modus=messages&amp;box=1"><img src="%gfx%/de_DE/t_ugasopera/messages/inbox.png" alt="Posteingang" title="Posteingang"></a>
+          </td>
+          <td align="center">
+              <a href="main.php?modus=messages&amp;box=2"><img src="%gfx%/de_DE/t_ugasopera/messages/outbox.png" alt="Postausgang" title="Postausgang"></a>
+          </td>
+          <td align="center">
+            <a href="main.php?modus=new_message&amp;box=1"><img src="%gfx%/de_DE/t_ugasopera/messages/new.png" alt="Neue Nachricht" title="Neue Nachricht"></a>
+          </td>
+      </tr>
+  </table>
+</div>
+<form name="newMessage" method="post" action="main.php">
+  <table class="message_header">
+    <tr> 
+      <th>von:</th>
+      <td>{sender}</td>
+    </tr>
+    <tr> 
+      <th><a href="?modus=Contacts">Adressbuch:</a></th>
+      <td>
+        <select name="contactID" onChange="disable_to(); return true;">
+          <option value="-1">Bitte wählen</option>
+          <tmpl:OPTION><option value="{contactID}">{contactname}</option></tmpl:OPTION>
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <th>an:</th>
+      <td><input name="empfaenger" type="text" value="{empfaenger}" size="35" maxlength="255"></td>
+    </tr>
+    <tr> 
+      <th>Betreff:</th>
+      <td><input name="betreff" type="text" value="{betreff}" size="35" maxlength="255"></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;"><input type="submit" name="senden" value="senden"></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;"><textarea style="width:640px;" name="nachricht" rows="20" cols="61" wrap="physical">{nachricht}</textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;"><input type="submit" name="senden" value="senden"></td>
+    </tr>
+  </table>
+  <tmpl:HIDDEN><input type="hidden" name="{arg}" value="{value}"></tmpl:HIDDEN>
+</form>
+<div class="message_backlink"><a href="main.php{linkbackparams}">zur&uuml;ck zu den Nachrichten</a></div>

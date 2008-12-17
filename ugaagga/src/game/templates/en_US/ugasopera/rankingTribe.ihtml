@@ -1,0 +1,53 @@
+<p><a href="main.php?modus={modus}&caveID={caveID}">Show player ranking</a></p>
+
+<table class="box">
+    <tr align="center">
+      <th align="left">Rank</th>
+      <th align="left">Name</th>
+      <th align="left">Power</th>
+      <th align="left">Members</th>
+      <th align="left">Average</th>
+      <th align="left">Caves</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tmpl:ROWS>
+    <tmpl:ROW>
+    <tr class="alt0">
+      <td NOWRAP>{rank}</td>
+      <td NOWRAP><a href="main.php{link}">{tribe}</a></td>
+      <td NOWRAP>{points_rank}</td>
+      <td NOWRAP>{members}</td>
+      <td NOWRAP>{average}</td>
+      <td NOWRAP>{caves}</td>
+      <td NOWRAP>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+    </tr>
+    </tmpl:ROW>
+    <tmpl:ROW_ALTERNATE>
+    <tr class="alt1">
+      <td NOWRAP>{rank}</td>
+      <td NOWRAP><a href="main.php{link}">{tribe}</a></td>
+      <td NOWRAP>{points_rank}</td>
+      <td NOWRAP>{members}</td>
+      <td NOWRAP>{average}</td>
+      <td NOWRAP>{caves}</td>
+      <td NOWRAP>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+    </tr>
+    </tmpl:ROW_ALTERNATE>
+    </tmpl:ROWS>
+</table>
+
+<table class="box">
+  <tr>
+    <th>&nbsp;<tmpl:UP><a href="main.php{link}">&lt;&lt;&lt;</a></tmpl:UP></th>
+    <th>
+      <form name="scrolljump" method="post" action="main.php">
+        Springe zu:
+        <input name="offset" type="text" id="offset" size="15" maxlength="30">
+        &nbsp;
+        <input name="submit" type="submit" id="submit" value="Ugh!">
+        <tmpl:HIDDEN><input name="{name}" type="hidden" value="{value}"></tmpl:HIDDEN>
+      </form>
+    </th>
+    <th>&nbsp;<tmpl:DOWN><a href="main.php{link}">&gt;&gt;&gt;</a></tmpl:DOWN></th>
+  </tr>
+</table> 

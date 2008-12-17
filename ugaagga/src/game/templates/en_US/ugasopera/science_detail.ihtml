@@ -1,0 +1,73 @@
+<table class="box">
+  <caption>{name}</caption>
+  <tr>
+    <td><img src="%gfx%/sciences/{dbFieldName}_large.gif" alt="{name}" title="{name}"></td>
+    <td>
+      <table class="box">
+        <tr><td><strong>Description:</strong><br>{description}</td></tr>
+        <tr><td><strong>Maximum level:</strong> {maxlevel} (currently: {currentlevel})</td></tr>
+        <tmpl:LEVELS>
+        <tr>
+          <td>
+            <table class="box">
+              <caption>Cost per level with {population} population:</caption>
+              <tr>
+                <th>Level</th>
+                <th>Cost</th>
+              </tr>
+              <tmpl:LEVEL>
+              <tr>
+                <td>{level}</td>
+                <td>
+                  <tmpl:RESOURCECOST>
+                  <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+                  {value} &nbsp;
+                  </tmpl:RESOURCECOST>
+                  <tmpl:UNITCOST>
+                    <br>
+                    {name}: {value}
+                  </tmpl:UNITCOST>
+                  <tmpl:BUILDINGCOST>
+                    <br>
+                    {name}: {value}
+                  </tmpl:BUILDINGCOST>
+                  <tmpl:EXTERNALCOST>
+                    <br>
+                    {name}: {value}
+                  </tmpl:EXTERNALCOST>
+                  <img src="%gfx%/en_US/t_ugasopera/clock.gif" width="15" height="15" border="0" alt="Time:">{time}
+                </td>
+              </tr>
+              </tmpl:LEVEL>
+            </table>
+          </td>
+        </tr>
+        </tmpl:LEVELS>
+        <tr>
+          <td>
+            <table class="box">
+            <caption>Dependencies:</caption>
+            <tmpl:DEPGROUP>
+              <tr>
+                <th colspan="2">This discovery depends on the following {name} :</th>
+              </tr>
+              <tr>
+                    <td><em>Name</em></td>
+                    <td><em>Level</em></td>
+              </tr>
+              <tmpl:DEP>
+                <tr>
+                  <td>{name}</td>
+                  <td>{level}</td>
+                </tr>
+              </tmpl:DEP>
+            </tmpl:DEPGROUP>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>More info about all discoveries</small></a>

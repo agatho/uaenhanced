@@ -1,0 +1,76 @@
+<div class="header">
+<table class="message">
+    <tr>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=1"><img src="%gfx%/de_DE/t_ugasopera/messages/inbox.png" alt="Posteingang" title="Posteingang"></a>
+        </td>
+        <td align="center">
+            <a href="main.php?modus=messages&amp;box=2"><img src="%gfx%/de_DE/t_ugasopera/messages/outbox.png" alt="Postausgang" title="Postausgang"></a>
+        </td>
+        <td align="center">
+          <a href="main.php?modus=new_message&amp;box=1"><img src="%gfx%/de_DE/t_ugasopera/messages/new.png" alt="Neue Nachricht" title="Neue Nachricht"></a>
+        </td>
+    </tr>
+</table>
+</div>
+<table class="message_header">
+  <tr> 
+    <th>Betreff:</th>
+    <td>{betreff}</td>
+  </tr>
+  <tr> 
+    <th>Von:</th>
+    <td>{sender}</td>
+  </tr>
+  <tr> 
+    <th>An:</th>
+    <td>{empfaenger}</td>
+  </tr>
+  <tr> 
+    <th>Datum:</th>
+    <td>{datum}</td>
+  </tr>
+  <tr> 
+    <th colspan="2">
+      <tmpl:OBEN>
+        <tmpl:ANTWORTEN>
+          <form name="antworten" method="post" action="main.php">
+            <input type="submit" name="antworten" value="Antworten">
+            <tmpl:HIDDEN><input name="{arg}" type="hidden" value="{value}"></tmpl:HIDDEN>
+          </form>
+        </tmpl:ANTWORTEN>
+        <tmpl:LOESCHEN>
+          <form name="loeschen" method="post" action="main.php">
+            <input type="submit" name="delete" value="L&ouml;schen">
+            <tmpl:HIDDEN><input name="{arg}" type="hidden" value="{value}"></tmpl:HIDDEN>
+          </form>
+        </tmpl:LOESCHEN>
+        <tmpl:CONTACTS>
+        <form name="newContact" method="post" action="main.php">
+          <input type="submit" name="add" value="Ins Adressbuch">
+          <input type="hidden" name="contact" value="{contact}">
+          <input type="hidden" name="modus" value="Contacts" />
+          <input type="hidden" name="task" value="Add" />
+        </form>
+        </tmpl:CONTACTS>
+      </tmpl:OBEN>
+    </th>
+  </tr>
+</table>
+
+<tmpl:BILD><img src="%gfx%/de_DE/t_ugasopera/{bild}" class="message_picture"></tmpl:BILD>
+<div class="message_text">{nachricht}</div>
+<center>
+<br>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7711109527486774";
+google_ad_slot = "8588137052";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+<div class="message_backlink"><a href="main.php{linkbackparams}">zur&uuml;ck zu den Nachrichten</a></div>

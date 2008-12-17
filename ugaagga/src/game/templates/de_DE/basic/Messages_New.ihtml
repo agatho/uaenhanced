@@ -1,0 +1,3 @@
+<tmpl:TITLE>{iterate}Neue Nachrichten</tmpl:TITLE>
+
+<tmpl:CONTENT><tmpl:YOUVEGOTMAIL><a href="main.php?modus=messages"><img src="%gfx%/de_DE/t_basic/messages/envelope.png" border="0" alt="{count} neue Nachrichten" title="{count} neue Nachrichten"/></a></tmpl:YOUVEGOTMAIL></tmpl:CONTENT>

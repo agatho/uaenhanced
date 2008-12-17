@@ -1,0 +1,20 @@
+<tmpl:DETAILS>
+  <div id="tribe_tag">{tag}</div>
+  <div id="tribe_name">{name}</div>
+
+  <div id="tribe_awards"><tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}_large.png" width="128" height="128" border="0" hspace="8"></a></tmpl:AWARD></div>
+  
+  <tmpl:LOGO><div id="tribe_logo"><img src="{logo}" width="{width}" height="{height}" border="0"></div></tmpl:LOGO>
+  
+  <div id="tribe_members"><a href="main.php?modus={playerList_modus}&tag={urltag}">Member list</a></div>
+  
+  <div id="tribe_relations"><a href="main.php?modus={tribeRelationList_modus}&tag={urltag}">Tribe relations</a></div>
+  
+  <div id="tribe_history"><a href="main.php?modus={tribeHistory_modus}&tag={urltag}">Tribe history</a></div>
+  
+  <div id="tribe_leader"><a href="main.php?modus={playerDetail_modus}&detailID={playerID}">{leaderName}</a></div>
+
+  <div id="tribe_junior_leader"><a href="main.php?modus={playerDetail_modus}&detailID={juniorLeaderID}">{juniorLeaderName}</a></div>  
+  
+  <div id="tribe_description">{description}</div>
+</tmpl:DETAILS>

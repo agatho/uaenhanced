@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Config SYSTEM "config.dtd">
+<Config>
+  <Header>
+    <TakeoverMaxPopularityPoints>1</TakeoverMaxPopularityPoints>
+    <TakeoverMinResourceValue>10</TakeoverMinResourceValue>
+    <WatchTowerVisionRange>1</WatchTowerVisionRange>
+    <ExposeInvisible>0</ExposeInvisible>
+    <WonderResistance>0</WonderResistance>
+    <FuelResourceID>0</FuelResourceID>
+    <MovementCost>1/60</MovementCost>
+    <MovementSpeed>30</MovementSpeed>
+  </Header>
+  <Languages>
+    <Language locale="de_DE">Deutsch</Language>
+    <Language locale="en_US">English (US)</Language>
+  </Languages>
+  <ResourceTypes>
+    <Resource id="soybean">
+      <Name>Sojabohne</Name>
+      <Name lang="en_US">Soy Bean</Name>
+      <RatingValue>1.0</RatingValue>
+      <TakeoverValue>1.0</TakeoverValue>
+      <StealRatio>0</StealRatio>
+      <DestroyRatio>0</DestroyRatio>
+      <SafeStorage>25</SafeStorage>
+      <MaxStorage>100</MaxStorage>
+      <Production>[acre]</Production>
+    </Resource>
+  </ResourceTypes>
+  <BuildingTypes>
+    <Building id="acre">
+      <Name>Acker</Name>
+      <Name lang="en_US">Farmland</Name>
+      <Description>
+        <p>Auf dem Acker wachsen Soja-Bohnen, die der Ernährung deiner Bauern dienen.</p>
+      </Description>
+      <Description lang="en_US">
+        <p>Farmland is used to grow soy beans that provide food for your peasants.</p>
+      </Description>
+      <RatingValue>1</RatingValue>
+      <Cost id="soybean">10</Cost>
+      <ProductionTime>1440</ProductionTime>
+      <MaxDevelopmentLevel>[agriculture]</MaxDevelopmentLevel>
+      <Requirement id="agriculture" min="1"/>
+    </Building>
+  </BuildingTypes>
+  <ScienceTypes>
+    <Science id="agriculture">
+      <Name>Landwirtschaft</Name>
+      <Name lang="en_US">Agriculture</Name>
+      <Description>
+        <p>Nur ein hohes Wissen über die Landwirtschaft beschert reiche Ernten</p>
+      </Description>
+      <Description lang="en_US">
+        <p>If you are learned in agriculture your farmland will yield a large crop.</p>
+      </Description>
+      <Cost id="soybean">50</Cost>
+      <ProductionTime>480</ProductionTime>
+      <MaxDevelopmentLevel>100</MaxDevelopmentLevel>
+    </Science>
+  </ScienceTypes>
+  <UnitTypes>
+    <Unit id="peasant">
+      <Name>Bauer</Name>
+      <Name lang="en_US">Peasant</Name>
+      <Description>
+        <p>Deine Bauern bewirtschaften deine Felder.</p>
+      </Description>
+      <Description lang="en_US">
+        <p>Your peasants will till the soil of your farmland.</p>
+      </Description>
+      <Cost id="soybean">10</Cost>
+      <ProductionTime>120</ProductionTime>
+      <MeleeDamage>1</MeleeDamage>
+      <RangedDamage>0</RangedDamage>
+      <StructuralDamage>0</StructuralDamage>
+      <MeleeDamageResistance>1</MeleeDamageResistance>
+      <RangedDamageResistance>1</RangedDamageResistance>
+      <Size>1</Size>
+      <Encumbrance id="soybean" value="1"/>
+      <Visible>1</Visible>
+      <Velocity>1</Velocity>
+      <WarPoints>1</WarPoints>
+    </Unit>
+  </UnitTypes>
+  <DefenseSystemTypes>
+    <DefenseSystem id="feeder">
+      <Name>Bewässerungsgraben</Name>
+      <Name lang="en_US">Irrigation Canal</Name>
+      <Description>
+        <p>Deine Gräben bewässern die Felder und halten Ungeziefer fern.</p>
+      </Description>
+      <Description lang="en_US">
+        <p>Irrigation canals provide water for your farmland and hold vermin at bay.</p>
+      </Description>
+      <Cost id="soybean">100</Cost>
+      <ProductionTime>720</ProductionTime>
+      <MaxDevelopmentLevel>100</MaxDevelopmentLevel>
+      <MeleeDamage>0</MeleeDamage>
+      <RangedDamage>0</RangedDamage>
+      <StructuralDamageResistance>10</StructuralDamageResistance>
+      <Size>10</Size>
+      <Requirement id="acre" min="1"/>
+    </DefenseSystem>
+  </DefenseSystemTypes>
+  <EffectTypes>
+    <EffectType id="population_bonus">
+      <Name>Bevölkerungsbonus</Name>
+      <Name lang="en_US">Bevölkerungsbonus</Name>
+    </EffectType>
+    <EffectType id="population_factor">
+      <Name>Bevölkerungsfaktor</Name>
+      <Name lang="en_US">Bevölkerungsfaktor</Name>
+    </EffectType>
+    <EffectType id="food_bonus">
+      <Name>Nahrungsbonus</Name>
+      <Name lang="en_US">Nahrungsbonus</Name>
+    </EffectType>
+    <EffectType id="food_factor">
+      <Name>Nahrungsfaktor</Name>
+      <Name lang="en_US">Nahrungsfaktor</Name>
+    </EffectType>
+    <EffectType id="wood_bonus">
+      <Name>Holzbonus</Name>
+      <Name lang="en_US">Holzbonus</Name>
+    </EffectType>
+    <EffectType id="wood_factor">
+      <Name>Holzfaktor</Name>
+      <Name lang="en_US">Holzfaktor</Name>
+    </EffectType>
+    <EffectType id="stone_bonus">
+      <Name>Steinbonus</Name>
+      <Name lang="en_US">Steinbonus</Name>
+    </EffectType>
+    <EffectType id="stone_factor">
+      <Name>Steinfaktor</Name>
+      <Name lang="en_US">Steinfaktor</Name>
+    </EffectType>
+    <EffectType id="metal_bonus">
+      <Name>Metallbonus</Name>
+      <Name lang="en_US">Metallbonus</Name>
+    </EffectType>
+    <EffectType id="metal_factor">
+      <Name>Metallfaktor</Name>
+      <Name lang="en_US">Metallfaktor</Name>
+    </EffectType>
+    <EffectType id="sulfur_bonus">
+      <Name>Schwefelbonus</Name>
+      <Name lang="en_US">Schwefelbonus</Name>
+    </EffectType>
+    <EffectType id="sulfur_factor">
+      <Name>Schwefelfaktor</Name>
+      <Name lang="en_US">Schwefelfaktor</Name>
+    </EffectType>
+    <EffectType id="religion_bonus">
+      <Name>Gunstbonus</Name>
+      <Name lang="en_US">Gunstbonus</Name>
+    </EffectType>
+    <EffectType id="religion_factor">
+      <Name>Gunstfaktor</Name>
+      <Name lang="en_US">Gunstfaktor</Name>
+    </EffectType>
+    <EffectType id="rangeattack_factor">
+      <Name>Fernangriffsschadenfaktor</Name>
+      <Name lang="en_US">Fernangriffsschadenfaktor</Name>
+    </EffectType>
+    <EffectType id="arealattack_factor">
+      <Name>Gebäudeschadenfaktor</Name>
+      <Name lang="en_US">Gebäudeschadenfaktor</Name>
+    </EffectType>
+    <EffectType id="attackrate_factor">
+      <Name>Getümmelschadenfaktor</Name>
+      <Name lang="en_US">Getümmelschadenfaktor</Name>
+    </EffectType>
+    <EffectType id="defenserate_factor">
+      <Name>Widerstandspunktefaktor</Name>
+      <Name lang="en_US">Widerstandspunktefaktor</Name>
+    </EffectType>
+    <EffectType id="size_factor">
+      <Name>Größenfaktor</Name>
+      <Name lang="en_US">Größenfaktor</Name>
+    </EffectType>
+    <EffectType id="ranged_damage_resistance_factor">
+      <Name>Fernkampfwiderstandsfaktor</Name>
+      <Name lang="en_US">Fernkampfwiderstandsfaktor</Name>
+    </EffectType>
+    <EffectType id="movement_cost_factor">
+      <Name>Bewegungskostenfaktor</Name>
+      <Name lang="en_US">Bewegungskostenfaktor</Name>
+    </EffectType>
+    <EffectType id="movement_speed_factor">
+      <Name>Bewegungsgeschwindigkeitsfaktor</Name>
+      <Name lang="en_US">Bewegungsgeschwindigkeitsfaktor</Name>
+    </EffectType>
+    <EffectType id="long_sight">
+      <Name>Weitsicht</Name>
+      <Name lang="en_US">Weitsicht</Name>
+    </EffectType>
+    <EffectType id="expose_invisible">
+      <Name>Unsichtbares entdecken</Name>
+      <Name lang="en_US">Unsichtbares entdecken</Name>
+    </EffectType>
+    <EffectType id="wonder_resistance">
+      <Name>Wunderresistenz</Name>
+      <Name lang="en_US">Wunderresistenz</Name>
+    </EffectType>
+  </EffectTypes>
+  <wonders>
+    <wonder offensive="0" target="all">
+      <Name>Regentanz</Name>
+      <Name lang="en_US">Rain Dance</Name>
+      <Description>
+        <p>Mit diesem Tanz sollen die Schleusen des Himmels geöffnet werden und so für eine bessere Ernte sorgen.</p>
+      </Description>
+      <Description lang="en_US">
+        <p>The rain dance is a special ceremony that is perfomed to invoke rain.</p>
+      </Description>
+      <chance>0.01*[agriculture]</chance>
+      <impacts>
+        <impact delay="5" duration="0">
+          <sourceMessage messageType="none"/>
+          <targetMessage messageType="detailed">
+            <p>Erste Tropfen! Ein Wunder!</p>
+          </targetMessage>
+          <resources>
+            <resource id="soybean" absolute="100" relative="0"/>
+          </resources>
+        </impact>
+      </impacts>
+      <Cost id="soybean">50</Cost>
+      <Requirement id="agriculture" min="10"/>
+    </wonder>
+  </wonders>
+  <Terrains>
+    <Terrain id="0">
+      <Name>Ebene</Name>
+      <Name lang="en_US">Plains</Name>
+      <Description/>
+      <Color r="240" g="240" b="192"/>
+    </Terrain>
+    <Terrain id="1">
+      <Name>Wald</Name>
+      <Name lang="en_US">Forest</Name>
+      <Description/>
+      <Color r="192" g="226" b="154"/>
+    </Terrain>
+    <Terrain id="2">
+      <Name>Gebirge</Name>
+      <Name lang="en_US">Mountains</Name>
+      <Description/>
+      <Color r="192" g="192" b="164"/>
+    </Terrain>
+    <Terrain id="3">
+      <Name>Sumpf</Name>
+      <Name lang="en_US">Swamp</Name>
+      <Description/>
+      <Color r="224" g="192" b="152"/>
+    </Terrain>
+  </Terrains>
+  <Regions>
+    <Region id="0" startRegion="1" takeoverActivatable="1" barren="0">
+      <Name>Irgendwo</Name>
+      <Name lang="en_US">Somewhere</Name>
+      <Description/>
+    </Region>
+  </Regions>
+  <Movements>
+    <Movement id="0" action="send" speed="1" provisions="2" invisible="0">
+      <Name>Rohstoffe bringen</Name>
+      <Name lang="en_US">Send resources</Name>
+      <Description/>
+    </Movement>
+    <Movement id="1" action="move" speed="1" provisions="1" invisible="0">
+      <Name>Einheiten/Rohstoffe verschieben</Name>
+      <Name lang="en_US">Move warriors/resources</Name>
+      <Description/>
+    </Movement>
+    <Movement id="2" action="attack" speed="1" provisions="2" invisible="0">
+      <Name>Angreifen</Name>
+      <Name lang="en_US">Attack</Name>
+      <Description/>
+    </Movement>
+    <Movement id="3" action="spy" speed="1" provisions="2" invisible="1">
+      <Name>Spionieren</Name>
+      <Name lang="en_US">Espionage</Name>
+      <Description/>
+    </Movement>
+    <Movement id="4" action="conquer" speed="5" provisions="2" invisible="0">
+      <Name>Übernahme</Name>
+      <Name lang="en_US">Conquer</Name>
+      <Description/>
+    </Movement>
+  </Movements>
+</Config>

@@ -1,0 +1,3 @@
+<tmpl:VOTE>
+<a href='?modus=vote&amp;task=vote&amp;id={id}' target='_blank'><img src='{imgSrc}' border='0' vspace='1'></a>
+</tmpl:VOTE>

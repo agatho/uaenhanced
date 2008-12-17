@@ -1,0 +1,4 @@
+<div align="left">
+  <p>{message}</p>  
+  <p>Weiter zu <a href="{link}">{link}</a></p>
+</div>

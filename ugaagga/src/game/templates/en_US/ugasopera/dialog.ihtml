@@ -1,0 +1,12 @@
+<div class="status_message">{message}</div>
+<table>
+  <tr>
+    <tmpl:BUTTON>
+    <td><form name="{formname}" method="POST" action="main.php">
+      <input type="hidden" name="{modus_name}" value="{modus_value}">
+      <tmpl:ARGUMENT><input type="hidden" name="{arg_name}" value="{arg_value}"></tmpl:ARGUMENT>
+      <input type="submit" value="{text}">
+    </form></td>
+    </tmpl:BUTTON>
+  </tr>
+</table>

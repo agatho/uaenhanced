@@ -1,0 +1,53 @@
+<table class="box">
+  <caption>{name} &nbsp; <i>{offensiveness}</i></caption>
+  <tr>
+    <td><strong>Chance of success:</strong> {chance}</td>
+  </tr>
+  <tr>
+    <td><strong>Possible targets:</strong> {target}</td
+  </tr>
+  <tr>
+    <td><strong>Description:</strong><br>{description}</td>
+  </tr>
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <tmpl:RESOURCECOST>
+            <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+            {value} &nbsp;
+            </tmpl:RESOURCECOST>
+            <tmpl:UNITCOST>
+            {name}: {value} &nbsp;
+            </tmpl:UNITCOST>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table class="box">
+      <caption>Dependencies:</caption>
+      <tmpl:DEPGROUP>
+        <tr>
+          <td colspan="2">This wonder depends on the following {name} :</td>
+        </tr>
+        <tr>
+          <td><em>Name</em></td>
+          <td><em>Level</em></td>
+        </tr>
+        <tmpl:DEP>
+          <tr>
+            <td>{name}</td>
+            <td>{level}</td>
+          </tr>
+        </tmpl:DEP>
+      </tmpl:DEPGROUP>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>More info about all wonders</small></a> 

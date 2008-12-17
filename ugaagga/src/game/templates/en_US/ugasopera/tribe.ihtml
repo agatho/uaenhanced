@@ -1,0 +1,42 @@
+<tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+
+<tmpl:FORM>
+  <form name="data" method="POST" action="main.php">
+    <input type="hidden" name="{modus_name}" value="{modus_value}">
+    <input type="hidden" name="{action_name}" value="{action_value}">
+
+    <h3>{heading}</h3>
+
+    <table class="box">
+    <tmpl:TAG>
+      <tr>
+        <td><label for="{form_prefix}{fieldName}">Tribe Tag</label><br><div class="small">{tag_regexp}</div></td>
+        <td><input name="{fieldName}" id="{form_prefix}{fieldname}" value="{value}"  type="text" size="{size}" maxlength="{maxlength}"></td>
+      </tr>
+    </tmpl:TAG>
+
+    <tmpl:PASSWORD>
+      <tr>
+        <td><label for="{form_prefix}{fieldName}">Password</label><br><div class="small">{pw_regexp}</div></td>
+        <td><input type="text" name="{fieldName}" id="{form_prefix}{fieldname}" size="{size}" maxlength="{maxlength}" value="{value}"></td>
+      </tr>
+    </tmpl:PASSWORD>
+
+    <tmpl:RESTORERANKING>
+    <tr>
+      <td><label for="{form_prefix}{fieldName}">Retain ranking from previous round</label><br><div class="small">Password and tribe tag must match those from the previous round.</div></td>
+      <td>
+        <input name="{fieldName}" id="{form_prefix}{fieldname}" checked="checked" value="yes" type="checkbox">
+      </td>
+    </tr>
+    </tmpl:RESTORERANKING>
+
+    <tmpl:BUTTON>
+      <tr>
+        <td colspan="2" align="center"><input type="submit" value="{caption}"></td>
+      </tr>
+    </tmpl:BUTTON>
+    </table>
+
+  </form>
+</tmpl:FORM>

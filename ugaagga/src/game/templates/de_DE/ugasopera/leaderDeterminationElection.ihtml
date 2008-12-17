@@ -1,0 +1,27 @@
+<tmpl:LEADERDETERMINATION>
+  <tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+  <div class="header">Bestimmung des Stammesanf&uuml;hrers: {name}</div>
+  <table class="box">
+    <caption>Stimmen</caption>
+    <tmpl:VOTES>
+      <tr>
+        <th>{name}:</th>
+        <td>{votes}</td>
+      </tr>
+    </tmpl:VOTES>
+    <tmpl:CHOICE>
+      <tr>
+        <th colspan="2">
+          <form method="post" action="main.php">
+            <input type="hidden" name="{modus_name}" value="{modus}">
+            Ihre Stimme f&uuml;r:
+            <select name="{dataarray}[{dataentry}]">
+              <tmpl:OPTION><option value="{playerID}" {selected}>{name}</option></tmpl:OPTION>
+            </select>
+            <input type="submit" value="{caption}">
+          </form>
+        </th>
+      </tr>
+    </tmpl:CHOICE>
+  </table>
+</tmpl:LEADERDETERMINATION>

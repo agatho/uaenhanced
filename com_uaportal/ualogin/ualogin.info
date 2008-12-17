@@ -1,0 +1,8 @@
+name = ualogin
+description = Uga-Agga Portal - Testing
+package = Core - optional
+version = VERSION
+
+; Information added by drupal.org packaging script on 2007-01-15
+version = "5.5"
+project = "drupal"

@@ -1,0 +1,124 @@
+<tmpl:DEFENSESYSTEM_QUEUE>
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" class="box">
+    <tr>
+      <td colspan="2">Arbeitsauftrag</td>
+    </tr>
+    <tr>
+      <td>Momentan im Gange: Ausbau {name} auf Stufe {size} (fertig: {finish})</td>
+      <td><a href="main.php?eventID={eventID}&modus=external_builder">Abbrechen</a></td>
+    </tr>
+  </table>
+</tmpl:DEFENSESYSTEM_QUEUE>
+
+<br>
+
+<tmpl:MESSAGE>
+  <b>{message}</b>
+</tmpl:MESSAGE>
+
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td>
+      <img src="%gfx%/externals/{dbFieldName}_small.gif" width="20" height="30" border="0" alt="{name}" title="{name}">
+    </td>
+    <td>
+      <a href="main.php?modus=external_properties&externalID={externalID}"><b>{name}</b></a><br>
+
+        <tmpl:RESSOURCECOST>
+          <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+                      &nbsp;
+        </tmpl:RESSOURCECOST>
+        <tmpl:UNITCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:UNITCOST>
+        <tmpl:BUILDINGCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:BUILDINGCOST>
+        <tmpl:EXTERNALCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough small">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less small">{value}</span>
+          </tmpl:LESS>
+        </tmpl:EXTERNALCOST>
+    </td>
+
+    <td><img src="%gfx%/de_DE/t_slimfast/clock.gif" width="15" height="15" border="0" alt="Dauer:">{time} &nbsp; &nbsp;</td>
+    <td>Stufe: {size}</td>
+
+    <td>
+      <tmpl:BREAK_DOWN_LINK>
+        <a href="main.php?modus=external_demolish&externalID={externalID}">Abrei&szlig;en</a>
+      </tmpl:BREAK_DOWN_LINK>
+      &nbsp;
+    </td>
+
+    <td>
+      <tmpl:BUILD_LINK>
+        <a href="main.php?modus=external_builder&externalID={externalID}&tstamp={tstamp}">Ausbauen</a>
+      </tmpl:BUILD_LINK>
+      <tmpl:BUILD_LINK_NO>
+        {message}
+      </tmpl:BUILD_LINK_NO>
+    </td>
+
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+
+<tmpl:UNQUALIFIEDDEFENSESYSTEMS>
+<p><strong>Erweiterungen, die noch nicht gebaut werden können:</strong></p>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus=external_properties&externalID={externalID}"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+</tmpl:UNQUALIFIEDDEFENSESYSTEMS>
+
+<tmpl:UNWANTEDDEFENSESYSTEMS>
+<p><strong>Relikte:</strong></p>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus=external_properties&externalID={externalID}" target="_blank"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+    <td align="right">Stufe: {size}</td>
+    <td align="center"><a href="main.php?modus=external_demolish&externalID={externalID}">Abrei&szlig;en</a></td>
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+</tmpl:UNWANTEDDEFENSESYSTEMS>
+
+<a href="{rules_path}" target="_blank"><small>weitere Informationen zu allen Verteidigungsanlagen</small></a>
+<br>

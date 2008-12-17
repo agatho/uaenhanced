@@ -1,0 +1,16 @@
+<h3>{message}</h3>
+<table border="0">
+   <tr>
+    <tmpl:BUTTON>
+      <td>
+        <form name="{formname}" method="POST" action="main.php">
+          <input type="hidden" name="{modus_name}" value="{modus_value}"> 
+          <tmpl:ARGUMENT>
+            <input type="hidden" name="{arg_name}" value="{arg_value}"> 
+          </tmpl:ARGUMENT>
+          <input type="submit" value="{text}">
+        </form>
+      </td>
+    </tmpl:BUTTON>
+  </tr>
+</table>

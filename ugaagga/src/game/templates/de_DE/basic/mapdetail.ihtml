@@ -1,0 +1,80 @@
+<tmpl:PROPERTY>
+<p><b>{text}</b></p>
+</tmpl:PROPERTY>
+<p>
+  Dies ist der Landstrich
+  <strong>{caveName}</strong>
+  ({xCoord} | {yCoord}) - {terrain}
+  <br>
+  <strong>Region:</strong> {region}
+  <br>
+  <img src="%gfx%/de_DE/t_basic/map/{terrain}.jpg" alt="{terrain}" title="{terrain}">
+  <br>
+  <a href="main.php{movementLink}">dorthin bewegen!</a>
+  <br>
+  <a href="main.php?modus=CaveBookmarks&amp;task=Add&amp;xCoord={xCoord}&amp;yCoord={yCoord}">zur Höhlenliste hinzufügen!</a>
+</p>
+<tmpl:TAKEOVERABLE>
+  <p>
+    Dieser Landstrich ist bewohnbar. Er kann
+    <a href="main.php?modus={modus}&amp;caveID={caveID}&amp;targetXCoord={targetXCoord}&amp;targetYCoord={targetYCoord}">missioniert</a>
+    werden.
+  </p>
+</tmpl:TAKEOVERABLE>
+
+<tmpl:OCCUPIED>
+  <p>
+    Sie geh&ouml;rt dem H&auml;uptling
+    <a href="main.php{playerLink}" target="_blank"><strong>{caveOwner}</strong></a>
+    <tmpl:TRIBE>
+    vom Stamme
+    <a href="main.php{tribeLink}" target="_blank"><strong>{ownersTribe}</strong></a>.
+    </tmpl:TRIBE>
+  </p>
+
+  <p>
+    <a href="main.php?modus=Contacts&amp;task=Add&amp;contact={caveOwner}">Zum Adressbuch hinzufügen</a>
+  </p>
+
+  <tmpl:ARTEFACT>
+  <p>
+    In dieser H&ouml;hle wird <a href="main.php{artefactLink}">ein seltenes Artefakt</a> aufbewahrt. 
+  </p>
+  </tmpl:ARTEFACT>
+
+
+  <table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+
+    <tr>
+      <th colspan="5"><p>Alle H&ouml;hlen dieses H&auml;uptlings</p></th>
+    </tr>
+
+    <tr>
+      <td><strong>H&ouml;hle</strong></td>
+      <td><strong>Terrain</strong></td>
+      <td><strong>Gr&ouml;&szlig;e</strong></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tmpl:CAVES>
+      <tr>
+        <td width="30%">{caveName} ({xCoord} | {yCoord})</td>
+        <td width="15%">{terrain}</td>
+        <td width="15%">{caveSize}</td>
+        <td width="10%"><tmpl:PROPERTY><b>{text}</b></tmpl:PROPERTY>&nbsp;<tmpl:ARTEFACT><a href="main.php{artefactLink}">Artefakte!!</a></tmpl:ARTEFACT></td>
+        <td width="15%">
+          <a href="main.php{movementLink}">dorthin bewegen!</a>
+        </td>
+        <td wudth="15%">
+          <a href="main.php?modus=CaveBookmarks&amp;task=Add&amp;xCoord={xCoord}&amp;yCoord={yCoord}">zur Höhlenliste hinzufügen!</a>
+        </td>
+      </tr>
+    </tmpl:CAVES>
+
+  </table>
+</tmpl:OCCUPIED>
+
+<p>
+  <a href="main.php{backLink}">zur&uuml;ck zur Karte</a>
+</p>

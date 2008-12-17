@@ -1,0 +1,122 @@
+-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+  <tr>
+    <td align="center"><b>{name}</b></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="5" valign="top"><img src="%gfx%/units/{dbFieldName}_large.gif" alt="{name}" title="{name}"></td>
+    <td><strong>Description:</strong><br>{description}</td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Cost:</strong><br>
+      <tmpl:RESSOURCECOST>
+        <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+        {value} &nbsp;
+      </tmpl:RESSOURCECOST>
+      <tmpl:UNITCOST>
+        <br>
+        {name}: {value}
+      </tmpl:UNITCOST>
+      <tmpl:BUILDINGCOST>
+        <br>
+        {name}: {value}
+      </tmpl:BUILDINGCOST>
+      <tmpl:EXTERNALCOST>
+        <br>
+        {name}: {value}
+      </tmpl:EXTERNALCOST>
+      <br><br>Duration: {duration}<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Properties:</strong><br>
+      <table border="0" cellspacing="0" cellpadding="3" class="box">
+         <tr>
+          <td>Ranged attack damage</td>
+          <td>{rangeAttack}</td>
+        </tr>
+        <tr>
+          <td>Building damage</td>
+          <td>{arealAttack}</td>
+        </tr>
+        <tr>
+         <td>Melee damage</td>
+         <td>{attackRate}</td>
+        </tr>
+        <tr>
+         <td>Ranged damage resistance</td>
+         <td>{rd_resist}</td>
+        </tr>
+        <tr>
+         <td>Melee damage resistance</td>
+         <td>{defenseRate}</td>
+        </tr>
+        <tr>
+         <td>Size</td>
+         <td>{size}</td>
+        </tr>
+        <tr>
+         <td>Rations:</td>
+       <td>{fuelFactor}x <img src="%gfx%/resources/{fuelName}_icon.gif" width="15" height="15" border="0"></td>
+      </tr>
+      <tr>
+       <td>Speed</td>
+       <td>{wayCost}</td>
+      </tr>
+      <tmpl:INVISIBLE>
+        <tr>
+          <td><b>{text}</b></td>
+        </tr>
+      </tmpl:INVISIBLE>
+      </table>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td>
+      <strong>Espionage properties:</strong><br>
+      <table border="0" width="60%" cellpadding="0" cellspacing="4" class="box">
+        <tr>
+          <td>Espionage class</td>
+          <td>{spyValue}</td>
+        </tr>
+        <tr>
+          <td>Espionage ability</td>
+          <td>{spyChance}</td>
+        </tr>
+        <tr>
+          <td>Counter-espionage ability</td>
+          <td>{antiSpyChance}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <strong>Dependencies:</strong><br>
+      <table border="0" width="60%" cellpadding="0" cellspacing="4" class="box">
+      <tmpl:DEPGROUP>
+        <tr>
+          <td colspan="2">This unit depends on the following {name} :</td>
+        </tr>
+        <tr>
+              <td><em>Name</em></td>
+              <td><em>Level</em></td>
+        </tr>
+        <tmpl:DEP>
+          <tr>
+            <td>{name}</td>
+            <td>{level}</td>
+          </tr>
+        </tmpl:DEP>
+      </tmpl:DEPGROUP>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+<a href="{rules_path}"><small>more info on all units</small></a>

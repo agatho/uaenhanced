@@ -1,0 +1,28 @@
+<p>... of tribe {tribe}</p>
+
+<table class="box">
+    <tr>
+      <th>Tribe</th>
+      <th>Relation of {tribe}</th>
+      <th>Relation towards {tribe}</th>
+    </tr>
+    <tmpl:ROWS>
+      <tmpl:ROW>
+      <tr class="alternate">
+        <td><a href="{link}">{tribe}</a></td>
+        <td>{relationTo}</td>
+        <td>{relationFrom}</td>
+      </tr>
+      </tmpl:ROW>
+
+      <tmpl:ROW_ALTERNATE>
+      <tr>
+        <td><a href="{link}">{tribe}</a></td>
+        <td>{relationTo}</td>
+        <td>{relationFrom}</td>
+      </tr>
+      </tmpl:ROW_ALTERNATE>
+    </tmpl:ROWS>
+</table>
+
+<p><a href="http://srv05.uga-agga.de/sieben/rules/" target="_blank">More info about all relations</a></p> 

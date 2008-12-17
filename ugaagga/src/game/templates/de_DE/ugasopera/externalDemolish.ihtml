@@ -1,0 +1,19 @@
+<div class="status_message">M&ouml;chten Sie 1 {name} abreiﬂen?</div>
+<table>
+  <tr>
+    <td>
+      <form name="confirm" method="POST" action="main.php">
+        <input type="hidden" name="modus" value="external_builder">
+        <input type="hidden" name="breakDownConfirm" value="1">
+        <input type="hidden" name="externalID" value="{id}">
+        <input type="submit" value="Abrei&szlig;en">
+      </form>
+    </td>
+    <td>
+      <form name="cancel" method="POST" action="main.php">
+        <input type="hidden" name="modus" value="external_builder">
+        <input type="submit" value="Abbrechen">
+      </form>
+    </td>
+  </tr>
+</table>

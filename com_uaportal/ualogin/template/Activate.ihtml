@@ -1,0 +1,31 @@
+<tmpl:ACTIVATE>{iterate}
+<div class="node">
+Bitte geben Sie den g&uuml;ltigen Aktivierungskode ein, der
+Ihnen bei der Anmeldung an Ihre Email-Adresse zugesendet wurde.
+  <form action="?q=ualogin/Activate" method="post" name="ualogin_AccountActivate" id="ualogin_AccountActivate">
+
+    <p>
+      <label for="username">Username:</label>
+      <br />
+      <input id="username" name="username" value="{username}" class="form-text" type="text" maxlength="20" size="20" />
+
+    </p><p>
+
+      <label for="actcode">Aktivierungscode:</label>
+      <br />
+      <input id="actcode" name="actcode" class="form-text" type="text" maxlength="20" size="20" />
+
+    </p><p>
+
+      <noscript><input type="hidden" name="noscript" value="1"></noscript>
+      <input type="submit" name="submit" value="Aktivieren"/>
+
+    </p>
+
+  </form>
+</div>
+</tmpl:ACTIVATE>
+
+<tmpl:DISABLED>{iterate}
+  <div class="messages">Eine Registrierung ist zur Zeit nicht möglich.</div>
+</tmpl:DISABLED>

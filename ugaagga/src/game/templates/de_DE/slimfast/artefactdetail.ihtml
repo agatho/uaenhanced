@@ -1,0 +1,38 @@
+<p>{message}</p>
+<tmpl:ARTEFACT>
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+    <td colspan="2" align="center"><strong>{name}</strong></td>
+  </tr>
+  <tr> 
+    <td><img src="images/artefacts/{resref}.gif" alt="{name}" title="{name}"></td>
+    <td valign="top">
+      <div align="justify" class="small">{description}</div><br>
+      <div align="justify" class="small">{description_initiated}</div><br>
+    </td>
+  </tr>
+  <tmpl:INITIATION>
+  <tr>
+    <td>{description}</td>
+    <td align="center">
+      <form name="initiateArtefact" method="POST">      
+        <tmpl:COST>
+          {object}:
+          <tmpl:ENOUGH><span class="enough small">{amount}</span></tmpl:ENOUGH>
+          <tmpl:LESS><span class="less small">{amount}</span></tmpl:LESS>
+          <br>
+        </tmpl:COST>
+        Dauer: {duration}<br>
+        <tmpl:HIDDEN><input type="hidden" name="{name}" value="{value}"></tmpl:HIDDEN>
+        <input type="submit" value="Ritual durchf&uuml;hren">
+      </form>        
+    </td>
+  </tr>
+  </tmpl:INITIATION>
+  <tmpl:NO_INITIATION>
+  <tr> 
+    <td colspan="2">in dieser H&ouml;hle wird bereits ein Artefakt eingeweiht</td>
+  </tr>
+  </tmpl:NO_INITIATION>  
+</table>
+</tmpl:ARTEFACT>

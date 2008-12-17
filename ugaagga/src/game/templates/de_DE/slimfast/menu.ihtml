@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Uga Agga Menu</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="%gfx%/de_DE/t_slimfast/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body leftmargin="2" topmargin="2" marginwidth="2" marginheight="2">
+<table width="203" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><a href="http://www.uga-agga.info/mwiki/" target="_blank"><tmpl:TIME><img src="%gfx%/de_DE/t_slimfast/menu/top{month}.png" width="203" height="61" border="0" alt="{day}. Tag des {monthName}-Monats im Jahre {year} um {hour} Uhr." title="{day}. Tag des {monthName}-Monats im Jahre {year} um {hour} Uhr."></tmpl:TIME></a></td>
+  </tr>
+
+  <tr> 
+    <td align="center" background="%gfx%/de_DE/t_slimfast/menu/bg.gif">
+      <form name="hoehlenwahl" method="post" action="ugastart.php" target="_top">
+        <select name="caveID" onChange="document.getElementsByName('hoehlenwahl')[0].submit(); return true;">
+          <tmpl:SELECT><option value="{value}" {selected}>{text}</option></tmpl:SELECT>
+        </select>
+        <input type="submit" name="go" value="go">
+        <tmpl:HIDDEN><input name="{name}" type="hidden" value="{value}"></tmpl:HIDDEN>  
+      </form>
+    </td>
+  </tr>
+
+  <tr> 
+    <td align="center" background="%gfx%/de_DE/t_slimfast/menu/bg.gif" height="32">
+      <tmpl:ICON>
+        <a href="{link}" target="{target}"><img src="%gfx%/de_DE/t_slimfast/menu/icon_{pic}.gif" width="32" height="32" border="0" alt="{alt}" title="{alt}"></a>
+      </tmpl:ICON>
+    </td>
+  </tr>
+
+<tmpl:ITEM>
+  <tr> 
+    <td><a href="{link}" target="{target}"><img src="%gfx%/de_DE/t_slimfast/menu/item_{pic}.gif" width="203" height="28" border="0" alt="{alt}" title="{alt}"></a></td>
+  </tr>
+</tmpl:ITEM>
+
+  <tr> 
+    <td><img src="%gfx%/de_DE/t_slimfast/menu/bottom.png" width="203" height="26" alt=""></td>
+  </tr>
+</table>
+</body>
+</html>

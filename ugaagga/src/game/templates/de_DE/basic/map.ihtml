@@ -1,0 +1,113 @@
+<tmpl:MESSAGE><strong>{message}</strong></tmpl:MESSAGE>
+
+<table width="100%" border="0" >
+  <tr>
+    
+      <td>
+        <form name="searchCoords" method="POST" action="main.php" cellpadding="0" cellspacing="5">
+          (X/Y):
+          <input type="text" name="xCoord" size="4" maxlength="4">
+          <input type="text" name="yCoord" size="4" maxlength="4">
+          <input type="hidden" name="modus" value="{modus}">
+          <input type="hidden" name="caveID" value="{caveID}">
+          <input type="submit" value="go">
+        </form>
+      </td>
+
+      <td>
+        <form name="searchName" method="POST" action="main.php">
+          Name:
+          <input type="text" name="caveName" size="10" maxlength="50">
+          <input type="hidden" name="modus" value="{modus}">
+          <input type="hidden" name="caveID" value="{caveID}">
+          <input type="submit" value="go">
+        </form>
+      </td>
+
+      <tmpl:CAVEBOOKMARKS>{iterate}
+      <td>
+        <form name="searchID" method="POST" action="main.php">
+          <a href="?modus=CaveBookmarks&amp;task=Show">Höhlenliste:</a>
+          <select name="targetCaveID" id="targetCaveID" onChange="document.searchID.submit(); return true;">
+            <option value="-1">Bitte wählen</option>
+            <tmpl:CAVEBOOKMARK><option value="{caveID}">{name} ({xCoord}|{yCoord})</option></tmpl:CAVEBOOKMARK>
+          </select>
+          <input type="hidden" name="modus" value="map" />
+          <input type="submit" value="go" />
+        </form>
+      </td>
+      </tmpl:CAVEBOOKMARKS>
+    
+  </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+  <tr> 
+    <td rowspan="2" align="center" valign="middle"> 
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tmpl:ROWS>
+        <tr>
+          <tmpl:CELLS>
+            <tmpl:HEADER>
+              <td align="center" valign="middle">
+                {text}
+              </td>
+            </tmpl:HEADER>
+            <tmpl:EMPTY>{iterate}<td class="empty_cell">&nbsp;</td></tmpl:EMPTY>
+            <tmpl:CORNER>{iterate}<td class="corner_cell">&nbsp;</td></tmpl:CORNER>
+            <tmpl:MAPCELL>
+              <td align="center" valign="middle" class="{terrain} t_{text_tribe}">
+               <img src="%gfx%/de_DE/t_basic/map/{file}.gif" width="80" height="20" alt="{alt}"><br>
+                <a href="main.php?{link_tribe}" title="{alt}" class="t_{text_tribe}"><small>{text_tribe}</small></a><br> 
+                <a href="main.php?{link}" title="{alt}"><small<tmpl:unsecure>{dummy} class="unsecure"</tmpl:unsecure>>{text}</small></a>
+              </td>
+            </tmpl:MAPCELL>
+          </tmpl:CELLS> </tr>
+        </tmpl:ROWS>
+      </table>
+    </td>
+    
+    <td height="50%" align="center" valign="middle">
+	    <tmpl:MINIMAP> 
+        <form action="main.php" method="post" name="minimapform">
+          <input name="minimap" type="image" width="{width}" height="{height}" style="width: {width}px; height: {height}px; border: thin groove #009900; cursor: crosshair;" src="{file}">
+          <input type="hidden" name="scaling" value="{scaling}">
+          <input type="hidden" name="modus" value="{modus}">
+          <input type="hidden" name="caveID" value="{caveID}">          
+        </form>
+      </tmpl:MINIMAP>
+    </td>
+  
+  </tr>
+  
+  <tr>
+    <td height="50%" align="center" valign="middle"> 
+      <table cellspacing="0" border="0" cellpadding="0">
+        <tr>
+          <td> <tmpl:NW><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/NW.gif" width="40" height="40" border="0" alt="nordwest"></a></tmpl:NW>
+          </td>
+          <td> <tmpl:N><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/N.gif"  width="40" height="40" border="0" alt="nord"></a></tmpl:N>
+          </td>
+          <td> <tmpl:NO><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/NO.gif" width="40" height="40" border="0" alt="nordost"></a></tmpl:NO>
+          </td>
+        </tr>
+        <tr>
+          <td> <tmpl:W><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/W.gif"  width="40" height="40" border="0" alt="west"></a></tmpl:W>
+          </td>
+          <td> <img src="%gfx%/de_DE/t_basic/map/M.gif"  width="40" height="40" border="0" alt="">
+          </td>
+          <td> <tmpl:O><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/O.gif"  width="40" height="40" border="0" alt="ost"></a></tmpl:O>
+          </td>
+        </tr>
+        <tr>
+          <td> <tmpl:SW><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/SW.gif" width="40" height="40" border="0" alt="s&uuml;dwest"></a></tmpl:SW>
+          </td>
+          <td> <tmpl:S><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/S.gif"  width="40" height="40" border="0" alt="s&uuml;d"></a></tmpl:S>
+          </td>
+          <td> <tmpl:SO><a href="./main.php?caveID={caveID}&modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_basic/map/SO.gif" width="40" height="40" border="0" alt="s&uuml;dost"></a></tmpl:SO>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

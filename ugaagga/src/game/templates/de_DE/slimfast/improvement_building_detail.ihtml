@@ -1,0 +1,83 @@
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td align="center"><b>{name}</b></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><img src="%gfx%/buildings/{dbFieldName}_large.gif" alt="{name}" title="{name}"></td>
+      <td>
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+          <tr>
+            <td><strong>Beschreibung:</strong><br>{description}</td>
+          </tr>
+          <tr>
+            <td><strong>Maximale Stufe:</strong> {maxlevel} (derzeit: {currentlevel})</td>
+          </tr>
+
+          <tmpl:LEVELS>
+          <tr>
+            <td>
+              <strong>Kosten pro Stufe bei {population} Leuten:</strong><br>
+              <table class="box">
+                <tr>
+                  <th>Stufe</th>
+                  <th>Kosten</th>
+                </tr>
+                <tmpl:LEVEL>
+                <tr>
+                  <td>{level}</td>
+                  <td>
+                    <tmpl:RESOURCECOST>
+                    <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+                    {value} &nbsp;
+                    </tmpl:RESOURCECOST>
+                    <tmpl:UNITCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:UNITCOST>
+                    <tmpl:BUILDINGCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:BUILDINGCOST>
+                    <tmpl:EXTERNALCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:EXTERNALCOST>
+                    <img src="%gfx%/de_DE/t_slimfast/clock.gif" width="15" height="15" border="0" alt="Dauer:">{time}
+                  </td>
+                </tr>
+                </tmpl:LEVEL>
+              </table>
+            </td>
+          </tr>
+          </tmpl:LEVELS>
+
+          <tr>
+            <td>
+              <strong>Abhängigkeiten:</strong><br>
+              <table border="0" width="60%" cellpadding="0" cellspacing="4" class="box">
+              <tmpl:DEPGROUP>
+                <tr>
+                  <th colspan="2">Die Erweiterung h&auml;ngt von folgenden {name} ab:</th>
+                </tr>
+                <tr>
+                      <td><em>Name</em></td>
+                      <td><em>Stufe</em></td>
+                </tr>
+                <tmpl:DEP>
+                  <tr>
+                    <td>{name}</td>
+                    <td>{level}</td>
+                  </tr>
+                </tmpl:DEP>
+              </tmpl:DEPGROUP>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+<br>
+<a href="{rules_path}"><small>weitere Informationen zu allen Erweiterungen</small></a>

@@ -1,0 +1,435 @@
+<script type="text/javascript">
+<!--
+var uamoves = new Array();
+var units = new Array();
+<tmpl:UNITPROPS>units[{unitID}] = {maxWarriorAnzahl:{maxWarriorAnzahl}, foodCost:{foodCost}, speedFactor:{speedFactor}, resourceLoad:[{resourceLoad}]};</tmpl:UNITPROPS>
+var domcomp = document.childNodes ? true : false;
+
+function getMovementID(){
+  var r = document.unitMoving.movementID;
+  for (var i=0; i<r.length; i++) if (!r[i].checked) continue; else return r[i].value;
+  return null;
+}
+
+function dur(){
+
+  var MINUTESPERCAVE = {speed};
+  var FOODPERCAVE    = {movementcostconstant};
+  
+  /* Using torus edge condition */
+  var xCoord = {dim_x} -
+               Math.abs(Math.abs(parseInt(document.unitMoving.targetXCoord.value ) -
+               {currentX}) - {dim_x});
+  var yCoord = {dim_y} -
+               Math.abs(Math.abs(parseInt(document.unitMoving.targetYCoord.value ) -
+               {currentY}) - {dim_y});
+
+  var movementID = parseInt(getMovementID());
+  if (isNaN(movementID) || typeof(uamoves[movementID]) == 'undefined') return;
+
+  var i, amount;
+
+  var maxSpeedFactor = 0;
+  for (i = 0; i < units.length; ++i){
+    amount = document.getElementById("unit[" + i + "]");
+    if (!amount) continue;
+    else amount = amount.value;
+    if (amount != "" && Number(amount) > 0)
+      maxSpeedFactor = Math.max(maxSpeedFactor, units[i]['speedFactor']);
+  }
+   var distance = Math.ceil(Math.sqrt(xCoord*xCoord + yCoord*yCoord)); 
+  // Entfernung x Dauer pro Höhle x größter Geschwindigkeitsfaktor x Bewegungsfaktor
+  var duration = Math.ceil(Math.sqrt(xCoord*xCoord + yCoord*yCoord) *
+                 MINUTESPERCAVE * maxSpeedFactor * uamoves[movementID]['speedfactor']);
+  if (isNaN(duration)){
+    if (domcomp) document.getElementById("duration").innerHTML = "- Minuten";
+    else document.getElementById("duration").value = "- Minuten";
+  } else {
+    if (domcomp) document.getElementById("duration").innerHTML = duration + " Minuten";
+    else document.getElementById("duration").value = duration + " Minuten";
+  }
+
+  var unitRations = 0;
+  for (i = 0; i < units.length; ++i){
+    amount = document.getElementById("unit[" + i + "]");
+    if (!amount) continue;
+    else amount = amount.value;
+    if (amount != "" && Number(amount) > 0)
+      unitRations += amount * units[i]['foodCost'];
+  }
+  var tmpdist = 0;
+  var i = 0;
+  if(distance > 15){
+    distance = distance - 15;
+    tmpdist = 15;
+    if(Math.floor(distance/5)<11)
+      tmpdist += (distance % 5) * (1-0.1*Math.floor(distance/5));
+
+    for(i = 1; i <= Math.floor( distance / 5) && i < 11; i++){
+      tmpdist += 5*(1-0.1*(i-1));
+    }
+  }else{
+      tmpdist = distance;
+  }
+
+  // Dauer x Rationen x Größe einer Ration x Bewegungsfaktor
+
+  //alt
+  //var food2 = Math.ceil(duration * unitRations * FOODPERCAVE * uamoves[movementID]['foodfactor']);
+  //neu
+  var food = Math.ceil(MINUTESPERCAVE * maxSpeedFactor * uamoves[movementID]['speedfactor']* tmpdist *
+                       unitRations * FOODPERCAVE * uamoves[movementID]['foodfactor']);
+
+  // Dauer x Rationen x Größe einer Ration x Bewegungsfaktor
+//  var food = Math.ceil(duration * unitRations * FOODPERCAVE * uamoves[movementID]['foodfactor']);
+
+  if (isNaN(food)){
+    if (domcomp) document.getElementById("food").innerHTML = "- Nahrung";
+    else document.getElementById("food").value = "- Nahrung";
+  } else {
+    if (domcomp) document.getElementById("food").innerHTML = food + " Nahrung";
+    else document.getElementById("food").value = food + " Nahrung";
+  }
+}
+
+function getMaxLoad(){
+  var i, j, amount;
+  var maxLoad;
+  for (i = 0; i < {resourceTypes}; ++i){
+    maxLoad = 0;
+    for (j = 0; j < units.length; ++j){
+      if (typeof(units[j]) == "undefined") continue;
+      amount = document.getElementById("unit[" + j + "]");
+      if (!amount) continue;
+      else amount = amount.value;
+      if (amount != "" && Number(amount) > 0)
+        maxLoad += amount * units[j]['resourceLoad'][i];
+    }
+    if (domcomp) document.getElementById("resource" + i).innerHTML = maxLoad;
+    else document.getElementById("resource" + i).value = maxLoad;
+  } 
+}
+
+function checkall(){
+  var i, amount;
+  var allchecked = document.getElementById("all")
+  for (i = 0; i < units.length; ++i){
+    amount = document.getElementById("unit[" + i + "]");
+    if (!amount) continue;
+    if (allchecked.checked) amount.value = units[i]['maxWarriorAnzahl'];
+    else amount.value = "";
+  }
+  dur();getMaxLoad();
+}
+
+function markAll(unitID){
+  var amount;
+  amount = document.getElementById("unit[" + unitID + "]");
+  if (amount.value == "")
+    amount.value = units[unitID]['maxWarriorAnzahl'];
+  else
+    amount.value = "";
+  dur();getMaxLoad();  
+}
+
+function loadMaxRes(resNr, resMax){
+  var value = domcomp
+              ? document.getElementById("resource" + resNr).innerHTML
+              : document.getElementById("resource" + resNr).value;
+  if (isNaN(value))
+    return;
+  var amount = document.getElementById("rohstoff[" + resNr + "]");
+  amount.value = (amount.value == "") ? Math.min(value, resMax) : "";
+}
+
+var caveBookmarks = new Array();
+
+function disable_to(){
+  var r = document.unitMoving.targetCaveID;
+  var flag = false;
+  for (var i = 0; i < r.length; i++)
+    if (r[i].selected && r[i].value != -1){
+      flag = true; break;
+    }
+  document.unitMoving.targetXCoord.disabled =
+    document.unitMoving.targetYCoord.disabled =
+    document.unitMoving.targetCaveName.disabled = flag;
+  if (flag){
+    document.unitMoving.targetXCoord.value = caveBookmarks[r[i].value][0];
+    document.unitMoving.targetYCoord.value = caveBookmarks[r[i].value][1];
+    document.unitMoving.targetCaveName.value = caveBookmarks[r[i].value][2];
+  } else {
+    document.unitMoving.targetXCoord.value =
+      document.unitMoving.targetYCoord.value =
+      document.unitMoving.targetCaveName.value = '';
+  }
+  dur();
+}
+//-->
+</script>
+<tmpl:MESSAGE><h3>{msg}</h3></tmpl:MESSAGE>
+<div align="left">
+  <form name="unitMoving" method="POST">
+  <table width="100%" border="0" cellpadding="3" cellspacing="3">
+      <tr>
+        <td colspan="2" valign="top" class="box">
+
+          <table width="100%" cellpadding="1" cellspacing="1">
+            <tr align="center">
+              <td colspan="3">&nbsp;</td>
+              <td colspan="{resourceTypes}" align="center">Transport capacity</td>
+            </tr>
+            <tr>
+              <th width="25%" align="left">Unit</th>
+              <th width="10%" align="left">Quantity</th>
+              <th width="10%" align="center">Max</th>
+              <tmpl:RESOURCE><td width="60" align="center"><img width="20" height="20" src="%gfx%/resources/{dbFieldName}_icon.gif" alt="{name}" title="{name}"></td></tmpl:RESOURCE>
+            </tr>
+            <tmpl:SELECTWARRIOR>
+            <tr align="center">
+              <td align="left"><a href="main.php?modus={modus}&amp;unitID={unitID}">{name}</a></td>
+              <td>
+                <input id="unit[{warriorID}]" name="unit[{warriorID}]" type="text" size="6" maxlength="6" onDblClick="markAll({warriorID})" onFocus="dur();getMaxLoad();" onClick="dur();getMaxLoad();" onChange="dur();getMaxLoad();" onKeyup="dur();getMaxLoad();">
+              </td>
+              <td>{maxWarriorAnzahl}</td>
+              <tmpl:ENCUMBRANCE><td>{load}</td></tmpl:ENCUMBRANCE>
+            </tr>
+            </tmpl:SELECTWARRIOR>
+            <tr align="center">
+              <th align="left" colspan="3">Total:</td>
+              <tmpl:TOTAL><td><script type="text/javascript">if (domcomp) document.write("<div id='resource{resourceID}'>&nbsp;<\/div>");else document.write("<input name='resource{resourceID}'>");</script></td></tmpl:TOTAL>
+            </tr>
+          </table>
+          
+        </td>
+      </tr>
+      <tr>
+        <td width="35%" rowspan="4" valign="top" class="box">
+          
+          <table cellpadding="2" cellspacing="1">
+            <tr>
+              <th colspan="3" align="left">Resources to be taken along:</th>
+            </tr>
+            <tmpl:RESOURCE_LUGGAGE>
+            <tr>
+              <td><label for="rohstoff[{resourceID}]"><img width="20" height="20" src="%gfx%/resources/{dbFieldName}_icon.gif" alt="{name}" title="{name}"></label></td>
+              <td><input id="rohstoff[{resourceID}]" name="rohstoff[{resourceID}]" type="text" size="6" maxlength="6" onDblClick="loadMaxRes({resourceID}, {currentAmount});"></td>
+              <td><label for="rohstoff[{resourceID}]">({currentAmount})</label></td>
+            </tr>
+            </tmpl:RESOURCE_LUGGAGE>
+          </table>
+          
+        <tmpl:ARTEFACTS>
+        <br>
+        <fieldset>
+          <legend>Artifact to be taken along:</legend>
+          <tmpl:ARTEFACT><input type="radio" name="myartefacts" id="myartefacts{artefactID}" value="{artefactID}"><label for="myartefacts{artefactID}">{name}</label><br></tmpl:ARTEFACT>
+          <input name="myartefacts" id="myartefactsnone" type="radio" value="-1" checked><label for="myartefactsnone">none</label>
+        </fieldset>
+        </tmpl:ARTEFACTS>
+
+        
+        </td>        
+        <td width="65%" class="box">
+          <table>
+            <tr>
+              <th colspan="2" align="left" valign="top">All units:</th>
+            </tr>
+            <tr>
+              <td><input name="all" id="all" type="checkbox" value="check all" onclick="checkall();"></td>
+              <td><label for="all">select all</label></td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="box">
+          
+          <table>
+            <tr>
+              <th colspan="2" align="left" valign="top">Type of movement:</th>
+            </tr>
+            <tr>
+              <td><input type="radio" name="movementID" id="movementID0" value="0" checked></td>
+              <td><label for="movementID0"><em>Choose type of movement</em></label></td>
+            </tr>
+            <tmpl:SELECTACTION>
+            <tr>
+              <td><input type="radio" name="movementID" id="movementID{id}" value="{id}" onFocus="dur();" onClick="dur();" onChange="dur();" onKeydown="dur();" onKeyup="dur();"></td>
+              <td><label for="movementID{id}">{description}<script type="text/javascript">uamoves[{id}] = {speedfactor:{speedfactor}, foodfactor:{foodfactor}};</script></label></td>
+            </tr>
+            </tmpl:SELECTACTION>
+          </table>
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="box">
+        
+          <table>
+            <tr>
+              <th colspan="2" align="left">Target:</th>
+            </tr>
+            
+            <tr>
+              <td><label for="targetXCoord">x:</label></td>
+              <td><input name="targetXCoord" id="targetXCoord" value="{targetXCoord}" type="text" size="4" maxlength="4" onFocus="dur();" onClick="dur();" onChange="dur();" onKeydown="dur();" onKeyup="dur();"></td>
+            </tr>
+            
+            <tr>
+              <td><label for="targetYCoord">y:</label></td>
+              <td><input name="targetYCoord" id="targetYCoord" value="{targetYCoord}" type="text" size="4" maxlength="4" onFocus="dur();" onClick="dur();" onChange="dur();" onKeydown="dur();" onKeyup="dur();"></td>
+            </tr>
+            
+            <tr>
+              <td>or <label for="targetCaveName">cave name:</label></td>
+              <td><input name="targetCaveName" id="targetCaveName" value="{targetCaveName}" type="text" size="20" maxlength="50"></td>
+            </tr>
+
+            <tmpl:CAVEBOOKMARKS>{iterate}
+            <tr>
+              <td><a href="?modus=CaveBookmarks&amp;task=Show">Cavorites:</a></td>
+              <td>
+                <select name="targetCaveID" id="targetCaveID" onChange="disable_to(); return true;">
+                  <option value="-1">Please Choose</option>
+                  <tmpl:CAVEBOOKMARK><option value="{caveID}">{name} ({xCoord}|{yCoord}) {playerName}</option></tmpl:CAVEBOOKMARK>
+                </select>
+                <script type="text/javascript">
+                <!--                
+                <tmpl:CAVEBOOKMARKJS>caveBookmarks[{caveID}] = [{xCoord},{yCoord},"{raw_name}"];</tmpl:CAVEBOOKMARKJS>
+                //-->
+                </script>
+              </td>
+            </tr>
+            </tmpl:CAVEBOOKMARKS>
+
+          </table>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="box">
+
+          <script type="text/javascript">
+            if (domcomp)
+              document.write("<table><tr><td>Duration of movement:<\/td><td><div id='duration'>&nbsp;<\/div><\/td><\/tr>");
+            else
+              document.write("<table><tr><td>Duration of movement:<\/td><td><input name='duration' size='4'><\/td><\/tr>");
+          </script>
+          <script type="text/javascript">
+            if (domcomp)
+              document.write("<tr><td>Food consumption:<\/td><td><div id='food'><\/div><\/td><\/tr><\/table>");
+            else
+              document.write("<tr><td>Food consumption:<\/td><td><input name='food' size='4'><\/td><\/tr><\/table>");
+          </script>
+
+        </td>
+      </tr>
+    </table>
+
+    <tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+
+    <p align="right"><input type="submit" value="off you go. UGH?"></p>
+    <br>
+    <br>
+  </form>
+
+  <tmpl:MOVEMENT>
+  <hr>
+  <div align="center">Current movements of own troops</strong></div>
+  <br>
+  <table border="1" align="center" cellpadding="3" cellspacing="0">
+    <tr>
+      <th align="center">Type of movement</th>
+      <th align="center">Dep./Arr.</th>
+      <th align="center">Target cave</th>
+      <th align="center">Units/Res.</th>
+      <th align="center">Action</th>
+    </tr>        
+    <tmpl:MOVE>
+    <tr>
+      <td align="center">{movementID_description}</td>
+      <td align="center">
+        Time departed: {event_start}<br>
+        Time arriving: {event_end}
+      </td>
+      <td align="center">{target_player_name} - {target_player_tribe} from {target_cave_name}</td>
+      <td align="center">
+        <table>
+          <tmpl:UNITS>
+          <tr>
+            <td>{name}:</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:UNITS>
+          <tmpl:RESOURCES>
+          <tr>
+            <td>{name}</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:RESOURCES>
+          <tmpl:ARTEFACT>
+          <tr>
+            <td><img title="{name}" src="images/artefacts/{resref}.gif" width="30" height="30" alt="{name}"></td>
+            <td align="right">{name}</td>
+          </tr>
+          </tmpl:ARTEFACT>               
+        </table>
+      </td>
+      <td align="center">
+        &nbsp;<tmpl:CANCEL><a href="main.php?modus={modus}&eventID={eventID}">Call back units</a></tmpl:CANCEL>
+      </td>
+    </tr>
+    </tmpl:MOVE>
+  </table>
+  </tmpl:MOVEMENT>
+  <br><br>
+  <tmpl:OPPMOVEMENT>
+  <div align="center">Arriving troops</div>
+  <br>
+  <table border="1" align="center" cellpadding="3" cellspacing="0">
+    <tr>
+      <th align="center">Type of movement</th>
+      <th align="center">Dep./Arr.</th>
+      <th align="center">Target cave</th>
+      <th align="center">Units/Res.</th>
+    </tr>
+    <tmpl:MOVE>
+    <tr>
+      <td align="center">{movementID_description}</td>
+      <td align="center">
+         Time departed: {event_start}<br>
+        Time arriving: {event_end}
+      </td>
+
+      <td align="center">{source_player_name} - {source_player_tribe} from {source_cave_name}</td>
+      <td align="center">
+        <table>
+          <tmpl:UNITS>
+          <tr>
+            <td>{name}:</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:UNITS>
+          <tmpl:RESOURCES>
+          <tr>
+            <td>{name}</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:RESOURCES>
+          <tmpl:ARTEFACT>
+          <tr>
+            <td><img title="{name}" src="images/artefacts/{resref}.gif" width="30" height="30" alt="{name}"></td>
+            <td align="right">{name}</td>
+          </tr>
+          </tmpl:ARTEFACT>               
+        </table>
+      </td>
+    </tr>
+    </tmpl:MOVE>
+  </table>
+  </tmpl:OPPMOVEMENT>
+</div> 

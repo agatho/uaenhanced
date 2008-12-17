@@ -1,0 +1,32 @@
+<tmpl:TITLE>{iterate}Verbesserungsvorschläge</tmpl:TITLE>
+
+<tmpl:CONTENT>
+
+<p>
+  Hier kannst du Verbesserungsvorschläge einbringen. Um Mißbrauch zu
+  vermeiden, wird die Anzahl der möglichen Vorschläge auf {max_count} pro Spieler
+  beschränkt. Ebenso wird ein Vorschlag sicher nicht bevorzugt behandelt, wenn man
+  ihn dreimal anbringt.
+</p>
+
+<tmpl:MAX_SUGGESTIONS_REACHED>
+<p>
+  Du hast schon die Maximalzahl an m”glichen Vorschl„gen erreicht.{iterate}
+</p>
+</tmpl:MAX_SUGGESTIONS_REACHED>
+
+<tmpl:SUGGESTIONS>
+<p>
+  <form method="POST" action="main.php">
+    <input type="hidden" name="modus" value="Suggestions">
+    <input type="hidden" name="task" value="Send">
+    <tmpl:SUGGESTION>
+    <p>
+      Vorschlag {num}:<br />
+      <textarea style="width:640px;" name="suggestion{num}" rows="20" cols="61" wrap="physical"></textarea>
+    </p>
+    </tmpl:SUGGESTION>
+    <input type="submit" value="Abschicken">
+  </form>
+</tmpl:SUGGESTIONS>
+</tmpl:CONTENT>

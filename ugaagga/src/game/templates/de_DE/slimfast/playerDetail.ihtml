@@ -1,0 +1,68 @@
+<tmpl:DETAILS>
+<table border="0" class="box">
+  <tr>
+    <td align="center">
+      <tmpl:AVATAR_IMG>
+        <img src="{avatar}" width="{width}" height="{height}" border="0"><br>
+      </tmpl:AVATAR_IMG>
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <span class="large">
+        {name}<br>
+      </span>
+      vom Stamme der<br>
+      <span class="large">
+        {tribe}<br><br>
+      </span >
+      <tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD>
+      <br><br>
+      <a href="main.php?modus=Contacts&amp;task=Add&amp;contact={name}">Zum Adressbuch hinzufügen</a><br><br>
+      <a href="main.php?modus={mail_modus}&empfaenger={mail_receiver}&caveID={caveID}">Nachricht senden</a><br><br>
+      Geschlecht {sex}<br>
+      Herkunft: {origin}<br>
+      Uga-Agga-Alter: {age}<br>
+      ICQ: {icq}<br><br><br>
+      <b>Beschreibung:</b><br><br>{description}<br><br>
+      <table class="grid">
+        <caption>Höhlen</caption>
+        <tbody>
+          <tmpl:CAVES>
+          <tr>
+            <td><a href="main.php?modus=map&xCoord={xCoord}&yCoord={yCoord}">{name} ({xCoord}|{yCoord})</a></td>
+            <td><a href="main.php?modus=unit_movement&amp;targetXCoord={xCoord}&amp;targetYCoord={yCoord}&amp;targetCaveName={name}">Marsch!</a></td>
+            <td><a href="main.php?modus=CaveBookmarks&amp;task=Add&amp;xCoord={xCoord}&amp;yCoord={yCoord}">Höhlenliste+</a></td>
+          </tr>
+          </tmpl:CAVES>
+        </tbody>
+      </table>
+      <br>
+      <tmpl:BODYCOUNT>
+      <table class="grid">
+        <caption>Get&ouml;tete Einheiten</caption>
+        <tr><td>{body_count}</td></tr>
+      </table>
+      </tmpl:BODYCOUNT>
+      <tmpl:HISTORY>
+      <table class="grid">
+        <caption>Spieler-Geschichte</caption>
+        <tmpl:NOENTRIES>{iterate}
+        <tr>
+          <td>Keine Einträge</td>
+        </tr>
+        </tmpl:NOENTRIES>
+        <tmpl:ENTRY>
+        <tr>
+          <td>{timestamp}</td>
+          <td>{entry}</td>
+        </tr>
+        </tmpl:ENTRY>
+      </table>
+      </tmpl:HISTORY>
+
+    </td>
+  </tr>
+</table>
+</tmpl:DETAILS>

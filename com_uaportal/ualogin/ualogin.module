@@ -1,0 +1,666 @@
+<?php
+/*
+ * ualogin.module
+ * Copyright (c) 2005  Marcus Lunzenauer
+ * Copyright (c) 2007 David Unger
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ */
+
+require(drupal_get_path('module', 'ualogin') .'/includes/class_db.inc');
+require(drupal_get_path('module', 'ualogin') .'/includes/class_config.inc');
+
+/**
+ * Display help and module information
+ * @param section which section of the site we're displaying help
+ * @return help text for section
+ */
+function ualogin_help($section='') {
+
+  switch ($section) {
+    case "admin/help#ualogin":
+      return '<p>'.  t("Uga-Agga Login Modul..... usw halt"). '</p>';
+    case 'admin/settings/ualogin':
+      return '<p>'.  t("Konfiguration des Uga-Agga Modules"). '</p>';
+  }
+} // function ualogin_help
+
+/**
+ * Valid permissions for this module
+ * @return array An array of valid permissions for the onthisdate module
+ */
+function ualogin_perm() {
+
+  return array('access ualogin', 'access register');
+} // function ualogin_perm
+
+/**
+ * Generate HTML for the onthisdate block
+ * @param op the operation from the URL
+ * @param delta offset
+ * @returns block HTML
+ */
+function ualogin_block($op='list', $delta=0) {
+
+  // listing of blocks, such as on the admin/block page
+  if ( $op == "list" ) {
+     $block[0]["info"] = t('UA Login Block');
+     $block[1]["info"] = t('UA Time Block');
+     $block[2]["info"] = t('UA Statistik Block');
+     $block[3]["info"] = t('UA Multi Block');
+     return $block;
+  } else if ( $op == 'view' ) {
+
+    // If $op is "view", then we need to generate the block for display purposes
+    // The $delta parameter tells us which block is being requested.
+    switch ($delta) {
+
+      /**
+       * Login Block
+       */
+      case 0:
+        $block['subject'] = 'UA-Login';
+        $block['content'] = theme('item_list',
+          array(l('Login',                'ualogin/Login'),
+                l('Passwort vergessen',   'ualogin/LostPassword'),
+                l('Registrieren',         'ualogin/Register'),
+                l('Aktivieren',           'ualogin/Activate'),
+                l('Nutzungsbedingungen',  'ualogin/TermsOfUse')));
+        break;
+
+      /**
+       * Time Block
+       */
+      case 1:
+        $block['subject'] = 'UA-Zeit';
+
+        require_once(drupal_get_path('module', 'ualogin') .'/includes/class_BlockTime.inc');
+        $site = new ualogin_BlockTime();
+        $block['content'] = $site->output;
+        break;
+
+      /**
+       * Statistik Block
+       */
+      case 2:
+        $block['subject'] = 'UA-Statistik';
+
+        global $db_login, $db_game;
+        if ( $db_login->error || $db_game->error ) {
+          $block['content'] = t('Datenbank nicht erreichbar');
+        }
+        else {
+          require_once(drupal_get_path('module', 'ualogin') .'/includes/class_BlockStatistik.inc');
+          $site = new ualogin_BlockStatistik();
+          $block['content'] = $site->output;
+        }
+        break;
+
+      /**
+       * Multi Block
+       */
+      case 3:
+        $block['subject'] = 'UA-Multi';
+
+        global $db_login;
+        if ( $db_login->error ) {
+          $block['content'] = t('Datenbank nicht erreichbar');
+        }
+        else {
+          require_once(drupal_get_path('module', 'ualogin') .'/includes/class_BlockMulti.inc');
+          $site = new ualogin_BlockMulti();
+          $block['content'] = $site->output;
+        }
+        break;
+    }
+
+    return $block;
+  }
+} // end ualogin_block
+
+function ualogin_init() {
+  global $db_login, $db_game, $input;
+
+  $input = new ualogin_read;
+
+  /**
+   * Connect to the Database
+   */
+  $url = parse_url(variable_get('ualogin_db_login', ''));
+  $db_login = new ualogin_db;
+  $db_login->connect($url['host'], $url['user'], $url['pass'], substr(urldecode($url['path']), 1));
+
+  $url = parse_url(variable_get('ualogin_db_game', ''));
+  $db_game = new ualogin_db;
+  $db_game->connect($url['host'], $url['user'], $url['pass'], substr(urldecode($url['path']), 1));
+
+  /**
+   * Forbidden start pages
+   */
+  $forbidden = array('q=ualogin/Login');
+  if ( in_array($_SERVER['QUERY_STRING'], $forbidden) && !$input->session_check('last_page') ) {
+    drupal_set_message(t('Direkter Zugriff auf den Login ist nicht m&ouml;glich!'));
+    drupal_goto();
+  }
+
+  $input->session_add('last_page', $_SERVER['QUERY_STRING']);
+
+  /**
+   * Security Cookie
+   */
+  if ( empty($_COOKIE['UAPOLLID']) ) {
+	srand((double)microtime() * 1000000);
+    setcookie("UAPOLLID", "" . md5(uniqid(rand())), time() + 60*60*24*90);
+  }
+} // end ualogin_init
+
+/**
+ * Implementation of hook_menu().
+ */
+function ualogin_menu($may_cache) {
+
+  $items = array();
+
+  if ( $may_cache ) {
+    /**
+     * administration
+     */
+    $items[] = array(
+      'path' => 'admin/settings/ualogin',
+      'title' => t('Uga-Agga Login'),
+      'description' => t("Das Uga-Agga Portal Modul."),
+      'callback' => 'drupal_get_form',
+      'callback arguments' => 'ualogin_admin',
+      'access' => user_access('access administration pages'),
+      'type' => MENU_NORMAL_ITEM,
+    );
+
+     /**
+     * Empty
+     */
+    $items[] = array(
+      'path' => 'ualogin',
+      'title' => t('Uga-Agga Login'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => '',
+      'access' => user_access('access ualogin'),
+      'type' => MENU_CALLBACK
+    );
+
+     /**
+     * activation
+     */
+    $items[] = array(
+      'path' => 'ualogin/Activate',
+      'title' => t('Uga-Agga Activate'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => 'Activate',
+      'access' => user_access('access register'),
+      'type' => MENU_CALLBACK
+    );
+
+     /**
+     * download
+     */
+    $items[] = array(
+      'path' => 'ualogin/Download',
+      'title' => t('Uga-Agga Download'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => 'Download',
+      'access' => user_access('access ualogin'),
+      'type' => MENU_CALLBACK
+    );
+
+     /**
+     * game login
+     */
+    $items[] = array(
+      'path' => 'ualogin/Login',
+      'title' => t('Uga-Agga Login'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => 'Login',
+      'access' => user_access('access ualogin'),
+      'type' => MENU_CALLBACK
+    );
+
+     /**
+     * send new password
+     */
+    $items[] = array(
+      'path' => 'ualogin/LostPassword',
+      'title' => t('Uga-Agga LostPassword'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => 'Password',
+      'access' => user_access('access ualogin'),
+      'type' => MENU_CALLBACK
+    );
+
+     /**
+     * registration
+     */
+    $items[] = array(
+      'path' => 'ualogin/Register',
+      'title' => t('Uga-Agga Register'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => 'Register',
+      'access' => user_access('access register'),
+      'type' => MENU_CALLBACK
+    );
+
+     /**
+     * game statistik
+     */
+    $items[] = array(
+      'path' => 'ualogin/Statistik',
+      'title' => t('Uga-Agga Statistik'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => 'Statistik',
+      'access' => user_access('access ualogin'),
+      'type' => MENU_CALLBACK
+    );
+
+     /**
+     * termsofuse
+     */
+    $items[] = array(
+      'path' => 'ualogin/TermsOfUse',
+      'title' => t('Uga-Agga TermsOfUse'),
+      'callback' => 'ualogin_page',
+      'callback arguments' => 'TermsOfUse',
+      'access' => user_access('access ualogin'),
+      'type' => MENU_CALLBACK
+    );
+  }
+
+  /**
+   * captcha
+   */
+  $items[] = array(
+    'path' => 'ualogin/Captcha',
+    'title' => t('Uga-Agga Captcha'),
+    'callback' => 'ualogin_page',
+    'callback arguments' => 'Captcha',
+    'access' => user_access('access ualogin'),
+    'type' => MENU_CALLBACK
+  );
+
+  return $items;
+} // end ualogin_menu
+
+/**
+ * Callback for ualogin node.
+*/
+function ualogin_page($op = '') {
+  global $db_login, $db_game, $input;
+
+  /**
+   * Database Error?
+   */
+  if ( $db_login->error || $db_game->error ) {
+    drupal_set_message(t('Die Datenbank ist zur Zeit leider nicht erreichbar.'));
+    drupal_goto();
+  }
+
+  /**
+   * Select Page
+   */
+  switch ($op) {
+
+    case 'Activate':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_activate.inc');
+      $site = new ualogin_activate();
+      break;
+
+    case 'Captcha':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_captcha.inc');
+      $img = new uaLogin_captcha();
+      $img->show();
+      break;
+
+    case 'Download':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_download.inc');
+      $site = new ualogin_download();
+      break;
+
+    case 'Login':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_login.inc');
+      $site = new ualogin_login();
+      break;
+
+    case 'Password':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_password.inc');
+      $site = new ualogin_password();
+      break;
+
+    case 'Register':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_register.inc');
+      $site = new ualogin_register();
+      break;
+
+    case 'Statistik':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_statistik.inc');
+      $site = new ualogin_statistik();
+      break;
+
+    case 'TermsOfUse':
+      require_once(drupal_get_path('module', 'ualogin') .'/includes/class_termsofuse.inc');
+      $site = new ualogin_termofuse();
+      break;
+
+    default:
+      drupal_set_message(t('Dieses Modul existiert nicht.'));
+      drupal_goto();
+      break;
+  }
+
+  if ( $site->output !== NULL ) {
+    echo theme('page', $site->output);
+  }
+} // end ualogin_page
+
+function ualogin_admin() {
+
+  /**
+   * Modul Settings
+   */
+  $form['Modul'] = array('#type' => 'fieldset', '#title' => t('Modul Einstellungen'));
+  $form['Modul']['ualogin_disable_game'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Spiel deaktivieren'),
+    '#default_value' => variable_get('ualogin_disable_game', 0),
+    '#description' => t('Spiel aktivieren oder deaktivieren.'),
+  );
+  $form['Modul']['ualogin_disable_login'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Login deaktivieren'),
+    '#default_value' => variable_get('ualogin_disable_login', 0),
+    '#description' => t('Login aktivieren oder deaktivieren.'),
+  );
+  $form['Modul']['ualogin_disable_register'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Registration deaktivieren'),
+    '#default_value' => variable_get('ualogin_disable_register', 0),
+    '#description' => t('Registration aktivieren oder deaktivieren.'),
+  );
+  $form['Modul']['ualogin_disable_statistik'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Statistik deaktvieren'),
+    '#default_value' => variable_get('ualogin_disable_statistik', 0),
+    '#description' => t('Spiel Statistik anzeigen oder deaktivieren.'),
+  );
+  $form['Modul']['ualogin_email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Absender Adresse'),
+    '#default_value' => variable_get('ualogin_email', 'noreply@localhost'),
+    '#size' => 50,
+    '#maxlength' => 255,
+    '#description' => t('Die E-Mail Adresse wird als Absender Adresse beim E-Mail verschicken genutzt.'),
+  );
+
+  /**
+   * Game Settings
+   */
+  $form['Login'] = array('#type' => 'fieldset', '#title' => t('Login Einstellungen'));
+  $form['Login']['ualogin_show_captcha'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Captcha anzeigen'),
+    '#default_value' => variable_get('ualogin_show_captcha', 0),
+    '#description' => t('Captcha anzeigen oder ausblenden.'),
+  );
+  $form['Login']['ualogin_game_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Runden Text anzeigen'),
+    '#default_value' => variable_get('ualogin_game_enable', 0),
+    '#description' => t('Runden Text anzeigen oder ausblenden.'),
+  );
+  $form['Login']['ualogin_game_mame'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Game Name'),
+    '#default_value' => variable_get('ualogin_game_mame', ''),
+    '#size' => 50,
+    '#maxlength' => 255,
+  );
+  $form['Login']['ualogin_game_image'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Game Bild'),
+    '#default_value' => variable_get('ualogin_game_image', ''),
+    '#size' => 50,
+    '#maxlength' => 255,
+  );
+  $form['Login']['ualogin_game_text'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Game Text'),
+    '#default_value' => variable_get('ualogin_game_text', ''),
+  );
+
+  /**
+   * Statistik
+   */
+  $form['Statistik'] = array('#type' => 'fieldset', '#title' => t('Statistik'));
+  $form['Statistik']['ualogin_statistik_secret_names'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Versteckte User'),
+    '#default_value' => variable_get('ualogin_statistik_secret_names', ''),
+    '#size' => 50,
+    '#maxlength' => 255,
+    '#description' => t('Spieler die in der Statistik nicht gez&auml;hlt werden (Durch , trennen).'),
+  );
+  $form['Statistik']['ualogin_statistik_gods'] = array(
+    '#type' => 'textfield',
+    '#title' => t('G&ouml;tter'),
+    '#default_value' => variable_get('ualogin_statistik_gods', ''),
+    '#size' => 50,
+    '#maxlength' => 255,
+    '#description' => t('Datenbankname der G&ouml;tter (Durch , trennen).'),
+  );
+  $form['Statistik']['ualogin_statistik_halfgods'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Halbg&ouml;tter'),
+    '#default_value' => variable_get('ualogin_statistik_halfgods', ''),
+    '#size' => 50,
+    '#maxlength' => 255,
+    '#description' => t('Datenbankname der Halbg&ouml;tter (Durch , trennen).'),
+  );
+
+  /**
+   * registration
+   */
+  $form['Register'] = array('#type' => 'fieldset', '#title' => t('Registrations Einstellungen'));
+  $form['Register']['ualogin_max_users'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Spieleranzahl'),
+    '#default_value' => variable_get('ualogin_max_users', 0),
+    '#size' => 10,
+    '#maxlength' => 10,
+    '#description' => t('Maximale Anzahl der Spieler'),
+  );
+  $form['Register']['ualogin_secure_cave_credits'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Sichere H&ouml;hlen'),
+    '#default_value' => variable_get('ualogin_secure_cave_credits', 2),
+    '#size' => 10,
+    '#maxlength' => 10,
+  );
+  $form['Register']['ualogin_takeover_max_caves'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Maximale Anzahl der H&ouml;hlen'),
+    '#default_value' => variable_get('ualogin_takeover_max_caves', 6),
+    '#size' => 10,
+    '#maxlength' => 10,
+  );
+  $form['Register']['ualogin_pwd_resend_timeout'] = array(
+    '#type' => 'textfield',
+    '#title' => t('LoginPwdResendTimeout'),
+    '#default_value' => variable_get('ualogin_pwd_resend_timeout', 350),
+    '#size' => 10,
+    '#maxlength' => 10,
+  );
+  $form['Register']['ualogin_beginner_protect'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Anf&auml;ngerschutz'),
+    '#default_value' => variable_get('ualogin_beginner_protect', 336),
+    '#size' => 10,
+    '#maxlength' => 10,
+    '#description' => t('L&auml;nge des Anf&auml;ngerschutzes in Stunden'),
+  );
+  $form['Register']['ualogin_gfx_path'] = array(
+    '#type' => 'textfield',
+    '#title' => t('GFX Pfad'),
+    '#default_value' => variable_get('ualogin_gfx_path', ''),
+    '#size' => 50,
+    '#maxlength' => 255,
+    '#description' => t('Pfad zum Grafikpack'),
+  );
+  $form['Register']['ualogin_easy_start_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Easy Start'),
+    '#default_value' => variable_get('ualogin_easy_start_enabled', 0),
+    '#description' => t('Ausgebaute H&ouml;hlen aktivieren / deaktivieren'),
+  );
+  $form['Register']['ualogin_easy_start_selected'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Easy Start ausgew&auml;hlt'),
+    '#default_value' => variable_get('ualogin_easy_start_selected', 0),
+    '#description' => t('Easy Start standardm&auml;&szlig;ig ausgew&auml;hlt'),
+  );
+  $form['Register']['ualogin_reg_code_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Registrierungscode'),
+    '#default_value' => variable_get('ualogin_reg_code_enabled', 0),
+    '#description' => t('Registrierungscode ein oder auschalten'),
+  );
+  $form['Register']['ualogin_start_setting'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Start Ressourcen'),
+    '#default_value' => variable_get('ualogin_start_setting', ''),
+    '#description' => t('Ressourcen die jeder Spieler zum Start bekommt. Syntax: Datenbankname,Anzahl (Durch neue Zeile trennen)'),
+  );
+  $form['Register']['ualogin_forbidden_names'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Verbotene Namen'),
+    '#default_value' => variable_get('ualogin_forbidden_names', ''),
+    '#description' => t('Namen die im Spiel verboten sind. (Durch , trennen)'),
+  );
+
+  /**
+   * welcome message
+   */
+  $form['Welcome'] = array('#type' => 'fieldset', '#title' => t('Willkommens Nachricht'));
+  $form['Welcome']['ualogin_welcome_message_class'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Nachrichten Typ'),
+    '#default_value' => variable_get('ualogin_welcome_message_class', 99),
+    '#size' => 10,
+    '#maxlength' => 10,
+  );
+  $form['Welcome']['ualogin_welcome_message_subjekt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Betreff'),
+    '#default_value' => variable_get('ualogin_welcome_message_subjekt', 'Welcome'),
+    '#size' => 50,
+    '#maxlength' => 255,
+  );
+  $form['Welcome']['ualogin_welcome_message_text'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Nachrichten Text'),
+    '#default_value' => variable_get('ualogin_welcome_message_text', ''),
+    '#description' => t('Die Nachricht die der Spieler zum Start bekommt.'),
+  );
+
+  /**
+   * verein message
+   */
+   $form['Verein'] = array('#type' => 'fieldset', '#title' => t('Vereins Nachricht'));
+   $form['Verein']['ualogin_verein_send_message'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Vereinsnachricht schicken'),
+    '#default_value' => variable_get('ualogin_verein_send_message', 0),
+    '#description' => t('Senden der Vereinsnachricht schicken oder nicht.'),
+  );
+   $form['Verein']['ualogin_verein_message_class'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Nachrichten Typ'),
+    '#default_value' => variable_get('ualogin_verein_message_class', 99),
+    '#size' => 10,
+    '#maxlength' => 10,
+  );
+  $form['Verein']['ualogin_verein_message_subjekt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Betreff'),
+    '#default_value' => variable_get('ualogin_verein_message_subjekt', 'Welcome'),
+    '#size' => 50,
+    '#maxlength' => 255,
+  );
+  $form['Verein']['ualogin_verein_message_text'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Nachrichten Text'),
+    '#default_value' => variable_get('ualogin_vereine_message_text', ''),
+    '#description' => t('Die Nachricht vom Verein die der Spieler zum Start bekommt.'),
+  );
+
+  /**
+   * database
+   */
+  $form['Database'] = array('#type' => 'fieldset', '#title' => t('Datenbank Einstellungen'));
+  $form['Database']['ualogin_db_login'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Login Datenbank'),
+    '#default_value' => variable_get('ualogin_db_login', ''),
+    '#size' => 50,
+    '#maxlength' => 300,
+    '#description' => t('Syntax: mysql://user:password@localhost/login'),
+  );
+  $form['Database']['ualogin_db_game'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Game Datenbank'),
+    '#default_value' => variable_get('ualogin_db_game', ''),
+    '#size' => 50,
+    '#maxlength' => 300,
+    '#description' => t('Syntax: mysql://user:password@localhost/login'),
+  );
+
+  /**
+   * server settings
+   */
+  $num_servers = variable_get('ualogin_game_servers', 1);
+  $form['Server'] = array('#type' => 'fieldset', '#title' => t('Server Einstellungen'));
+  $form['Server']['ualogin_game_servers'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Server Anzahl'),
+    '#default_value' => $num_servers,
+    '#size' => 3,
+    '#maxlength' => 3,
+  );
+
+  for ($i = 1; $i <= $num_servers; ++$i) {
+    $form['Server']['ualogin_game_password_' . $i] = array(
+      '#type' => 'textfield',
+      '#title' => t('Game Passwort'),
+      '#default_value' => variable_get('ualogin_game_password_' . $i, ''),
+      '#size' => 50,
+      '#maxlength' => 300,
+      '#description' => t('User und Passwort falls das Spiel per .htaccess gesichert wird.<br />Syntax: User:Passwort.'),
+    );
+    $form['Server']['ualogin_game_base_' . $i] = array(
+      '#type' => 'textfield',
+      '#title' => t('Basis Adresse'),
+      '#default_value' => variable_get('ualogin_game_base_' . $i, 'http://localhost/server_load.php'),
+      '#size' => 50,
+      '#maxlength' => 300,
+      '#description' => t('Volle Pfadangabe zum Serverauslastungs Script.'),
+    );
+    $form['Server']['ualogin_game_url_' . $i] = array(
+      '#type' => 'textfield',
+      '#title' => t('Game Adresse'),
+      '#default_value' => variable_get('ualogin_game_url_' . $i, 'http://localhost/game/sessionstart.php'),
+      '#size' => 50,
+      '#maxlength' => 300,
+      '#description' => t('Volle Pfadangabe zur Startseite des Spiels.'),
+    );
+  }
+
+  return system_settings_form($form);
+} // end ualogin_admin

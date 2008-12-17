@@ -1,0 +1,118 @@
+<tmpl:TITLE>{iterate}Spenden</tmpl:TITLE>
+
+<tmpl:CONTENT>
+<tmpl:ERROR_NOSUCHPLAYER>{iterate}<h3>This player does not exist.</h3></tmpl:ERROR_NOSUCHPLAYER>
+
+<p>
+  Der Uga-Agga-Verein wurde zur Unterstützung des Spieles gegründet. Um die
+  laufenden Kosten zu decken, sind wir auf Spenden durch die Spieler angewiesen.
+</p>
+<!--
+<p>
+  <strong>Spenden über Banküberweisung</strong>
+</p>
+<p>
+  Spenden können auf das folgende Konto überwiesen werden:
+</p>
+<p>
+  Inhaber: Uga-Agga Verein<br/>
+  Kto-Nr: 28 26 99<br/>
+  Blz: 265 501 05<br/>
+  Sparkasse Osnabrück<br/>
+  BIC-/SWIFT-Code: NOLA DE 22<br/>
+  IBAN-Nummer: DE73 2655 0105 0000 2826 99<br/>
+  Verwendungszweck: UgaAgga Spende
+</p>
+-->
+<p>
+  <strong>Spenden über PayPal für Höhlennamen</strong>
+</p>
+<p>
+  Für jede Spende von 5 Euro darf man eine eigene feste Höhle umbenennen, oder eine Person benennen, welche eine Höhle umbenennen darf - als Geschenk sozusagen.
+  Selbstverständlich wird es für den Spender weiterhin die goldige Spendenquittung geben.
+  <center>
+  <table>
+<tr>
+<td>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="spenden@uga-agga.de">
+    <input type="hidden" name="item_name" value="Spende an den Verein &quot;Uga-Agga Open Source&quot;">
+    <input type="hidden" name="item_number" value="caverename_1_from_{name}_{id}">
+    <input type="hidden" name="amount" size="15" maxlength="30" value="5.00">
+    <input type="hidden" name="no_note" value="1">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="tax" value="0">
+    <input type="submit" name="submit" value="Spende für einen Höhlennamen">
+  </form>
+</td>
+<td>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="spenden@uga-agga.de">
+    <input type="hidden" name="item_name" value="Spende an den Verein &quot;Uga-Agga Open Source&quot;">
+    <input type="hidden" name="item_number" value="caverename_2_from_{name}_{id}">
+    <input type="hidden" name="amount" size="15" maxlength="30" value="10.00">
+    <input type="hidden" name="no_note" value="1">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="tax" value="0">
+    <input type="submit" name="submit" value="Spende für zwei Höhlennamen">
+  </form>
+</td>
+<td>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="spenden@uga-agga.de">
+    <input type="hidden" name="item_name" value="Spende an den Verein &quot;Uga-Agga Open Source&quot;">
+    <input type="hidden" name="item_number" value="caverename_3_from_{name}_{id}">
+    <input type="hidden" name="amount" size="15" maxlength="30" value="15.00">
+    <input type="hidden" name="no_note" value="1">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="tax" value="0">
+    <input type="submit" name="submit" value="Spende für drei Höhlennamen">
+  </form>
+</td>
+</tr>
+  </table>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="spenden@uga-agga.de">
+    <input type="hidden" name="item_name" value="Spende an den Verein &quot;Uga-Agga Open Source&quot;">
+    <input type="hidden" name="item_number" value="caverename_g_from_{n2me}_{id}">
+    <input type="hidden" name="amount" size="15" maxlength="30" value="25.00">
+    <input type="hidden" name="no_note" value="1">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="tax" value="0">
+    <input type="submit" name="submit" value="25 Euro Goldige Spende - 3 Höhlennamen und Spendenquittung für den Stamm">
+  </form>
+
+  </center>
+  Wenn Ihr gespendet habt, so sendet bitte eine Mail an support@uga-agga.de (oder wenn ihr die Höhle verschenken wollt muss sich die beschenkte Person bei uns melden) und gebt dort Euren Nick und Euren Namenswunsch, sowie die Koordinaten der Höhle an. Die Umbenennung der Höhle sollte dann innerhalb von spätestens 5 Tagen erfolgen, ansonsten werdet ihr eine Mail vom Support erhalten, der Euch vielleicht um einen anderen Höhlennamen bittet.
+</p>
+<p>
+  <strong>Spenden über PayPal</strong>
+</p>
+<p>
+  Natürlich kann auch einfach nur gespendet werden:
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="spenden@uga-agga.de">
+    <input type="hidden" name="item_name" value="Spende an den Verein &quot;Uga-Agga Open Source&quot;">
+    <input type="hidden" name="item_number" value="donation_from_{name}_{id}">
+    <input type="text"   name="amount" size="15" maxlength="30" value="5.00">
+    <input type="hidden" name="no_note" value="1">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="tax" value="0">
+    <input type="submit" name="submit" value="Spenden per PayPal">
+  </form>
+</p>
+<p>
+  <strong>Goldige Spendenquittung</strong>
+</p>
+<p>
+  Für Spenden über 5€ erhält jeder Spieler eine goldige Spendenquittung, die für
+  die laufende Runde als Orden im Game gültig ist ausgestellt. Stämme erhalten bei Spenden
+  in Höhe von 20€, aber mindestens 1€ pro Spieler ebenfalls eine goldige
+  Spendenquittung. Wenn Ihr gespendet habt, so sendet bitte eine Mail an support@uga-agga.de und gebt dort Euren Nick an.
+</p>
+</tmpl:CONTENT>

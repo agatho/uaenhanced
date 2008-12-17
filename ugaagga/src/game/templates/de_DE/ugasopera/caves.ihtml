@@ -1,0 +1,68 @@
+<tmpl:RESOURCES>
+<table class="grid">
+  <caption>Rohstoffe</caption>
+  <tr>
+    <th>&nbsp;</th>
+    <tmpl:CAVES_HEADER><th colspan="2"><a href="ugastart.php?caveID={cave_ID}" target="_top"><img src="images/stringup.png.php?cave_id={cave_id}" alt="{cave_name}" title="{cave_name}" border="0"></a></th></tmpl:CAVES_HEADER>
+    <th colspan="2">&sum;</th>
+  </tr>
+  <tmpl:RESOURCE>
+  <tr class="alt{alternate}">
+    <td><img src="%gfx%/resources/{resource_dbFieldName}_icon.gif" width="20" height="20" alt="{resource_name}" title="{resource_name}"></td>
+    <tmpl:CAVE><td><nobr>{amount}</nobr></td><td class="delta"><nobr>{delta}</nobr></td></tmpl:CAVE>
+    <td><nobr>{sum}</nobr></td><td class="delta"><nobr>{sum_delta}</nobr></td>
+  </tr>
+  </tmpl:RESOURCE>
+</table>
+</tmpl:RESOURCES>
+<tmpl:UNITS>
+<table class="grid">
+  <caption>Einheiten</caption>
+  <tr>
+    <th>&nbsp;</th>
+    <tmpl:CAVES_HEADER><th><a href="ugastart.php?caveID={cave_ID}" target="_top"><img src="images/stringup.png.php?cave_id={cave_id}" alt="{cave_name}" title="{cave_name}" border="0"></a></th></tmpl:CAVES_HEADER>
+    <th>&sum;</th>
+  </tr>
+  <tmpl:UNIT>
+  <tr class="alt{alternate}">
+    <td><img src="%gfx%/units/{unit_dbFieldName}_small.gif" alt="{unit_name}" title="{unit_name}"></td>
+    <tmpl:CAVE><td><nobr>{amount}</nobr></td></tmpl:CAVE>
+    <td><nobr>{sum}</nobr></td>
+  </tr>
+  </tmpl:UNIT>
+</table>
+</tmpl:UNITS>
+<tmpl:BUILDINGS>
+<table class="grid">
+  <caption>Erweiterungen</caption>
+  <tr>
+    <th>&nbsp;</th>
+    <tmpl:CAVES_HEADER><th><a href="ugastart.php?caveID={cave_ID}" target="_top"><img src="images/stringup.png.php?cave_id={cave_id}" alt="{cave_name}" title="{cave_name}" border="0"></a></th></tmpl:CAVES_HEADER>
+    <th>&sum;</th>
+  </tr>
+  <tmpl:BUILDING>
+  <tr class="alt{alternate}">
+    <td><img src="%gfx%/buildings/{building_dbFieldName}_small.gif" alt="{building_name}" title="{building_name}"></td>
+    <tmpl:CAVE><td><nobr>{amount}</nobr></td></tmpl:CAVE>
+    <td><nobr>{sum}</nobr></td>
+  </tr>
+  </tmpl:BUILDING>
+</table>
+</tmpl:BUILDINGS>
+<tmpl:EXTERNALS>
+<table class="grid">
+  <caption>Verteidigung</caption>
+  <tr>
+    <th>&nbsp;</th>
+    <tmpl:CAVES_HEADER><th><a href="ugastart.php?caveID={cave_ID}" target="_top"><img src="images/stringup.png.php?cave_id={cave_id}" alt="{cave_name}" title="{cave_name}" border="0"></a></th></tmpl:CAVES_HEADER>
+    <th>&sum;</th>
+  </tr>
+  <tmpl:EXTERNAL>
+  <tr class="alt{alternate}">
+    <td><img src="%gfx%/externals/{external_dbFieldName}_small.gif" alt="{external_name}" title="{external_name}"></td>
+    <tmpl:CAVE><td><nobr>{amount}</nobr></td></tmpl:CAVE>
+    <td><nobr>{sum}</nobr></td>
+  </tr>
+  </tmpl:EXTERNAL>
+</table>
+</tmpl:EXTERNALS>

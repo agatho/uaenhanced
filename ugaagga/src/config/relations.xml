@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE relations SYSTEM "relations.dtd">
+<relations>
+  <relation relationID="0">
+    <name>Keine</name>
+    <description>
+      <p>Zu dem anderen Stamm werden keinerlei Beziehungen unterhalten. Jegliche bereits bestehenden Beziehungen werden beendet.</p>
+    </description>
+    <transitions>
+    </transitions>
+    <attackerMultiplicator>1</attackerMultiplicator>
+    <defenderMultiplicator>1</defenderMultiplicator>
+  </relation>
+</relations>

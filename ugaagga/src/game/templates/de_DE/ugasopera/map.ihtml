@@ -1,0 +1,89 @@
+<tmpl:MESSAGE><div class="status_message">{message}</div></tmpl:MESSAGE>
+
+
+<table id="map_helper">
+  <caption>
+      <form name="searchCoords" method="POST" action="main.php" cellpadding="0" cellspacing="5">
+        (X/Y):
+        <input type="text" name="xCoord" size="4" maxlength="4">
+        <input type="text" name="yCoord" size="4" maxlength="4">
+        <input type="hidden" name="modus" value="{modus}">
+        <input type="hidden" name="caveID" value="{caveID}">
+        <input type="submit" value="go">
+      </form>
+      
+      <form name="searchName" method="POST" action="main.php">
+        Name:
+        <input type="text" name="caveName" size="10" maxlength="50">
+        <input type="hidden" name="modus" value="{modus}">
+        <input type="hidden" name="caveID" value="{caveID}">
+        <input type="submit" value="go">
+      </form>
+
+      <tmpl:CAVEBOOKMARKS>{iterate}
+      <form name="searchID" method="POST" action="main.php">
+        <a href="?modus=CaveBookmarks&amp;task=Show">Höhlenliste:</a>
+        <select name="targetCaveID" id="targetCaveID" onChange="document.searchID.submit(); return true;">
+          <option value="-1">Bitte wählen</option>
+          <tmpl:CAVEBOOKMARK><option value="{caveID}">{name} ({xCoord}|{yCoord})</option></tmpl:CAVEBOOKMARK>
+        </select>
+        <input type="hidden" name="modus" value="map" />
+        <input type="submit" value="go" />
+      </form>
+      </tmpl:CAVEBOOKMARKS>
+
+  </caption>
+  <tr>
+    <td>
+      <table class="map">
+        <tmpl:ROWS>
+        <tr>
+          <tmpl:CELLS>
+          <tmpl:HEADER><th>{text}</th></tmpl:HEADER>
+          <tmpl:EMPTY>{iterate}<td class="empty_cell">&nbsp;</td></tmpl:EMPTY>
+          <tmpl:CORNER>{iterate}<td class="corner_cell">&nbsp;</td></tmpl:CORNER>
+          <tmpl:MAPCELL>
+            <td class="{terrain} t_{text_tribe}">
+              <img src="%gfx%/de_DE/t_ugasopera/map/{file}.png" alt="{alt}" title="{alt}" class="cell_image">
+              <br>
+              <a href="main.php?{link_tribe}" title="{alt}" class="t_{text_tribe}">{text_tribe}</a>
+              <br>
+              <a href="main.php?{link}" title="{alt}"<tmpl:UNSECURE>{dummy} class="unsecure"</tmpl:UNSECURE>>{text}</a>
+            </td>
+          </tmpl:MAPCELL>
+          </tmpl:CELLS>
+        </tr>
+        </tmpl:ROWS>
+      </table>    
+    </td>
+    <td>    
+      <tmpl:MINIMAP> 
+      <div id="minimap">
+        <form action="main.php" method="post" name="minimapform">
+          <input name="minimap" type="image" width="{width}" height="{height}" style="width: {width}px; height: {height}px; border: thin groove #009900; cursor: crosshair;" src="{file}">
+          <input type="hidden" name="scaling" value="{scaling}">
+          <input type="hidden" name="modus" value="{modus}">
+          <input type="hidden" name="caveID" value="{caveID}">          
+        </form>
+      </div>
+      </tmpl:MINIMAP>
+      <table>
+        <tr>
+          <td><tmpl:NW><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/NW.png" width="40" height="40" border="0" alt="nordwest"></a></tmpl:NW></td>
+          <td><tmpl:N><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/N.png"  width="40" height="40" border="0" alt="nord"></a></tmpl:N></td>
+          <td><tmpl:NO><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/NO.png" width="40" height="40" border="0" alt="nordost"></a></tmpl:NO></td>
+        </tr>
+        <tr>
+          <td><tmpl:W><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/W.png"  width="40" height="40" border="0" alt="west"></a></tmpl:W></td>
+          <td><a href="./main.php?modus={modus}"><img src="%gfx%/de_DE/t_ugasopera/map/M.png" width="40" height="40" border="0" alt="zentrieren"></a></td>
+          <td><tmpl:O><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/O.png"  width="40" height="40" border="0" alt="ost"></a></tmpl:O></td>
+        </tr>
+        <tr>
+          <td><tmpl:SW><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/SW.png" width="40" height="40" border="0" alt="s&uuml;dwest"></a></tmpl:SW></td>
+          <td><tmpl:S><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/S.png"  width="40" height="40" border="0" alt="s&uuml;d"></a></tmpl:S></td>
+          <td><tmpl:SO><a href="./main.php?modus={modus}&xCoord={x}&yCoord={y}"><img src="%gfx%/de_DE/t_ugasopera/map/SO.png" width="40" height="40" border="0" alt="s&uuml;dost"></a></tmpl:SO></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

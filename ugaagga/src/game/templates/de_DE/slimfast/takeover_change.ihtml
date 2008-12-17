@@ -1,0 +1,31 @@
+<table class="box">
+  <tr>
+    <td colspan="2" align="center">
+      <p><b>Sie wollen für die H&ouml;hle in ({xCoord}|{yCoord}) bieten.</b></p>
+      <p>
+        Entscheidest du dich wirklich dafür, die Höhle zu wechseln, für die du bisher
+        geboten hast? Sobald du gewechselt hast, wird der Häuptling der zuvor 
+        bebotenen Höhle deine Zuwendungen vergessen haben und deine Bemühungen
+        zunichte machen...
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="right">
+      <form name="confirm" method="POST" action="main.php">
+        <input type="hidden" name="modus" value="takeover">
+        <input type="hidden" name="task" value="change">
+        <input type="hidden" name="xCoord" value="{xCoord}">
+        <input type="hidden" name="yCoord" value="{yCoord}">
+        <input type="hidden" name="check" value="{check}">
+        <input type="submit" value="Höhle ({xCoord}|{yCoord}) missionieren">
+      </form>
+    </td>
+    <td width="50%" align="left">
+      <form name="cancel" method="POST" action="main.php">
+        <input type="hidden" name="modus" value="takeover">
+        <input type="submit" value="Lieber nicht...">
+      </form>
+    </td>
+  </tr>
+</table>

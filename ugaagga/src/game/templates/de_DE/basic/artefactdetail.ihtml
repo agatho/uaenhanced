@@ -1,0 +1,58 @@
+<p>{message}</p>
+<tmpl:ARTEFACT>
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+    <td colspan="2" bgcolor="#006600"><img src="%gfx%/spacer.gif" width="1" height="1" alt=""></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><strong>{name}</strong></td>
+  </tr>
+  <tr>
+    <td><img src="images/artefacts/{resref}.gif" alt="{name}" title="{name}"></td>
+    <td valign="top">
+      <div align="justify" class="small">{description}</div><br>
+      <div align="justify" class="small">{description_initiated}</div><br>
+    </td>
+  </tr>
+  <tmpl:INITIATION>
+  <tr>
+    <td colspan="2" bgcolor="#006600"><img src="%gfx%/spacer.gif" width="1" height="1" alt=""></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <form name="initiateArtefact" method="POST">
+        <table width="100%" border="0" cellspacing="5" cellpadding="0">
+          <tr>
+            <td colspan="2"><strong>{name}</strong></td>
+          </tr>
+          <tr>
+            <td>{description}</td>
+            <td>
+              <tmpl:COST>
+                {object}:
+                <tmpl:ENOUGH><span class="enough small">{amount}</span></tmpl:ENOUGH>
+                <tmpl:LESS><span class="less small">{amount}</span></tmpl:LESS>
+                <br>
+              </tmpl:COST>
+            </td>
+          </tr>
+          <tr>
+            <td>Dauer: {duration}</td>
+            <td><input type="submit" value="Ritual durchf&uuml;hren"></td>
+          </tr>
+        </table>
+        <tmpl:HIDDEN><input type="hidden" name="{name}" value="{value}"></tmpl:HIDDEN>
+      </form>
+    </td>
+  </tr>
+  </tmpl:INITIATION>
+  <tmpl:NO_INITIATION>
+  <tr>
+    <td colspan="2">In dieser H&ouml;hle wird bereits ein Artefakt eingeweiht.</td>
+  </tr>
+  </tmpl:NO_INITIATION>
+  <tr>
+    <td colspan="2" bgcolor="#006600"><img src="%gfx%/spacer.gif" width="1" height="1" alt=""></td>
+  </tr>
+</table>
+</tmpl:ARTEFACT>
