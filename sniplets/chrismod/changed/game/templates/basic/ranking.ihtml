@@ -1,0 +1,157 @@
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function swapImgRestore() {
+  var i, x, a = document.sr;
+  for(i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++)
+    x.src = x.oSrc;
+}
+
+function findObj(n, d) {
+  var p,i,x;
+  if(!d)
+    d = document;
+  if((p = n.indexOf("?")) > 0 && parent.frames.length){
+    d = parent.frames[n.substring(p + 1)].document;
+    n = n.substring(0, p);
+  }
+  if(!(x = d[n]) && d.all)
+    x = d.all[n];
+  for(i = 0; !x && i < d.forms.length; i++)
+    x = d.forms[i][n];
+  for(i = 0; !x && d.layers && i < d.layers.length; i++)
+    x = findObj(n, d.layers[i].document);
+  if(!x && d.getElementById)
+    x = d.getElementById(n);
+  return x;
+}
+
+function swapImage(){
+  var i, j = 0, x, a = swapImage.arguments;
+  document.sr = new Array;
+  for(i = 0; i < (a.length - 2); i += 3)
+    if((x = findObj(a[i]))!=null){
+      document.sr[j++] = x;
+      if(!x.oSrc)
+        x.oSrc = x.src;
+      x.src = a[i + 2];
+    }
+}
+//-->
+</script>
+<p><a href="main.php?modus={modus}&caveID={caveID}">Zum Clanranking</a></p>
+<p><small><b>letztes Update:</b> {update}</small></p>
+<table border="0" cellspacing="10" cellpadding="0">
+  <tr>
+    <td rowspan="3">
+    <table border="0" align="center" cellpadding="5" cellspacing="0" width="400" style="border: thin groove #000000;">
+        <tr align="center" class="ranking_header">
+          <td><a href="main.php{link_rank}">Rank</a></td>
+          <td><a href="main.php{link_name}">Name</a></td>
+          <td>&nbsp;</td>
+          <td><a href="main.php{link_points}">Punktzahl</a></td>
+          <td><a href="main.php{link_fame}">Ruhm</a></td>
+          <td>&nbsp;</td>
+          <td><a href="main.php{link_tribe}">Clan</a></td>
+          <td><a href="main.php{link_caves}">Siedlungen</a></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tmpl:ROWS>
+        <tmpl:ROW>
+        <tr align="center" class="ranking_alt0">
+          <td>{rank}</td>
+          <td><a href="main.php{link}">{name}</a></td>
+          <td><img src="%gfx%/t_basic/ranking/{religion}.gif" alt="{religion}" width="15" height="15" border="0" title="{religion}"></td>
+          <td>{points}</td>
+          <td>{fame}</td>
+          <td><img src="%gfx%/t_basic/ranking/leader{is_leader}.gif" width="15" height="15" border="0"></td>
+          <td><a href="main.php{tribelink}">{tribe}</a></td>
+          <td>{caves}</td>
+          <td>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+        </tr>
+        </tmpl:ROW>
+
+        <tmpl:ROW_ALTERNATE>
+        <tr align="center" class="ranking_alt1">
+          <td>{rank}</td>
+          <td><a href="main.php{link}">{name}</a></td>
+          <td><img src="%gfx%/t_basic/ranking/{religion}.gif" alt="{religion}" width="15" height="15" border="0" title="{religion}"></td>
+          <td>{points}</td>
+          <td>{fame}</td>
+          <td><img src="%gfx%/t_basic/ranking/leader{is_leader}.gif" width="15" height="15" border="0"></td>
+          <td><a href="main.php{tribelink}">{tribe}</a></td>
+          <td>{caves}</td>
+          <td>&nbsp;<tmpl:AWARD><a href="main.php?modus={award_modus}&amp;award={tag}"><img src="images/awards/{tag}.png" width="15" height="15" border="0" hspace="1"></a></tmpl:AWARD></td>
+        </tr>
+        </tmpl:ROW_ALTERNATE>
+        </tmpl:ROWS>
+    </table>
+    </td>
+    <td><p>&nbsp;</p></td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      <tmpl:UP>
+        <a href="main.php{link}" onMouseOver="swapImage('up','','%gfx%/t_basic/ranking/up_mo.gif',1)" onMouseOut="swapImgRestore()"><img src="%gfx%/t_basic/ranking/up.gif" alt="up" width="13" height="33" border="0" id="up" title="up"></a>
+      </tmpl:UP>
+      &nbsp;
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="bottom">
+      <tmpl:DOWN>
+        <a href="main.php{link}" onMouseOver="swapImage('down','','%gfx%/t_basic/ranking/down_mo.gif',1)" onMouseOut="swapImgRestore()"><img src="%gfx%/t_basic/ranking/down.gif" alt="down" width="13" height="33" border="0" id="down" title="down"></a>
+      </tmpl:DOWN>
+      &nbsp;
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+
+      <form name="scrolljump" method="get" action="main.php">
+        <div align="center">Springe zu:
+          <input name="offset" type="text" id="offset" size="15" maxlength="30">
+          &nbsp;
+          <input name="submit" type="submit" id="submit" value="uggh!">
+          <tmpl:HIDDEN>
+          <input name="{name}" type="hidden" value="{value}">
+          </tmpl:HIDDEN>
+        </div>
+      </form>
+
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<tmpl:RELIGIOUS_DISTRIBUTION>
+<p><img src="images/religious_distribution/religious_distribution.php?badpercent={badpercent}&goodpercent={goodpercent}" title="Licht: {goodpercent}% Dunkelheit: {badpercent}%"></p>
+</tmpl:RELIGIOUS_DISTRIBUTION>
+
+
+
+<!-- ranking points -->
+<br />
+    <table border="0" align="center" cellpadding="5" cellspacing="0" width="400" style="border: thin groove #000000;">
+        <tr class="ranking_header">
+          <td align="center" colspan="2">eigene Punkteverteilung</td>
+        </tr>
+        <tr class="ranking_alt0">
+          <td align="left">Resourcen:</td>
+          <td align="right">{points_resources}</td>
+        </tr>
+        <tr class="ranking_alt1">
+          <td align="left">Geb&auml;ude:</td>
+          <td align="right">{points_buildings}</td>
+        </tr>
+        <tr class="ranking_alt0">
+          <td align="left">Einheiten:</td>
+          <td align="right">{points_military}</td>
+        </tr>
+        <tr class="ranking_alt1">
+          <td align="left">Forschung:</td>
+          <td align="right">{points_sciences}</td>
+        </tr>
+    </table>
+<!-- end ranking points -->

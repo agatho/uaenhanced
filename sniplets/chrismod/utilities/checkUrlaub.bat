@@ -1,0 +1,1 @@
+php checkUrlaub.php >>logs/checkUrlaub.log

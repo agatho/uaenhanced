@@ -1,0 +1,125 @@
+<tmpl:DEFENSESYSTEM_QUEUE>
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" class="message">
+    <tr>
+      <td colspan="2">Arbeitsauftrag</td>
+    </tr>
+    <tr>
+      <td>Momentan im Gange: Ausbau {name} auf Stufe {size} (fertig: {finish})</td>
+      <td><a href="main.php?eventID={eventID}&modus={action}&caveID={caveID}">Abbrechen</a></td>
+    </tr>
+  </table>
+</tmpl:DEFENSESYSTEM_QUEUE>
+
+<br>
+
+<tmpl:MESSAGE>
+  <b>{message}</b>
+</tmpl:MESSAGE>
+
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td>
+      <a href="main.php?modus={modus}&defenseSystemID={defenseSystemID}&caveID={caveID}" target="_blank" title="Maximale Stufe: {maxlevel}"><b>{name}</b></a><br>
+
+        <img src="%gfx%/spacer.gif" width="1" height="20">
+        <tmpl:RESSOURCECOST>
+          <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+          <tmpl:ENOUGH>
+            <span class="enough">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less">{value}</span>
+          </tmpl:LESS>
+		      &nbsp;
+        </tmpl:RESSOURCECOST>
+        <tmpl:UNITCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less">{value}</span>
+          </tmpl:LESS>
+        </tmpl:UNITCOST>
+        <tmpl:BUILDINGCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less">{value}</span>
+          </tmpl:LESS>
+        </tmpl:BUILDINGCOST>
+        <tmpl:EXTERNALCOST>
+          <br>
+          <span class="small">{name}</span>
+          <tmpl:ENOUGH>
+            <span class="enough">{value}</span>
+          </tmpl:ENOUGH>
+          <tmpl:LESS>
+            <span class="less">{value}</span>
+          </tmpl:LESS>
+        </tmpl:EXTERNALCOST>
+    </td>
+
+    <td><img src="%gfx%/t_basic/clock.gif" width="15" height="15" border="0" alt="Dauer:">{time} &nbsp; &nbsp;</td>
+    <td>Stufe: {size}</td>
+
+    <td>
+      <tmpl:BREAK_DOWN_LINK>
+        <a href="main.php?modus={action}&defenseSystemID={defenseSystemID}&caveID={caveID}">Abrei&szlig;en</a>
+      </tmpl:BREAK_DOWN_LINK>
+      &nbsp;
+    </td>
+
+    <td>
+      <tmpl:BUILD_LINK>
+        <a href="main.php?modus={action}&defenseSystemID={defenseSystemID}&caveID={caveID}&tstamp={tstamp}">Ausbauen</a>
+      </tmpl:BUILD_LINK>
+      <tmpl:BUILD_LINK_NO>
+        {message}
+      </tmpl:BUILD_LINK_NO>
+    </td>
+
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+
+<tmpl:UNQUALIFIEDDEFENSESYSTEMS>
+
+<p><strong>Erweiterungen, die noch nicht gebaut werden können:</strong></p>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus}&defenseSystemID={defenseSystemID}" target="_blank"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+
+</tmpl:UNQUALIFIEDDEFENSESYSTEMS>
+
+<tmpl:UNWANTEDDEFENSESYSTEMS>
+<p><strong>Relikte:</strong></p>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+  <tmpl:DEFENSESYSTEM>
+  <tr class="{alternate}">
+    <td><a href="main.php?modus={modus}&defenseSystemID={defenseSystemID}" target="_blank"><b>{name}</b></a></td>
+    <td align="center">{dependencies}</td>
+    <td align="right">Stufe: {size}</td>
+    <td align="center"><a href="main.php?modus={action}&defenseSystemID={defenseSystemID}">Abrei&szlig;en</a></td>
+  </tr>
+  </tmpl:DEFENSESYSTEM>
+</table>
+<br>
+</tmpl:UNWANTEDDEFENSESYSTEMS>
+
+<a href="http://tntchris.dyndns.org/ugaagga/rules/" target="_blank"><small>weitere Informationen zu allen Verteidigungsanlagen</small></a>
+<br>

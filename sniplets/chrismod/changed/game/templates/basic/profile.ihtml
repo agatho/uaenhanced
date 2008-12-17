@@ -1,0 +1,91 @@
+<tmpl:MESSAGE>
+<b>{message}</b>	
+</tmpl:MESSAGE>
+
+<form name="data" method="get" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}"> 
+
+<tmpl:DATA_GROUP>
+<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+<tr>
+  <td colspan="2"><strong>{heading}</strong></td>	
+</tr>
+
+<tmpl:ENTRY_INFO>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    {value}
+  </td>
+</tr>
+</tmpl:ENTRY_INFO>
+
+<tmpl:ENTRY_INPUT>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <input name="{dataarray}[{dataentry}]" value="{value}"  type="text" size="{size}" maxlength="{maxlength}">
+  </td>
+</tr>
+</tmpl:ENTRY_INPUT>
+
+<tmpl:ENTRY_MEMO>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <textarea name="{dataarray}[{dataentry}]" cols="{cols}" rows="{rows}">{value}</textarea>
+  </td>
+</tr>
+</tmpl:ENTRY_MEMO>
+
+
+<tmpl:ENTRY_INPUT_PWD>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <input name="{dataarray}[{dataentry}]" value="{value}"  type="password" size="{size}" maxlength="{maxlength}">
+  </td>
+</tr>
+</tmpl:ENTRY_INPUT_PWD>
+
+<tmpl:ENTRY_SELECTION>
+<tr>
+  <td width="40%">{name}</td>
+  <td width="60%">
+    <select name="{dataarray}[{dataentry}]">
+      <tmpl:SELECTOR>
+      <option value="{value}" {selected}>{text}</option>
+      </tmpl:SELECTOR>
+    </select>
+  </td>
+</tr>
+</tmpl:ENTRY_SELECTION>
+
+</table>
+</tmpl:DATA_GROUP>
+
+<input type="submit" value="Ugh!">
+</form>
+
+<div style="text-align: left">
+<b>Urlaubsmodus:</b> Ist der Urlaubsmodus einmal eingeschaltet kann er erst nach fr&uuml;hstens drei Tagen wieder deaktiviert werden.<br>
+W&auml;hrend dieser Zeit sind deine Siedlungen gegen Angriffe und &Uuml;bernahmen gesch&uuml;tzt und die Produktion steht still.<br>
+Auch wird dein Account nicht wegen Inaktivit&auml;t gel&ouml;scht.<br>
+Nach 30 Tagen wird der Urlaubsmodus automatisch beendet und deine Siedlungen sind wieder schutzlos.<br>
+Es sollten vor der Aktivierung s&auml;mtliche Bewegungen abgeschlossen sein. Eventuelle verlorengegangene Einheiten oder Resourcen werden nicht ersetzt.<br>
+Nach Ablauf der Dreitagesfrist kann der Modus beim Login wieder deaktiviert werden.<br>
+Danach kann der Urlaubsmodus erst wieder aktiviert werden, wenn mindesten die gleiche Zeitspanne wie die Urlaubsdauer verstrichen ist. Warst du also zwei Wochen
+im Urlaub, kann der Urlaubsmodus erst nach weiteren zwei Wochen aktiviert werden.<br>
+Befindet sich dein Clan im Krieg (oder Ultimatum) kann der Modus nicht aktiviert werden.<br>
+</div>
+
+<br>
+<tmpl:DELETE>
+<hr>
+<h1>{heading}</h1>
+<p>{text}</p>
+<form name="delete" method="get" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus}">
+<input type="submit" value="Den Account l&ouml;schen!">
+</form>
+</tmpl:DELETE>

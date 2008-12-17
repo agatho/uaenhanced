@@ -1,0 +1,102 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="%gfx%/t_basic/tablet/ol.gif"></td>
+    <td width="100%" background="%gfx%/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="31" height="31"></td>
+    <td><img src="%gfx%/t_basic/tablet/or.gif"></td>
+  </tr>
+  <tr>
+    <td height="100%" background="%gfx%/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="27" height="27"></td>
+    <td width="100%" height="100%" background="%gfx%/t_basic/tablet/m.gif" style="padding: 20px">
+
+  <!-- begin main content -->
+  <h2>Aktive Quests</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:ACTIVEQUESTS>
+    <tr>
+      <td align="left"><a href="main.php?modus={modus}&questID={questID}&playerID={playerID}" target="_blank"><b>{title}</b></a></td>
+    </tr>
+    <tr>
+      <td>
+	  {description}<br /><br />
+      </td>
+    </tr>
+</tmpl:ACTIVEQUESTS>
+  <tmpl:NOACTIVEQUESTS>
+    <tr>
+      <td align="left">{dummy}Keine!</td>
+    </tr>
+  </tmpl:NOACTIVEQUESTS>
+    </table>
+
+  <h2>Erfolgreich abgeschlossene Quests</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:WONQUESTS>
+    <tr>
+      <td align="left"><a href="main.php?modus={modus}&questID={questID}&playerID={playerID}" target="_blank"><b>{title}</b></a></td>
+    </tr>
+    <tr>
+      <td>
+	  {description}<br /><br />
+      </td>
+    </tr>
+</tmpl:WONQUESTS>
+  <tmpl:NOWONQUESTS>
+    <tr>
+      <td align="left">{dummy}Keine!</td>
+    </tr>
+  </tmpl:NOWONQUESTS>
+    </table>
+
+  <h2>Verlorene Quests</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:FAILEDQUESTS>
+    <tr>
+      <td align="left"><a href="main.php?modus={modus}&questID={questID}&playerID={playerID}" target="_blank"><b>{title}</b></a></td>
+    </tr>
+    <tr>
+      <td>
+	  {description}<br /><br />
+      </td>
+    </tr>
+</tmpl:FAILEDQUESTS>
+  <tmpl:NOFAILEDQUESTS>
+    <tr>
+      <td align="left">{dummy}Keine!</td>
+    </tr>
+  </tmpl:NOFAILEDQUESTS>
+    </table>
+
+  <h2>nicht mehr durchf&uuml;hrbare Quests</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:ABORTEDQUESTS>
+    <tr>
+      <td align="left"><a href="main.php?modus={modus}&questID={questID}&playerID={playerID}" target="_blank"><b>{title}</b></a></td>
+    </tr>
+    <tr>
+      <td>
+	  {description}<br /><br />
+      </td>
+    </tr>
+</tmpl:ABORTEDQUESTS>
+  <tmpl:NOABORTEDQUESTS>
+    <tr>
+      <td align="left">{dummy}Keine!</td>
+    </tr>
+  </tmpl:NOABORTEDQUESTS>
+    </table>
+
+  <!-- end main content -->
+  </td>
+    <td height="100%" background="%gfx%/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="30" height="30"></td>
+  </tr>
+  <tr>
+    <td><img src="%gfx%/t_basic/tablet/ul.gif"></td>
+    <td width="100%" background="%gfx%/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="32" height="32"></td>
+    <td><img src="%gfx%/t_basic/tablet/ur.gif"></td>
+  </tr>
+</table>
+<tmpl:LINK>
+<br>
+<a href="main.php{link}" target="_blank"><small>weitere Informationen zu Quests</small></a>
+<br>
+</tmpl:LINK>

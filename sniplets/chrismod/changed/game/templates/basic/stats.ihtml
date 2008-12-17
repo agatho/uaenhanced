@@ -1,0 +1,117 @@
+
+<table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+<tr><td>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="4" align="center" class="messagebox">
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Ticker Status:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{ticker_status}</td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Rundenstart:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{runden_start}</td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">jetzige Spielzeit:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{uga_time}</td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Kampfberichte:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{kampfberichte}&nbsp;&nbsp;&nbsp;<small>(Durchschnitt pro Spieler: {kbs_durchschnitt})</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spionageberichte:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{spioberichte}&nbsp;&nbsp;&nbsp;<small>(Durchschnitt pro Spieler: {spio_durchschnitt})</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Wunder:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{wunder}&nbsp;&nbsp;&nbsp;<small>(Durchschnitt pro Spieler: {wunder_durchschnitt})</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Nachrichten gesamt:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{messages}&nbsp;&nbsp;&nbsp;<small>(Durchschnitt pro Spieler: {messages_durchschnitt})</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">erfolgreiche &Uuml;bernahmen:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{takeover}</td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{spieler}</td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler aktiv (letzte 10 min):</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{user_active}&nbsp;&nbsp;&nbsp;<small>{user_active_prozent}%&nbsp;&nbsp;&nbsp;(Peak: {max_active}&nbsp;&nbsp;&nbsp;{max_date})</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Clans:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{clans}</td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler in Clans:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{player_clans}&nbsp;&nbsp;&nbsp;<small>{player_clans_prozent}%</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler in keinem Clan:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{player_noclan}&nbsp;&nbsp;&nbsp;<small>{player_noclan_prozent}%</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler mit keiner Religion:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{player_noreligion}&nbsp;&nbsp;&nbsp;<small>{noreligion_prozent}%</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler mit Dunkler Kunst:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{player_religion_agga}&nbsp;&nbsp;&nbsp;<small>{agga_prozent}%</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler mit Licht:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{player_religion_uga}&nbsp;&nbsp;&nbsp;<small>{uga_prozent}%</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler mit Hexerei:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{player_religion_hex}&nbsp;&nbsp;&nbsp;<small>{hex_prozent}%</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler mit nur einer Siedlung:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{one_cave}&nbsp;&nbsp;&nbsp;<small>{one_cave_prozent}%</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Spieler mit mehr als 4 Siedlungen:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{4_cave}&nbsp;&nbsp;&nbsp;<small>{4_cave_prozent}%</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Siedlungen:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{caves_all}</td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Bewohnte Siedlungen:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{caves}&nbsp;&nbsp;&nbsp;<small>{caves_prozent}%&nbsp;&nbsp;(Durchschnitt pro Spieler {caves_durchschnitt})</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Freie Siedlungen:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{caves_free}&nbsp;&nbsp;&nbsp;<small>{caves_free_prozent}%</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Stationierte Einheiten:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{units}&nbsp;&nbsp;&nbsp;<small>(Durchschnitt pro Spieler: {units_durchschnitt})</small></td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Einheiten in Bewegung:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{units_moving}&nbsp;&nbsp;&nbsp;<small>(Durchschnitt pro Spieler: {units_move_durchschnitt})</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Fragen im Katalog:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{questions}</td>
+  </tr>
+  <tr class="alternate">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Artefakte bei Spielern:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{artefact}&nbsp;&nbsp;&nbsp;<small>(Durchschnitt pro Spieler: {artefact_durchschnitt})</small></td>
+  </tr>
+  <tr class="">
+    <td align="left" width="200" valign="middle" style="border: 1px solid #336600;">Urlauber:</td>
+    <td align="left" valign="middle" style="border: 1px solid #336600;">{urlauber}&nbsp;&nbsp;&nbsp;<small>{urlauber_prozent}%</small></td>
+  </tr>
+</table>
+
+</td></tr></table>
+<br><small>Aufgrund unterschiedlicher Updatezeiten kann es zu Differenzen kommen!</small>

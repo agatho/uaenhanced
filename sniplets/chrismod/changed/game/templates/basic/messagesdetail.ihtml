@@ -1,0 +1,79 @@
+<tmpl:OBEN>
+  <table border="0" width="100%" cellspacing="1" cellpadding="1" align="CENTER">
+    <tr> 
+      <td width="100">
+        <tmpl:ANTWORTEN>
+          <form name="antworten" method="post" action="main.php">
+            <input type="submit" name="antworten" value="Antworten">
+            <tmpl:HIDDEN>          
+              <input name="{arg}" type="hidden" value="{value}">
+            </tmpl:HIDDEN>
+          </form>
+        </tmpl:ANTWORTEN>
+      </td>
+      
+      <td width="100">
+        <tmpl:LOESCHEN>
+          <form name="loeschen" method="post" action="main.php">
+            <input type="submit" name="loeschen" value="L&ouml;schen">
+            <tmpl:HIDDEN>          
+              <input name="{arg}" type="hidden" value="{value}">
+            </tmpl:HIDDEN>
+          </form>
+        </tmpl:LOESCHEN>
+      </td>
+
+      <td>
+        <tmpl:BOOKADD>
+          <form name="book_add" method="post" action="main.php">
+            <input type="submit" name="add" value="Ins Adressbuch">
+            <tmpl:HIDDEN>          
+              <input name="{arg}" type="hidden" value="{value}">
+            </tmpl:HIDDEN>
+          </form>
+        </tmpl:BOOKADD>
+      </td>
+    </tr>
+  </table>
+</tmpl:OBEN>
+
+<br>
+
+<table width="100%" height="100%" cellpadding="2" cellspacing="0" class="message">
+  <tr> 
+    <td><b>Betreff:</b></td>
+    <td>&nbsp;{betreff}</td>
+  </tr>
+  <tr> 
+    <td><b>Von:</b></td>
+    <td>&nbsp;{sender}</td>
+  </tr>
+  <tr> 
+    <td><b>An:</b></td>
+    <td>&nbsp;{empfaenger}</td>
+  </tr>
+  <tr> 
+    <td><b>Datum:</b></td>
+    <td>&nbsp;{datum}</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0">
+  <tr> 
+    <td>
+      <tmpl:BILD>
+        <img src="%gfx%/t_basic/{bild}" align="left">
+      </tmpl:BILD>
+    </td>
+  </tr>
+  <tr> 
+    <td>
+      {nachricht}
+    </td>
+  </tr>
+</table>
+
+<br>
+<div align="right"><br>
+  <a href="main.php{linkbackparams}">zur&uuml;ck zu den Nachrichten</a>
+</div>

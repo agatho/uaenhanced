@@ -1,0 +1,1 @@
+php god.script.php >>logs/gods_attacks.log

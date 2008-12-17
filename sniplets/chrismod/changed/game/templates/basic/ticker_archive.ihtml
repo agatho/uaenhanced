@@ -1,0 +1,27 @@
+
+<table width="90%" align="center" cellpadding="5" cellspacing="1" class="message">
+<tr><td>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="0" align="center" class="messagebox">
+	<tr>
+	  <th>Absender</th>
+	  <th>Nachricht</th>
+	  <th>Datum</th>
+	</tr>
+  <tmpl:MESSAGES>
+  <tr class="{alternate}">
+    <td align="left" width="100" valign="middle"><a href="main.php?modus={playerDetail_modus}&detailID={senderID}" target="_blank">{sender}</a></td>
+    <td align="left" valign="top">{message}</td>
+    <td align="left" width="150" valign="middle">{time}</td>
+  </tr>
+  </tmpl:MESSAGES>
+
+  <tmpl:NOMESSAGES>
+  <tr class="{alternate}">
+    <td align="center" valign="middle" colspan="3">{dummy}Keine Nachrichten bisher</td>
+  </tr>
+  </tmpl:NOMESSAGES>
+
+</table>
+
+</td></tr></table>

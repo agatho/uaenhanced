@@ -1,0 +1,42 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>
+      <form name="newMessage" method="post" action="main.php">
+        <table width="100%" border="0" cellspacing="0" cellpadding="2" style="border: 1px solid #333;">
+          <tr>
+            <td>
+              <table width="100%" border="0" cellspacing="0" cellpadding="2" class="ranking_header">
+                <tr> 
+                  <td align="right" width="50"><b>von:</b>&nbsp;</td>
+                  <td>&nbsp;{sender}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+	  <br>
+	  Das Senden von Nachrichten zum Ticker ist nur alle {block_time} Minuten möglich, um Spam zu vermeiden!<br>
+	  Ausserdem sind nur {max_chars} Zeichen erlaubt. Beleidigungen oder flamen anderer Spieler kann zur Sperrung des Accounts f&uuml;hren!<br>
+	  <script type="text/javascript" language ="JavaScript"> 
+	   <!--
+	   document.write("Verbleibende Zeichen: <input type=\"text\" size=\"3\" disabled=\"disabled\" value=\"{max_chars}\" name=\"Anzeige\" />");
+	  //-->
+	  </script>
+        <br><br>
+        <input type="submit" name="senden" value="senden">
+        <br>
+        <br>
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td valign="top">
+              <textarea onkeypress="window.document.forms['newMessage'].elements['Anzeige'].value = {max_chars} - this.value.length-1;" style="width:640px;" name="nachricht" rows="10" cols="30" wrap="physical">{nachricht}</textarea>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <input type="submit" name="senden" value="senden">
+        <tmpl:HIDDEN><input type="hidden" name="{arg}" value="{value}"></tmpl:HIDDEN>
+      </form>
+    </td>
+  </tr>
+</table>

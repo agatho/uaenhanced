@@ -1,0 +1,28 @@
+<p>... vom Clan {tribe}</p>
+
+<table border="0" align="center" cellpadding="5" cellspacing="0" width="400" style="border: thin groove #000000;">
+    <tr align="center" class="ranking_header">
+      <td>Clan</td>
+      <td>Haltung von {tribe}</td>
+      <td>Haltung gegen&uuml;ber {tribe}</td>
+    </tr>
+    <tmpl:ROWS>
+    <tmpl:ROW>
+    <tr align="center" class="ranking_alt0">
+      <td><a href="{link}">{tribe}</a></td>
+      <td>{relationTo}</td>
+      <td>{relationFrom}</td>
+    </tr>
+    </tmpl:ROW>
+    
+    <tmpl:ROW_ALTERNATE>
+    <tr align="center" class="ranking_alt1">
+      <td><a href="{link}">{tribe}</a></td>
+      <td>{relationTo}</td>
+      <td>{relationFrom}</td>
+    </tr>
+    </tmpl:ROW_ALTERNATE>
+    </tmpl:ROWS>
+</table>
+
+<p><a href="http://tntchris.dyndns.org/ugaagga/rules">Beschreibung aller Beziehungen</a></p>

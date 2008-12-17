@@ -1,0 +1,108 @@
+<h5>{feedback}</h5>
+<tmpl:TAKEOVER>
+<form name="{formname}" method="{formmethod}" action="main.php">
+
+  <p align="justify">
+    Weitere Siedlungen (du kannst maximal {maxcaves} Siedlungen besitzen) 
+    k&ouml;nnen dadurch erworben werden, dass man eine Siedlung 
+    missioniert. Missioniert werden kann nur eine freie Siedlung, <strong>die 
+    auf der Karte als bewohnbar angezeigt wird.</strong>
+  </p>
+  <p align="justify">
+    Eine andere M&ouml;glichkeit der &Uuml;bernahme von Siedlungen gibt es 
+    nicht. Um eine Siedlung erfolgreich zu missionieren, muss man an 
+    {beliebtheit} - nicht zwingend aufeinander folgenden - Tagen jeweils 
+    Rohstoffe im Wert von mindestens {mindestgebot} in die Siedlung bringen, 
+    <strong>nachdem man die Siedlung als Missionierungssiedlung 
+    ausgew&auml;hlt hat</strong>. Da gleichzeitig mehrere Spieler f&uuml;r eine 
+    Siedlung bieten k&ouml;nnen, kann es zu empfehlen sein, wenn man Rohstoffe 
+    im Wert von mehr als {mindestgebot} innerhalb eines Tages in die Siedlung 
+    bringt. F&uuml;r jeden Tag, an dem man die meisten Rohstoffe in die 
+    Siedlung gebracht hat, bekommt man einen Stern. Bei {beliebtheit} Sternen 
+    gilt die Siedlung als missioniert und man hat damit die Siedlung 
+    erworben.
+  </p>
+  <p align="justify">
+    Die bereits erworbenen Sterne verliert man, wenn man entweder die Siedlung 
+    angreift oder versucht, eine andere Siedlung zu missionieren. Die in die 
+    Siedlung verbrachten Rohstoffe stehen dort nach erfolgreicher 
+    Missionierung zur Verf&uuml;gung, wenn nicht ein anderer Spieler die 
+    Siedlung zwischenzeitlich angegriffen und gepl&uuml;ndert hat.
+  </p>
+  <p>
+    Die Werte der Resourcen:<br>
+
+  <tmpl:RESOURCEVALUE>
+  {name}: {value}<br>
+  </tmpl:RESOURCEVALUE>
+  </p>
+
+  <p>W&auml;hle eine Siedlung, die du &uuml;bernehmen m&ouml;chtest:</p>
+  x/y-Koordinate:
+  <input name="xCoord" type="text" size="4" maxlength="4" value="{targetXCoord}">
+  &nbsp;
+  <input name="yCoord" type="text" size="4" maxlength="4" value="{targetYCoord}">
+  &nbsp;
+  <input type="submit" name="submit" value="die will ich, Ughh!">
+
+  <tmpl:CHOSEN>
+  <hr>
+
+  <p>Du bestichst ... &auml;hh .. bietest im Moment f&uuml;r die Siedlung {caveName} in <b>({xCoord}/{yCoord})</b><br>
+    Dein Status dabei: <img src="%gfx%/t_basic/takeover/{status-img}.gif" border="0" alt="{status-txt}">
+  </p>
+
+  <tmpl:RESOURCES>
+  <p><em>Du hast heute folgende Ressourcen zu dieser Siedlung geschafft:</em></p>
+  <table border="0" cellspacing="0" cellpadding="0" width="250">
+  <tmpl:RESOURCE>
+  <tr>
+    <td width="200">{name}</td>
+    <td width="50">{value}</td>
+  </tr>
+  </tmpl:RESOURCE>
+
+<tmpl:NONE>
+  <tr>
+    <td>{none}</td>
+  </tr>
+</tmpl:NONE>
+
+<tmpl:SUM>
+  <tr>
+    <td colspan="2"><br><nobr>Der Wert dieser Geschenke beträgt {sum} Wertpunkt(e).</nobr></td>
+  </tr>
+</tmpl:SUM>
+
+  </table>
+  </tmpl:RESOURCES>
+
+  <tmpl:BIDDERS>
+  <p><em>Um diese Siedlung bem&uuml;hen sich ebenfalls folgende Spieler:</em></p>
+  <ul>
+    <tmpl:BIDDER>
+    <li>{playername} <img src="%gfx%/t_basic/takeover/{status-img}.gif" border="0" alt="{status-txt}"></li>
+    </tmpl:BIDDER>
+  </ul>
+<tmpl:NOONE>
+{noone}
+</tmpl:NOONE>
+  </tmpl:BIDDERS>
+
+  <p>Um Waren dorthin zu schicken, benutzen sie den Men&uuml;punkt
+     >>Bewegung<< oder <a href="main.php{bewegung}">klicken sie hier.</a></p>
+
+  </tmpl:CHOSEN>
+
+  <tmpl:HIDDEN>
+  <input name="{name}" type="hidden" value="{value}">
+  </tmpl:HIDDEN>
+
+  <hr width="300">
+  Beliebtheitspunkte:
+  <tmpl:LEGENDE>
+  {status} : <img src="%gfx%/t_basic/takeover/{status-img}.gif" border="0" alt="{status-txt}"> &nbsp; &nbsp;
+  </tmpl:LEGENDE>
+
+</form>
+</tmpl:TAKEOVER>

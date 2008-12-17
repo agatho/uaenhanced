@@ -1,0 +1,57 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>
+      <form name="newMessage" method="post" action="main.php">
+        <table width="100%" border="0" cellspacing="0" cellpadding="2" style="border: 1px solid #333;">
+          <tr>
+            <td>
+              <table width="100%" border="0" cellspacing="0" cellpadding="2" class="ranking_header">
+                <tr> 
+                  <td align="right"><b>von:</b>&nbsp;</td>
+                  <td>&nbsp;{sender}</td>
+                </tr>
+
+                <tr> 
+                  <td align="right"><b><a href="main.php?modus={show_book_modus}">Adressbuch</a>:</b>&nbsp;</td>
+                  <td>
+                    <select name="empfaenger2" size="1">
+                      <option>Bitte w&auml;hlen:</option>
+                      <tmpl:BOOKENTRY><option>{book_entry}</option></tmpl:BOOKENTRY>
+                    </select>
+                  </td>
+                </tr>
+
+                <tr> 
+                  <td align="right"><b>an:</b>&nbsp;</td>
+                  <td>&nbsp;<input name="empfaenger" type="text" style="width:450px;" value="{empfaenger}" size="35" maxlength="255"></td>
+                </tr>
+                <tr> 
+                  <td align="right"><b>betreff:</b>&nbsp;</td>
+                  <td>&nbsp;<input name="betreff" type="text" style="width:450px;" value="{betreff}" size="35" maxlength="255"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <input type="submit" name="senden" value="senden">
+        <br>
+        <br>
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td valign="top">
+              <textarea style="width:640px;" name="nachricht" rows="20" cols="61" wrap="physical">{nachricht}</textarea>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <input type="submit" name="senden" value="senden">
+        <tmpl:HIDDEN><input type="hidden" name="{arg}" value="{value}"></tmpl:HIDDEN>
+      </form>
+    </td>
+  </tr>
+</table>
+<div align="right">
+  <br>
+  <a href="main.php{linkbackparams}">zur&uuml;ck zu den Nachrichten</a>
+</div>

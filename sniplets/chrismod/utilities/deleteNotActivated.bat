@@ -1,0 +1,1 @@
+php deleteNotActivated.script.php >>logs/activated.log

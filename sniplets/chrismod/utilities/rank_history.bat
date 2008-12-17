@@ -1,0 +1,1 @@
+php rank_history.php >>logs\rank_history.log

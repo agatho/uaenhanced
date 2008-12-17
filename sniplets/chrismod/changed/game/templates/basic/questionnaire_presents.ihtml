@@ -1,0 +1,90 @@
+<tmpl:ACCOUNT>
+<table>
+  <tr>
+    <td>Bisher erhaltene Schnecken:</td>
+    <tmpl:COPPER>
+    <td>{copper}x</td>
+    <td><img src="%gfx%/questionnaire/copper.gif" alt="Kupfer" title="Kupfer"></td>
+    </tmpl:COPPER>
+    <tmpl:SILVER>
+    <td>{silver}x</td>
+    <td><img src="%gfx%/questionnaire/silver.gif" alt="Silber" title="Silber"></td>
+    </tmpl:SILVER>
+    <tmpl:GOLD>
+    <td>{gold}x</td>
+    <td><img src="%gfx%/questionnaire/gold.gif" alt="Gold" title="Gold"></td>
+    </tmpl:GOLD>
+  </tr>
+</table>
+<br>
+</tmpl:ACCOUNT>
+
+<tmpl:MESSAGE>
+<table class="message">
+  <tr><td>{message}</td></tr>
+</table>
+<br>
+</tmpl:MESSAGE>
+
+<form method="POST">
+<table class="message">
+  <tr>
+    <th colspan="4">
+      Ihr unterhaltet euch kurz mit der Weisen Alten Frau eures Clans. Sie
+      erkl&auml;rt euch, dass ihr eure wertvollen Schnecken gegen interessante
+      Kostbarkeiten eintauschen k&ouml;nnt.<br>
+      &quot;Allerdings geb ich euch nicht mehr, als in eure Lager passt. (Die Schnecken behalt' ich aber trotzdem..)&quot;<br>
+      Zur Zeit hat sie folgende Angebote:
+    </th>
+  </tr>
+  <tmpl:PRESENTS>
+  <tr>
+    <td><input type="radio" name="presentID" value="0" checked></td>
+    <td colspan="3">W&auml;hle eine Kostbarkeit</td>
+  </tr>
+  <tmpl:PRESENT>
+  <tr>
+    <td><input type="radio" name="presentID" value="{presentID}"></td>
+    <td>
+      <table>
+        <tr>
+          <tmpl:COPPER>
+          <td>{copper}x</td>
+          <td><img src="%gfx%/questionnaire/copper.gif" alt="Kupfer" title="Kupfer"></td>
+          </tmpl:COPPER>
+
+          <tmpl:SILVER>
+          <td>{silver}x</td>
+          <td><img src="%gfx%/questionnaire/silver.gif" alt="Silber" title="Silber"></td>
+          </tmpl:SILVER>
+
+          <tmpl:GOLD>
+          <td>{gold}x</td>
+          <td><img src="%gfx%/questionnaire/gold.gif" alt="Gold" title="Gold"></td>
+          </tmpl:GOLD>
+        </tr>
+      </table>
+    </td>
+    <td>{name}</td>
+    <td>
+    <tmpl:EXTERNAL>{amount}x {name}<br></tmpl:EXTERNAL>
+    <tmpl:RESOURCE>{amount}x {name}<br></tmpl:RESOURCE>
+    <tmpl:UNIT>{amount}x {name}<br></tmpl:UNIT>
+    </td>
+  </tr>
+  </tmpl:PRESENT>
+  <tr>
+    <td colspan="4" align="center">
+      <input type="submit" value="UGH!">
+      <tmpl:PARAMS><input type="hidden" name="{name}" value="{value}"></tmpl:PARAMS>
+    </td>
+  </tr>
+  </tmpl:PRESENTS>
+  <tmpl:NO_PRESENT>
+  <tr>
+    <td colspan="4" align="center">{dummy}"Im Moment kann ich euch nichts anbieten!"</td>
+  </tr>
+  </tmpl:NO_PRESENT>
+</table>
+</form>
+<p><a href="main.php?modus={QUESTIONNAIRE}">zu den Fragen</a></p>

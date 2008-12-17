@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>UA Iso Map</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+
+.cell_text {
+  z-index:2;
+  position:absolute;
+  font-weight: bold;
+  color: red;
+}
+
+.cell_map {
+  z-index:2;
+  position:absolute;
+  width: 118;
+  height: 120;
+}
+
+table {
+  padding: 0px;
+  margin: 0px;
+}
+
+-->
+</style>
+
+<script type="text/javascript">
+<!--
+var map = new Array();
+
+var i = 0;
+var j = 0;
+
+<tmpl:ROWS>
+map[i] = new Array();
+j = 0;
+<tmpl:CELLS>
+map[i][j]=new Array();
+<tmpl:HEADER>map[i][j++]={type:"header",text:"{text}"};</tmpl:HEADER>
+<tmpl:MAPCELL>map[i][j++]={type:"mapcell",terrain:{terrain},cavename:"{cavename}",caveID:{caveID},xCoord:{xCoord},yCoord:{yCoord},secureCave:{secureCave},artefacts:{artefacts},takeoverable:{takeoverable},name:"{name}",playerID:"{playerID}",tribe:"<a href="main.php?{link_tribe}"</a>";</tmpl:MAPCELL>
+</tmpl:CELLS>
+i++;
+</tmpl:ROWS>
+
+var tile_width  = 118;
+var tile_height = 120;
+
+var rombus_width  = 118;
+var rombus_height =  60;
+
+var map_width  = map[0].length;
+var map_height = map.length;
+
+var center_x = 600 * 0.5 - (map_height + map_width) * rombus_width * 0.25;
+var center_y = 600 * 0.5 - (map_height + map_width) * rombus_height * 0.25;
+
+center_x = 0;
+center_y = 0;
+
+function blit(x, y, z, pic){
+  document.write("<div class='cell_map' style='top:"+ (center_y + (x + y - 2) * rombus_height * 0.5 - z * 38) + "px; left:" +
+                 (center_x + (map_height - 1 + x - y) * rombus_width * 0.5) +
+                 "px;'><img src='images/"+pic+".gif'></div>");
+}
+
+function blit_text(x, y, text){
+document.write("<div class='cell_text' style='top:"+(center_y + (x + y) * rombus_height * 0.5 - 4)+
+               "px; left:"+ (center_x + (map_height - 1 + x - y) * rombus_width * 0.5 - 4) +"px;'><table><tr><td width='118' height='60' align='center' valign='middle' nowrap>"+text+"</td></tr></table></div>");
+}
+
+
+function wp(xx,yy,pic){
+  document.write("<div class='cell_map' style='top:"+yy+"px; left:"+xx+"px;'><img src='images/"+pic+".gif'></div>");
+}
+
+function wd(xx,yy,pic,w,h){
+  document.write("<div STYLE=\"z-index:2; position:absolute; top:"+yy+"px; left:"+xx+"px;\"> <img width="+w+" height="+h+" src=\""+pic+".gif\"></div>");
+}
+
+function wt(xx,yy,text){
+  document.write("<div class='cell_text' style='top:"+(yy - 4)+"px; left:"+ (xx - 4) +"px;'><table><tr><td width='118' height='60' align='center' valign='middle' nowrap>"+text+"</td></tr></table></div>");
+//    document.write("<div class='cell_text' style='top:"+yy+"px; left:"+xx+"px;'>"+text+"</div>");
+}
+
+function wl(xx,yy,dx,dy){
+  document.write("<div STYLE=\"z-index:7; position:absolute; top:"+yy+"px; left:"+xx+"px;\"> <a href=\"gruppen.php?action=moveto&dx="+dx+"&dy="+dy+"\"><img border=\"0\" width=\"60\" height=\"50\" src=\"netscape.gif\"></a></div>");
+}
+//-->
+</script>
+</head>
+
+<body>
+<div style="position:absolute; top: 50px; left: 50px; width: 600px; height: 600px; min-width: 600px; min-height: 600px;">
+<table><tr><td width='118' height='60' align='center' valign='middle' nowrap>
+<script type="text/javascript">
+  <!--
+for (j = 0; j < map_height; ++j)
+  for (i = 0; i < map_width; ++i)
+    if (map[j][i]['type'] == "header"){
+      blit(i, j, 0, 4);
+      blit_text(i, j, "[" + map[j][i]['text'] + "]");
+    } else {
+      blit(i, j, 0, map[j][i]['terrain']);
+      blit_text(i, j, "<small>" + map[j][i]['name'] + "<br>" + map[j][i]['tribe'] + "</small>");
+    }
+
+
+
+
+  //-->
+</script>
+</td></tr>
+    <tr>
+<td height="50%" align="center" valign="middle">
+	    <tmpl:MINIMAP> 
+        <form action="main.php" method="get" name="minimapform">
+          <input name="minimap" type="image" width="{width}" height="{height}" style="width: {width}px; height: {height}px; border: thin groove #009900; cursor: crosshair;" src="{file}">
+          <input type="hidden" name="scaling" value="{scaling}">
+          <input type="hidden" name="modus" value="{modus}">
+          <input type="hidden" name="caveID" value="{caveID}">          
+        </form>
+      </tmpl:MINIMAP>
+    </td>
+  
+  </tr>
+</table>
+</div>
+</body>
+</html>

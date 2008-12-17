@@ -1,0 +1,79 @@
+<tmpl:MESSAGE>
+<b>{message}</b>
+</tmpl:MESSAGE>
+
+<tmpl:ADMIN>
+<h2>Sie sind der Clananf&uuml;hrer!</h2>
+<a href="main.php?{modus_name}={modus_value}">Den Clan verwalten.</a>
+
+<tmpl:TRIBEMESSAGEFORM>
+<form name="data" method="get" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}">
+<input type="hidden" name="{action_name}" value="{action_value}">
+
+<table border="0">
+<tr>
+<td align="center"><h3>Nachricht an alle Mitglieder</h3></td>
+</tr>
+<tr>
+  <td align="center">
+    <textarea name="{message_name}" cols="40" rows="8">{message_value}</textarea>
+  </td>
+</tr>
+<tr><td align="center"><input type="submit" value="Absenden"></td></tr>
+</table>
+
+</form>
+</tmpl:TRIBEMESSAGEFORM>
+
+<hr>
+</tmpl:ADMIN>
+
+<tmpl:NORMAL>
+  <h2><a href="main.php?{link_tribe}" title="Mein Clan">{name} [{tag}]</a></h2>
+
+  <tmpl:LEADER>
+    <p>Anf&uuml;hrer: <a href="main.php?{modus_name}={modus_value}&{leaderID_name}={leaderID_value}">{name}</a></p>
+  </tmpl:LEADER>
+  <tmpl:NOLEADER>
+    <p>{message}</p>
+  </tmpl:NOLEADER>
+
+  <tmpl:LEADERDETERMINATION>
+    <p><a href="main.php?{modus_name}={modus_value}">Anf&uuml;hrer bestimmen</a></p>
+  </tmpl:LEADERDETERMINATION>
+
+  <tmpl:GOVERNMENT>
+    <p>Regierung: <a href="http://tntchris.dyndns.org/ugaagga/rules/?modus=governments">{name}</a></p>
+  </tmpl:GOVERNMENT>
+
+  <tmpl:MEMBERS>
+    <p><a href="main.php?{modus_name}={modus_value}&{tag_name}={tag_value}">Mitgliederliste ansehen.</a></p>
+  </tmpl:MEMBERS>
+
+<hr>
+<h2> Clannachrichten </h2>
+<table border="0" width="75%">
+<tmpl:TRIBEMESSAGE>
+<tr>
+<td align="center"><b>Am {time}: {subject}</b></td>
+</tr><tr>
+<td align="center">{message}</td>
+</tr>
+<tr><td><hr></td></tr>
+</tmpl:TRIBEMESSAGE>
+</table>
+<hr>
+
+
+<tmpl:LEAVE>
+
+<form name="data" method="get" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}">
+<input type="hidden" name="{action_name}" value="{action_value}">
+
+<input type="submit" value="Diesen Clan verlassen!">
+</form>
+
+</tmpl:LEAVE>
+</tmpl:NORMAL>

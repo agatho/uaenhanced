@@ -1,0 +1,21 @@
+<tmpl:MESSAGE><h3>{message}</h3></tmpl:MESSAGE>
+<tmpl:AWARD>
+
+<table width="75%" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+    <td colspan="2" bgcolor="#006600"><img src="%gfx%/spacer.gif" width="1" height="1" alt=""></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><strong>{title}</strong></td>
+  </tr>
+  <tr>
+    <td valign="middle" align="center"><img src="http://tntchris.dyndns.org/ugaagga/game/images/awards/{tag}_large.png" alt="{title}" title="{title}" hspace="20" hspace="20" width="128" height="128"></td>
+    <td valign="top">
+      <div align="justify" class="small">{description}</div><br>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#006600"><img src="%gfx%/spacer.gif" width="1" height="1" alt=""></td>
+  </tr>
+</table>
+</tmpl:AWARD>

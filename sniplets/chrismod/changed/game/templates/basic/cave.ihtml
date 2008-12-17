@@ -1,0 +1,206 @@
+<tmpl:MESSAGE>
+<p><b>{message}</b></p>
+</tmpl:MESSAGE>
+
+<tmpl:CAVE>
+<table width="85%" border="0" align="center" cellpadding="1" cellspacing="1" class="cave">
+
+  <tr>
+    <td align="center"><strong>Siedlung  
+      <a href="ugastart.php?caveID={caveID}" target="_top">{name}</a>
+      in ({xCoord}; {yCoord})</strong>
+    </td>
+  </tr>
+
+<tmpl:PROPERTY>
+  <tr>
+    <td align="center"><b>{text}</b>
+    </td>
+  </tr>
+</tmpl:PROPERTY>
+
+  <tmpl:RESOURCES>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Ressourcen:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:RESOURCE>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/resources/{file}_icon.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      </tmpl:RESOURCE>
+    </td>
+  </tr>
+  </tmpl:RESOURCES>
+
+  <tmpl:UNITS>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Einheiten:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:UNIT>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/units/{file}_small.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      </tmpl:UNIT>
+    </td>
+  </tr>
+  </tmpl:UNITS>
+
+  <tmpl:BUILDINGS>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Erweiterung:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:BUILDING>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/buildings/{file}_small.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      </tmpl:BUILDING>
+    </td>
+  </tr>
+  </tmpl:BUILDINGS>
+
+  <tmpl:DEFENSES>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Verteidigungsanlagen:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:DEFENSE>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/externals/{file}_small.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      
+      </tmpl:DEFENSE>
+    </td>
+  </tr>
+  </tmpl:DEFENSES>
+</table>
+</tmpl:CAVE>
+<tmpl:CAVE_ALTERNATE>
+<table width="85%" border="0" align="center" cellpadding="1" cellspacing="1" class="cave_alternate">
+
+  <tr>
+    <td align="center"><strong>Siedlung  
+      <a href="{uri}?caveID={caveID}" target="_top">{name}</a>
+      in ({xCoord}; {yCoord})</strong>
+    </td>
+  </tr>
+
+<tmpl:PROPERTY>
+  <tr>
+    <td align="center"><b>{text}</b>
+    </td>
+  </tr>
+</tmpl:PROPERTY>
+
+
+  <tmpl:RESOURCES>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Ressourcen:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:RESOURCE>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/resources/{file}_icon.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      </tmpl:RESOURCE>
+    </td>
+  </tr>
+  </tmpl:RESOURCES>
+
+  <tmpl:UNITS>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Einheiten:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:UNIT>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/units/{file}_small.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      </tmpl:UNIT>
+    </td>
+  </tr>
+  </tmpl:UNITS>
+
+  <tmpl:BUILDINGS>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Erweiterung:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:BUILDING>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/buildings/{file}_small.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      </tmpl:BUILDING>
+    </td>
+  </tr>
+  </tmpl:BUILDINGS>
+
+  <tmpl:DEFENSES>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th><em>Verteidigungsanlagen:</em></th>
+  </tr>
+
+  <tr>
+    <td>
+      <tmpl:DEFENSE>
+      <table border="0" cellspacing="5" cellpadding="0" style="float: left">
+        <tr><td align="center"><img src="%gfx%/externals/{file}_small.gif" alt="{name}" title="{name}"></td></tr>
+        <tr valign="middle"><td align="center"><strong>{value}</strong></td></tr>
+      </table>
+      
+      </tmpl:DEFENSE>
+    </td>
+  </tr>
+  </tmpl:DEFENSES>
+
+</table>
+</tmpl:CAVE_ALTERNATE>
+
+
+<tmpl:GIVE_UP>
+<table border="0">
+<tr>
+<td>
+<form method="get" action="main.php">
+
+ <tmpl:ARGUMENT>
+  <input type="hidden" name="{arg_name}" value="{arg_value}"> 
+ </tmpl:ARGUMENT>
+
+ <input type="submit" value="{text}">
+</form>
+</td>
+</tr>
+</table>
+</tmpl:GIVE_UP>

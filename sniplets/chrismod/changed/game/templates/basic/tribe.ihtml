@@ -1,0 +1,44 @@
+<tmpl:MESSAGE>
+<b>{message}</b>	
+</tmpl:MESSAGE>
+
+<div align="left">
+<tmpl:FORM>
+<form name="data" method="get" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus_value}"> 
+<input type="hidden" name="{action_name}" value="{action_value}">
+
+<h2>{heading}</h2>
+	
+<table border="0">
+<tmpl:TAG>
+<tr>
+  <td >Clank&uuml;rzel</td>
+  <td >
+    <input name="{fieldName}" value="{value}"  type="text" size="{size}" maxlength="{maxlength}">
+  </td>
+</tr>
+</tmpl:TAG>
+
+<tmpl:PASSWORD>
+<tr>
+  <td >Passwort</td>
+  <td >
+    <input type="text" name="{fieldName}" size="{size}" maxlength="{maxlength}" value="{value}">
+  </td>
+</tr>
+</tmpl:PASSWORD>
+
+
+<tmpl:BUTTON>
+<tr>
+<td colspan=2 align="center">
+<input type="submit" value="{caption}">
+</td>
+</tr>
+</tmpl:BUTTON>
+</table>
+
+</form>
+</tmpl:FORM>
+</div>

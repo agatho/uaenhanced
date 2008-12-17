@@ -1,0 +1,38 @@
+<tmpl:LEADERDETERMINATION>
+
+<tmpl:MESSAGE>
+<b>{message}</b>	
+</tmpl:MESSAGE>
+
+<p><b>Bestimmung des Clananf&uuml;hrers: {name}</b></p>
+
+<h2>Stimmen</h2>
+<p>
+<tmpl:VOTES>
+  {name}: {votes}<br>
+</tmpl:VOTES>
+</p>
+
+<tmpl:CHOICE>
+<form method="get" action="main.php">
+<input type="hidden" name="{modus_name}" value="{modus}">
+<table border="0">
+<tr>
+<td>
+  Ihre Stimme f&uuml;r:
+</td>
+<td>
+  <select name="{dataarray}[{dataentry}]">
+    <tmpl:OPTION>
+    <option value="{playerID}" {selected}>{name}</option>
+    </tmpl:OPTION>
+  </select>
+</td>
+<td>
+  <input type="submit" value="{caption}">
+</td>
+</tr>
+</table>
+</form>
+</tmpl:CHOICE>
+</tmpl:LEADERDETERMINATION>

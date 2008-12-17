@@ -1,0 +1,47 @@
+<tmpl:MESSAGE>
+  <b>{message}</b>
+</tmpl:MESSAGE>
+<br><br>
+
+<table width="450" align="center" cellpadding="5" cellspacing="1" class="message" style="width: 350px">
+<tr><td>
+
+<table border="0" cellpadding="5" cellspacing="4" align="center" class="messagebox" width="445" style="width: 345px">
+  <tmpl:CAVES>
+  <tr class="{alternate}">
+    <td width="400" valign="middle" style="border: 1px solid #336600;">
+
+      <tmpl:CAVELINK>{link}</tmpl:CAVELINK>
+      <nobr>{cavename}</a><small>&nbsp;&nbsp;({caveX}|{caveY})</a></small>{playerName}<small>&nbsp;&nbsp;{tribelink}{tribe}</a></small></nobr>
+
+    </td>
+    <td width="45" align="center" valign="middle" style="border: 1px solid #336600;">
+      &nbsp;&nbsp;<a href="main.php{movementLink}">bewegen!</a></small>
+      &nbsp;&nbsp;<small><a href="main.php?modus={modus_delete}&delete={caveID}">l&ouml;schen</a></small>
+    </td>
+  </tr>
+  </tmpl:CAVES>
+
+  <tmpl:NOCAVES>
+  <tr>
+    <td width="345" align="center" valign="middle" style="border: 1px solid #336600;">
+      <b>{dummy}Keine Eintr&auml;ge</b>
+    </td>
+  </tr>
+  </tmpl:NOCAVES>
+
+</table>
+
+</td></tr></table>
+
+      <form name="book_entry" method="POST"><br>
+      Name:&nbsp;&nbsp;<input type="text" size="30" maxsize="100" name="newEntryName">
+<br><small>oder</small><br>
+      X:&nbsp;&nbsp;<input type="text" size="3" maxsize="3" name="x">
+      Y:&nbsp;&nbsp;<input type="text" size="3" maxsize="3" name="y">
+<br><small>oder</small><br>
+      ID:&nbsp;&nbsp;<input type="text" size="5" maxsize="5" name="id">
+	<br><br>
+      <input type="submit" value="Hinzuf&uuml;gen">
+      </form>
+<br>

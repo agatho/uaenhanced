@@ -1,0 +1,17 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="2" class="ranking_header">
+  <tr> 
+    <td>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2" class="ranking_alt0">
+<form name="newMessage" method="post" action="{action}">
+        <tr> 
+          <td colspan="2" align="center" valign="middle"><br>
+            {success}<br>
+		{backlink}<br>
+          </td>
+        </tr>
+{hidden}
+</form>
+      </table>
+    </td>
+  </tr>
+</table>

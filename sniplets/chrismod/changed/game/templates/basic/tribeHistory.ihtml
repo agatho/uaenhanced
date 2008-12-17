@@ -1,0 +1,22 @@
+<table border="0" align="center" cellpadding="5" cellspacing="0" width="700" style="border: thin groove #000000;">
+    <tr align="center" class="ranking_header">
+      <td colspan="2"><b>Clangeschichte</b></td>
+    </tr>
+    <tmpl:ROWS>
+    <tmpl:ROW>
+    <tr align="center" class="ranking_alt0">
+      <td>{ingameTime}</td>
+      <td align="left">{message}
+      </td>
+    </tr>
+    </tmpl:ROW>
+    
+    <tmpl:ROW_ALTERNATE>
+    <tr align="center" class="ranking_alt1">
+      <td>{ingameTime}</td>
+      <td align="left">{message}
+      </td>
+    </tr>
+    </tmpl:ROW_ALTERNATE>
+    </tmpl:ROWS>
+</table>

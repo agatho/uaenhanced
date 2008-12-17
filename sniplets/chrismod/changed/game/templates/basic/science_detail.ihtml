@@ -1,0 +1,113 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="%gfx%/t_basic/tablet/ol.gif"></td>
+    <td width="100%" background="%gfx%/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td><img src="%gfx%/t_basic/tablet/or.gif"></td>
+  </tr>
+  <tr>
+    <td height="100%" background="%gfx%/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td width="100%" height="100%" background="%gfx%/t_basic/tablet/m.gif">
+  <!-- begin main content -->
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td align="center"><b>{name}</b></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><img src="%gfx%/sciences/{dbFieldName}_large.gif" alt="{name}" title="{name}"></td>
+      <td>
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+          <tr>
+            <td><strong>Beschreibung:</strong><br>{description}</td>
+          </tr>
+          <tr>
+            <td><strong>Maximale Stufe:</strong> {maxlevel} (derzeit: {currentlevel})</td>
+          </tr>
+
+          <tmpl:LEVELS>
+          <tr>
+            <td>
+              <strong>Kosten pro Stufe bei {population} Leuten:</strong><br>
+              <table>
+                <tr>
+                  <td>Stufe</td>
+                  <td>Kosten</td>
+                </tr>
+                <tmpl:LEVEL>
+                <tr>
+                  <td>{level}</td>
+                  <td>
+                    <tmpl:RESOURCECOST>
+                    <img src="%gfx%/resources/{dbFieldName}_icon.gif" width="15" height="15" border="0" alt="{name}" title="{name}">
+                    {value} &nbsp;
+                    </tmpl:RESOURCECOST>
+                    <tmpl:UNITCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:UNITCOST>
+                    <tmpl:BUILDINGCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:BUILDINGCOST>
+                    <tmpl:EXTERNALCOST>
+                      <br>
+                      {name}: {value}
+                    </tmpl:EXTERNALCOST>
+                    <img src="%gfx%/t_basic/clock.gif" width="15" height="15" border="0" alt="Dauer:">{time}
+                  </td>
+                </tr>
+                </tmpl:LEVEL>
+              </table>
+            </td>
+          </tr>
+          </tmpl:LEVELS>
+
+          <tr>
+            <td>
+              <strong>Abhängigkeiten:</strong><br>
+              <table border="0" width="60%" cellpadding="0" cellspacing="4">
+              <tmpl:DEPGROUP>
+                <tr>
+                  <td colspan="2"><br>Die Entdeckung h&auml;ngt von folgenden {name} ab:</td>
+                </tr>
+                <tr>
+                      <td><em>Name</em></td>
+                      <td><em>Stufe</em></td>
+                </tr>
+                <tmpl:DEP>
+                  <tr>
+                    <td>{name}</td>
+                    <td>{level}</td>
+                  </tr>
+                </tmpl:DEP>
+              </tmpl:DEPGROUP>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-- end main content -->
+  </td>
+    <td height="100%" background="%gfx%/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+  </tr>
+  <tr>
+    <td><img src="%gfx%/t_basic/tablet/ul.gif"></td>
+    <td width="100%" background="%gfx%/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="11" height="11"></td>
+    <td><img src="%gfx%/t_basic/tablet/ur.gif"></td>
+  </tr>
+</table>
+<br>
+<a href="http://tntchris.dyndns.org/ugaagga/rules/"><small>weitere Informationen zu allen Entdeckungen</small></a>
+<p>
+<script type="text/javascript">
+
+window.outerHeight = 540;
+window.outerWidth = 800;
+
+document.write("<table width=\"100%\"><tr><td align=\"right\"><a href=\"#\" onclick=\"window.close();\">Fenster schlie&szlig;en<\/a><\/td><\/tr><\/table>");
+
+</script>
+</p>

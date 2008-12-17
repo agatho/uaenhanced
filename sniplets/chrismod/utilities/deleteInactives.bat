@@ -1,0 +1,1 @@
+php deleteInactives.script.php >>logs/inactives.log

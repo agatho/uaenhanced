@@ -1,0 +1,19 @@
+<center>
+  <font class="content">{message}</font>
+  <tmpl:FORM>  
+  <form action="{link}" method="POST">
+    <font class="content">
+      F&uuml;r dich ist im Moment noch der Urlaubsmodus aktiv.
+      Soll der Urlaubsmodus beendet werden?<br><br>
+      Bedenke, wenn du den Urlaubsmodus beendest, kannst du diesen Modus
+      erst nach Ablauf einer Frist wieder aktivieren!<br><br>
+      Login: 
+      <input type="text" name="username" size="10" maxlength="25"><br>
+      Passwort: 
+      <input type="password" name="password" size="10" maxlength="25"><br><br>
+      <input type="submit" value="Urlaub beenden">
+      <tmpl:ARGUMENT><input type="hidden" name="{name}" value="{value}"></tmpl:ARGUMENT>
+    </font>
+  </form>
+  </tmpl:FORM>  
+</center>

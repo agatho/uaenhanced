@@ -1,0 +1,98 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="%gfx%/t_basic/tablet/ol.gif"></td>
+    <td width="100%" background="%gfx%/t_basic/tablet/o.gif"><img src="%gfx%/spacer.gif" width="31" height="31"></td>
+    <td><img src="%gfx%/t_basic/tablet/or.gif"></td>
+  </tr>
+  <tr>
+    <td height="100%" background="%gfx%/t_basic/tablet/l.gif"><img src="%gfx%/spacer.gif" width="27" height="27"></td>
+    <td width="100%" height="100%" background="%gfx%/t_basic/tablet/m.gif" style="padding: 20px">
+
+  <!-- begin main content -->
+  <h2>Aktive Auswirkungen der Zauber</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:WONDER>
+    <tr>
+      <td align="center"><b>{name}</b>, wirkt noch bis: {end}</td>
+    </tr>
+    <tr>
+      <td>
+        <table border="0" cellpadding="0" cellspacing="5">
+        <tmpl:EFFECT>
+	<tr><td>
+	  {name}
+        </td><td>
+	  {value}
+	</td></tr>
+        </tmpl:EFFECT>
+        </table>
+      </td>
+    </tr>
+</tmpl:WONDER>
+  <tmpl:NOWONDER>
+    <tr>
+      <td align="center">{dummy}Derzeit wirken keinerlei Zauber auf Eure Siedlung, H&auml;uptling!</td>
+    </tr>
+  </tmpl:NOWONDER>
+    </table>
+
+    <h2>In der Siedlung wirkende Effekte</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:EFFECT>
+    <tr><td>
+      {name}
+    </td><td>
+      {value}
+    </td></tr>
+</tmpl:EFFECT>
+  <tmpl:NOEFFECT>
+    <tr>
+      <td align="center">{dummy}Derzeit wirken keinerlei Effekte auf Eure Siedlung, H&auml;uptling!</td>
+    </tr>
+  </tmpl:NOEFFECT>
+
+   </table>
+
+<!-- terrain effects -->
+
+<h2>Das Gel&auml;nde hat folgende Auswirkung:</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:TERRAINEFFECT>
+    <tr><td>
+      {name}
+    </td><td>
+      {value}
+    </td></tr>
+</tmpl:TERRAINEFFECT>
+  <tmpl:TERRAINNOEFFECT>
+    <tr>
+      <td align="center">{dummy}Das Gel&auml;nde hat keinerlei Auswirkungen auf Eure Siedlung, H&auml;uptling!</td>
+    </tr>
+  </tmpl:TERRAINNOEFFECT>
+
+   </table>
+
+<!-- end terrain effects -->
+
+  <!-- end main content -->
+  </td>
+    <td height="100%" background="%gfx%/t_basic/tablet/r.gif"><img src="%gfx%/spacer.gif" width="30" height="30"></td>
+  </tr>
+  <tr>
+    <td><img src="%gfx%/t_basic/tablet/ul.gif"></td>
+    <td width="100%" background="%gfx%/t_basic/tablet/u.gif"><img src="%gfx%/spacer.gif" width="32" height="32"></td>
+    <td><img src="%gfx%/t_basic/tablet/ur.gif"></td>
+  </tr>
+</table>
+<br>
+<a href="http://tntchris.dyndns.org/ugaagga/rules/"><small>weitere Informationen zu allen Zaubern</small></a>
+<p>
+<script type="text/javascript">
+
+window.outerHeight = 540;
+window.outerWidth = 800;
+
+document.write("<table width=\"100%\"><tr><td align=\"right\"><a href=\"#\" onclick=\"window.close();\">Fenster schlie&szlig;en<\/a><\/td><\/tr><\/table>");
+
+</script>
+</p>

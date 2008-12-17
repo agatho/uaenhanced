@@ -1,0 +1,38 @@
+<tmpl:MESSAGE>
+  <b>{message}</b>
+</tmpl:MESSAGE>
+<br><br>
+
+<table width="350" align="center" cellpadding="5" cellspacing="1" class="message" style="width: 350px">
+<tr><td>
+
+<table border="0" cellpadding="5" cellspacing="4" align="center" class="messagebox" width="345" style="width: 345px">
+  <tmpl:PLAYER>
+  <tr class="{alternate}">
+    <td width="300" valign="middle" style="border: 1px solid #336600;">
+      <tmpl:LINK>{link}</tmpl:LINK>
+      {name}</a><small>&nbsp;&nbsp;{tribelink}{tribe}</a></small>
+    </td>
+    <td width="45" align="center" valign="middle" style="border: 1px solid #336600;">
+      &nbsp;&nbsp;<small><a href="main.php?modus={modus_delete}&delete={playerID}">l&ouml;schen</a></small>
+    </td>
+  </tr>
+  </tmpl:PLAYER>
+
+  <tmpl:NOPLAYER>
+  <tr>
+    <td width="345" align="center" valign="middle" style="border: 1px solid #336600;">
+      <b>{dummy}Keine Eintr&auml;ge</b>
+    </td>
+  </tr>
+  </tmpl:NOPLAYER>
+
+</table>
+
+</td></tr></table>
+
+      <form name="book_entry" method="POST"><br>
+      <input type="text" size="30" maxsize="100" name="newEntryName">
+      <input type="submit" value="Hinzuf&uuml;gen">
+      </form>
+<br>

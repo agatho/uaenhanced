@@ -1,0 +1,434 @@
+<script type="text/javascript">
+<!--
+
+var flag = false;
+
+var uamoves = new Array();
+var units = new Array();
+<tmpl:UNITPROPS>units[{unitID}] = {foodCost:{foodCost}, speedFactor:{speedFactor}, resourceLoad:[{resourceLoad}]};</tmpl:UNITPROPS>
+var domcomp = document.childNodes ? true : false;
+
+function getMovementID(){
+  var r = document.unitMoving.movementID;
+  for (var i=0; i<r.length; i++) if (!r[i].checked) continue; else return r[i].value;
+  return null;
+}
+
+function unitSelect(){
+  if(document.unitMoving.unitcheck.checked == true) unitSelectAll();
+    else unitDeselectAll();
+}
+
+function unitSelectAll(){
+  var i;
+  for (i = 0; i < {unitAnzahl}*2; i++){
+    document.unitMoving.elements[i].value = document.unitMoving.elements[i+1].value;
+    i++;
+  }
+  document.unitMoving.unitcheck.checked = 1;
+}
+function unitDeselectAll(){
+  var i;
+  for (i = 0; i < {unitAnzahl}*2; i++){
+    document.unitMoving.elements[i].value = "";
+    i++;
+  }
+  document.unitMoving.unitcheck.checked = 0;
+}
+function loadCheck(){
+  if(document.unitMoving.loadcheck.checked == true) loadFull();
+    else resetLoad();
+}
+function getMaxLoad2(resource){
+  var i, j, amount, resource;
+  var maxLoad;
+    maxLoad = 0;
+    for (j = 0; j < units.length; ++j){
+      if (typeof(units[j]) == "undefined") continue;
+      amount = document.getElementById("unit[" + j + "]");
+      if (!amount) continue;
+      else amount = amount.value;
+      if (amount != "" && Number(amount) > 0)
+        maxLoad += amount * units[j]['resourceLoad'][resource];
+    }
+return(maxLoad);
+}
+function loadFull(){
+  var i, maxLoad, string, resourceMax;
+  for (i=0;i<7;i++){
+    maxLoad = getMaxLoad2(i);
+    string = "document.unitMoving.rohstoff"+i+".value";
+    resourceMax = eval(string);
+    if (resourceMax > maxLoad) document.getElementById("rohstoff[" + i + "]").value = maxLoad;
+      else document.getElementById("rohstoff[" + i + "]").value = resourceMax;
+  }
+}
+function resetLoad(){
+  var i, maxLoad, string, resourceMax;
+  for (i=0;i<7;i++){
+    document.getElementById("rohstoff[" + i + "]").value = 0;
+  }
+}
+
+
+function dur(){
+
+  var movement_speed_factor = {movement_speed_factor}; // ADDED by chris--- for movement_speed_factor
+
+  var MINUTESPERCAVE = {speed};
+  var FOODPERCAVE    = {movementcostconstant};
+
+  var xCoord = {dim_x} - Math.abs(Math.abs(parseInt(document.unitMoving.targetXCoord.value ) - {currentX}) - {dim_x});
+  var yCoord = {dim_y} - Math.abs(Math.abs(parseInt(document.unitMoving.targetYCoord.value ) - {currentY}) - {dim_y});
+  var movementID = parseInt(getMovementID());
+  if (isNaN(movementID) || typeof(uamoves[movementID]) == 'undefined') return;
+
+  var i, amount;
+
+  var maxSpeedFactor = 0;
+  for (i = 0; i < units.length; ++i){
+    amount = document.getElementById("unit[" + i + "]");
+    if (!amount) continue;
+    else amount = amount.value;
+    if (amount != "" && Number(amount) > 0)
+      maxSpeedFactor = Math.max(maxSpeedFactor, units[i]['speedFactor']);
+  }
+
+  // Entfernung x Dauer pro Höhle x größter Geschwindigkeitsfaktor x Bewegungsfaktor
+  var duration = Math.ceil(Math.sqrt(xCoord*xCoord + yCoord*yCoord) *
+                 MINUTESPERCAVE * maxSpeedFactor * uamoves[movementID]['speedfactor']
+			* (1+movement_speed_factor) // ADDED by chris--- for movement_speed_factor
+			);
+
+  if (isNaN(duration)){
+    if (domcomp) document.getElementById("duration").innerHTML = "- Minuten";
+    else document.getElementById("duration").value = "- Minuten";
+  } else {
+    if (domcomp) document.getElementById("duration").innerHTML = duration + " Minuten";
+    else document.getElementById("duration").value = duration + " Minuten";
+  }
+
+  var unitRations = 0;
+  for (i = 0; i < units.length; ++i){
+    amount = document.getElementById("unit[" + i + "]");
+    if (!amount) continue;
+    else amount = amount.value;
+    if (amount != "" && Number(amount) > 0)
+      unitRations += amount * units[i]['foodCost'];
+  }
+
+  // Dauer x Rationen x Größe einer Ration x Bewegungsfaktor
+  var food = Math.ceil(duration * unitRations * FOODPERCAVE * uamoves[movementID]['foodfactor']);
+
+  if (isNaN(food)){
+    if (domcomp) document.getElementById("food").innerHTML = "- Nahrung";
+    else document.getElementById("food").value = "- Nahrung";
+  } else {
+    if (domcomp) document.getElementById("food").innerHTML = food + " Nahrung";
+    else document.getElementById("food").value = food + " Nahrung";
+  }
+}
+
+function getMaxLoad(){
+
+  if(document.unitMoving.loadcheck.checked == true) loadFull();
+
+  var i, j, amount;
+  var maxLoad;
+  for (i = 0; i < {resourceTypes}; ++i){
+    maxLoad = 0;
+    for (j = 0; j < units.length; ++j){
+      if (typeof(units[j]) == "undefined") continue;
+      amount = document.getElementById("unit[" + j + "]");
+      if (!amount) continue;
+      else amount = amount.value;
+      if (amount != "" && Number(amount) > 0)
+        maxLoad += amount * units[j]['resourceLoad'][i];
+    }
+    if (domcomp) document.getElementById("resource" + i).innerHTML = maxLoad;
+    else document.getElementById("resource" + i).value = maxLoad;
+  }
+}
+
+
+var caveBookmarks = new Array();
+
+function disable_to(){
+  var r = document.unitMoving.targetCaveID;
+//  var flag = false;
+flag = false;
+  for (var i = 0; i < r.length; i++)
+    if (r[i].selected && r[i].value != -1){
+      flag = true; break;
+    }
+//  document.unitMoving.targetXCoord.disabled =
+//    document.unitMoving.targetYCoord.disabled =
+//    document.unitMoving.targetCaveName.disabled = flag;
+  if (flag){
+    document.unitMoving.targetXCoord.value = caveBookmarks[r[i].value][0];
+    document.unitMoving.targetYCoord.value = caveBookmarks[r[i].value][1];
+    document.unitMoving.targetCaveName.value = caveBookmarks[r[i].value][2];
+  } else {
+    document.unitMoving.targetXCoord.value =
+      document.unitMoving.targetYCoord.value =
+      document.unitMoving.targetCaveName.value = '';
+  }
+  dur();
+}
+
+
+function check() {
+
+if (flag) {
+    document.unitMoving.targetXCoord.value =
+      document.unitMoving.targetYCoord.value =
+      document.unitMoving.targetCaveName.value = '';
+document.unitMoving.targetCaveID.value = -1;
+flag = false;
+}
+
+dur();
+
+}
+
+//-->
+</script>
+<tmpl:MESSAGE><h3>{msg}</h3></tmpl:MESSAGE>
+<div align="left">
+
+  <form name="unitMoving" method="POST">
+
+  <p><strong>Trupp zusammenstellen.</strong></p>
+
+  <table width="100%" border="1" cellpadding="1" cellspacing="1">
+    <tr align="center">
+      <td colspan="3">&nbsp;</td>
+      <td colspan="{resourceTypes}" align="center">Transportkapazit&auml;t</td>
+    </tr>
+    <tr>
+      <td align="left">Einheit</td>
+      <td align="center">Menge</td>
+      <td align="center">Max</td>
+      <tmpl:RESOURCE>
+        <td align="center"><img title="{name}" src="%gfx%/resources/{dbFieldName}_icon.gif" alt="{name}"></td>
+      </tmpl:RESOURCE>
+    </tr>
+
+    <tmpl:SELECTWARRIOR>
+      <tr align="center">
+        <td align="left">
+          <a href="main.php?modus={modus}&unitID={unitID}" target="_blank">{name}</a>
+        </td>
+        <td>
+          <input name="unit[{warriorID}]" id="unit[{warriorID}]" type="text" size="6" maxlength="7" onFocus="dur();getMaxLoad();" onClick="dur();getMaxLoad();" onChange="dur();getMaxLoad();" onKeyup="dur();getMaxLoad();">
+          <input name="unitMax[{warriorID}]" id="unitMax[{warriorID}]" type="hidden" value="{maxWarriorAnzahl}">
+        </td>
+        <td>
+          {maxWarriorAnzahl}
+        </td>
+        <tmpl:ENCUMBRANCE><td>{load}</td></tmpl:ENCUMBRANCE>
+      </tr>
+    </tmpl:SELECTWARRIOR>
+
+    <tr align="center">
+      <td align="left">Gesamt:</td>
+      <td align="left" colspan="2">&nbsp;
+        <script language="JavaScript" type="text/javascript">
+        <!--
+        document.write("<input type=\"checkbox\" name=\"unitcheck\" id=\"unitcheck\" onClick=\"unitSelect();dur();getMaxLoad(); return\">&nbsp;alle");
+        //-->
+        </script>
+      </td>
+      <tmpl:TOTAL><td><script type="text/javascript">if (domcomp) document.write("<div id='resource{resourceID}'>&nbsp;<\/div>");else document.write("<input name='resource{resourceID}'>");</script></td></tmpl:TOTAL>
+    </tr>
+
+  </table>
+
+  <table width="100%" cellpadding="10" cellspacing="0">
+    <tr>
+
+      <td rowspan="2" valign="top">
+        <fieldset>
+          <legend>Ressourcen mitnehmen:</legend>
+          <table cellpadding="2" cellspacing="1">
+            <tmpl:RESOURCE_LUGGAGE>
+            <tr>
+              <td><img width="20" height="20" src="%gfx%/resources/{dbFieldName}_icon.gif" alt="{name}" title="{name}"></td>
+              <td><input name="rohstoff[{resourceID}]" id="rohstoff[{resourceID}]" type="text" size="5" maxlength="5">
+              <input type="hidden" name="rohstoff{resourceID}" value="{currentAmount}"></td>
+              <td>({currentAmount})</td>
+            </tr>
+            </tmpl:RESOURCE_LUGGAGE>
+<tr>
+  <td colspan="3">&nbsp;
+        <script language="JavaScript" type="text/javascript">
+        <!--
+        document.write("<input type=\"checkbox\" name=\"loadcheck\" id=\"loadcheck\" onClick=\"loadCheck(); return\">&nbsp;voll beladen");
+        //-->
+        </script>
+  </td>
+</tr>
+          </table>
+        </fieldset>
+
+        <tmpl:ARTEFACTS>
+        <br>
+        <fieldset>
+          <legend>Ein Artefakt mitnehmen:</legend>
+          <tmpl:ARTEFACT><label><input type="radio" name="myartefacts" value="{artefactID}">{name}</label><br></tmpl:ARTEFACT>
+          <label><input name="myartefacts" type="radio" value="-1" checked>keines</label>
+        </fieldset>
+        </tmpl:ARTEFACTS>
+      </td>
+
+      <td valign="top">
+        <fieldset>
+          <legend>Bewegungsart:</legend>
+            <label><input type="radio" name="movementID" value="0" checked><em>W&auml;hle eine Bewegung</em></label><br>
+            <tmpl:SELECTACTION>
+            <label><input type="radio" name="movementID" value="{id}" onFocus="dur();" onClick="dur();" onChange="dur();" onKeydown="dur();" onKeyup="dur();">{description}<script type="text/javascript">uamoves[{id}] = {speedfactor:{speedfactor}, foodfactor:{foodfactor}};</script></label><br>
+            </tmpl:SELECTACTION>
+        </fieldset>
+      </td>
+
+    </tr>
+    <tr>
+      <td valign="top">
+        <fieldset>
+          <legend>Ziel:</legend>
+          <p>
+            x: <input name="targetXCoord" value="{targetXCoord}" type="text" size="4" maxlength="4" onFocus="check();" onClick="check();" onChange="check();" onKeydown="check();" onKeyup="check();">
+            y: <input name="targetYCoord" value="{targetYCoord}" type="text" size="4" maxlength="4" onFocus="check();" onClick="check();" onChange="check();" onKeydown="check();" onKeyup="check();">
+            oder Siedlungsnname: <input name="targetCaveName" value="{targetCaveName}" type="text" size="20" maxlength="50" onFocus="check();" onClick="check();" onChange="check();" onKeydown="check();" onKeyup="check();">
+
+		<br><br>
+		<a href="main.php?modus={show_book_modus}">Siedlungsliste</a>:&nbsp;&nbsp;
+		<select name="targetCaveID" id="targetCaveID" onChange="disable_to(); return true;">
+            	<option value="-1">Bitte w&auml;hlen:</option>
+            	<tmpl:BOOKENTRY><option value="{book_id}">{book_entry} ({book_x}|{book_y})</option></tmpl:BOOKENTRY>
+            </select>
+
+            <script type="text/javascript">
+              <!--
+		  <tmpl:BOOKENTRYJS>caveBookmarks[{book_id}] = [{book_x},{book_y},"{book_entry}"];</tmpl:BOOKENTRYJS>
+              //-->
+            </script>
+          </p>
+
+          <script type="text/javascript">
+            if (domcomp) document.write("<table><tr><td>Bewegungsdauer:<\/td><td><div id='duration'>&nbsp;<\/div><\/td><\/tr>");
+            else document.write("<table><tr><td>Bewegungsdauer:<\/td><td><input name='duration' size='4'><\/td><\/tr>");
+          </script>
+          <script type="text/javascript">
+            if (domcomp) document.write("<tr><td>Nahrungsverbrauch:<\/td><td><div id='food'><\/div><\/td><\/tr><\/table>");
+            else document.write("<tr><td>Nahrungsverbrauch:<\/td><td><input name='food' size='4'><\/td><\/tr><\/table>");
+          </script>
+        </fieldset>
+      </td>
+
+    </tr>
+  </table>
+
+  <tmpl:PARAMS>
+    <input type="hidden" name="{name}" value="{value}">
+  </tmpl:PARAMS>
+
+  <p align="right"><input type="submit" value="und los geht's. UGH?"></p>
+
+  <tmpl:MOVEMENT>
+  <hr>
+  <div align="center">laufende Bewegungen eigener Verb&auml;nde</strong></div>
+  <br>
+  <table border="1" align="center" cellpadding="3" cellspacing="0">
+    <tr>
+      <th align="center">Bewegungsart</th>
+      <th align="center">Zeitraum</th>
+      <th align="center">Zielsiedlung</th>
+      <th align="center">Einh./Ress.</th>
+      <th align="center">Aktion</th>
+    </tr>
+    <tmpl:MOVE>
+    <tr>
+      <td align="center">{movementID_description}</td>
+      <td align="center">
+        Startzeitpunkt: {event_start}<br>
+        Endzeitpunkt: {event_end}
+      </td>
+      <td align="center">{target_player_name} - {target_player_tribe} aus {target_cave_name}</td>
+      <td align="center">
+        <table>
+          <tmpl:UNITS>
+          <tr>
+            <td>{name}:</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:UNITS>
+          <tmpl:RESOURCES>
+          <tr>
+            <td>{name}</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:RESOURCES>
+          <tmpl:ARTEFACT>
+          <tr>
+            <td><img title="{name}" src="images/artefacts/{resref}.gif" width="30" height="30" alt="{name}"></td>
+            <td align="right">{name}</td>
+          </tr>
+          </tmpl:ARTEFACT>
+        </table>
+      </td>
+      <td align="center">
+        &nbsp;<tmpl:CANCEL><a href="main.php?modus={modus}&eventID={eventID}">Einheiten umkehren</a></tmpl:CANCEL>
+      </td>
+    </tr>
+    </tmpl:MOVE>
+  </table>
+  </tmpl:MOVEMENT>
+  <br><br>
+  <tmpl:OPPMOVEMENT>
+  <div align="center">ankommende Verb&auml;nde</div>
+  <br>
+  <table border="1" align="center" cellpadding="3" cellspacing="0">
+    <tr>
+      <th align="center">Bewegungsart</th>
+      <th align="center">Zeitraum</th>
+      <th align="center">Herkunftssiedlung</th>
+      <th align="center">Einh./Ress.</th>
+    </tr>
+    <tmpl:MOVE>
+    <tr>
+      <td align="center">{movementID_description}</td>
+      <td align="center">
+        Startzeitpunkt: {event_start}<br>
+        Endzeitpunkt: {event_end}
+      </td>
+
+      <td align="center">{source_player_name} - {source_player_tribe} aus {source_cave_name}</td>
+      <td align="center">
+        <table>
+          <tmpl:UNITS>
+          <tr>
+            <td>{name}:</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:UNITS>
+          <tmpl:RESOURCES>
+          <tr>
+            <td>{name}</td>
+            <td align="right">{value}</td>
+          </tr>
+          </tmpl:RESOURCES>
+          <tmpl:ARTEFACT>
+          <tr>
+            <td><img title="{name}" src="images/artefacts/{resref}.gif" width="30" height="30" alt="{name}"></td>
+            <td align="right">{name}</td>
+          </tr>
+          </tmpl:ARTEFACT>
+        </table>
+      </td>
+    </tr>
+    </tmpl:MOVE>
+  </table>
+  </tmpl:OPPMOVEMENT>
+  </form>
+</div>
