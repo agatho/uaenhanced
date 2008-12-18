@@ -1,0 +1,52 @@
+1.7:
+- contexts may now be assigned a value like if they were tags
+- removed "Tag doesn't exist" notice from tmpl_set()
+- tmpl_set_global() now only works inside of iterated contexts
+- tmpl_get() now doesn't iterate contexts
+- tmpl_context() now doesn't iterate contexts
+- fixed tmpl_unset() crash bug
+
+1.6:
+- fixed duplicate context crash bug
+- made some unsignificant cosmetic changes to the source code
+
+1.5:
+- made the module PHP-4.3.0 compatible (keeping backward compatibility)
+- fixing a strange warning bug appeared in highly loaded environments. fixed?
+- got rid of error message when opening an empty template
+- now releasing source code in UNIX CR/LF format
+
+1.4:
+- fixed a bug in php_tmpl_pre_parse() that was skiping the last found tag/context part
+- fixed a bug crashing PHP when parsing tags with multiple instances
+
+1.3:
+- fixed one extra iteration created by tmpl_set() with an indexed array in parameter
+- the second parameter in tmpl_iterate() is optional now
+- when template's handle is passed to tmpl_set(), its current context is parsed instead of the root "/"
+- fixed skiping of duplicated tags when parsing
+
+1.2:
+- added tmpl_unset(int id, string path) function
+- fixed a "Multiple instances of a tag in a context" bug
+- fixed tmpl_set() bug when accepting Template's handle in parameter
+- changed processing of configuration parameters
+- added INI file support for configuration parameters
+- added support for Macromedia Dreamweaver templates (without context name in a closing tag)
+
+1.1:
+- added tmpl_set_global() function
+- gave more flexibility to the <template> configuration tag
+- fixed some bugs that were causing crashes
+
+1.0:
+- rewritten from scratch with great optimizations on speed
+- now using more advanced text search algorythms what makes it to be the one of the fastest template engines on the web
+- added a configuration tag support. now every template may tell to the engine what template tag and context names it is using
+- added tmpl_type_of() function
+- added tmpl_get() function
+- added tmpl_structure() function
+
+
+0.2:
+- Initial release

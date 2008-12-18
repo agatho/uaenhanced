@@ -1,0 +1,26 @@
+internal extension:
+
+	cd <PHP_dir>/ext
+	tar -zxf /path/to/templates.tar.gz
+	cd ..
+	./buildconf
+	./configure --enable-templates [rest_of_parameters]
+	make
+	make install
+
+
+external extension: /* you should have PHP installed */
+
+	tar -zxf templates.tar.gz
+	cd temlpates
+	phpize
+	./configure --enable-templates=shared
+	make
+
+	cd modules
+	ls -la templates.so
+
+
+FreeBSD:
+
+	look for documentation at http://sourceforge.net/projects/php-templates/

@@ -1,0 +1,12 @@
+.deps
+Makefile
+*.lo
+*.la
+*.lib
+.libs
+libs.mk
+*.dep
+*.mak
+*.ncb
+*.opt
+*.plg

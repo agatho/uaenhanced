@@ -1,0 +1,8 @@
+# $Id: Makefile.in,v 1.4 2002/04/12 10:23:23 su1d Exp $
+
+LTLIBRARY_NAME        = libtemplates.la
+LTLIBRARY_SOURCES     = templates.c search.c tmpl_lib.c
+LTLIBRARY_SHARED_NAME = templates.la
+LTLIBRARY_SHARED_LIBADD  = $(TEMPLATES_SHARED_LIBADD)
+
+include $(top_srcdir)/build/dynlib.mk
