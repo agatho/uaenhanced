@@ -232,6 +232,14 @@
       <Requirement id="agriculture" min="10"/>
     </wonder>
   </wonders>
+  <Weathers>
+    <Weather>
+         <Name>Wetter1</Name>
+         <we_impacts>
+           <we_impact delay="0" duration="3600" steal="0"></we_impact>
+         </we_impacts>
+    </Weather>
+  </Weathers>
   <Terrains>
     <Terrain id="0">
       <Name>Ebene</Name>
