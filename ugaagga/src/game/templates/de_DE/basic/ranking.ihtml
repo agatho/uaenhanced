@@ -39,18 +39,28 @@ function swapImage(){
 //-->
 </script>
 <p><a href="main.php?modus={modus}&caveID={caveID}">Zum Stammesranking</a></p>
+<p><small><b>letztes Update:</b> {update}</small></p>
 <table border="0" cellspacing="10" cellpadding="0" width="95%">
   <tr>
     <td rowspan="3">
     <table border="0" align="center" cellpadding="5" cellspacing="0" width="95%" style="border: thin groove #000000;">
         <tr align="center" bgcolor="#99CCCC">
-          <td>Rank</td>
+ <!--         <td>Rank</td>
           <td>Name</td>
           <td>&nbsp;</td>
           <td>Punktzahl</td>
           <td>&nbsp;</td>
           <td>Stamm</td>
           <td>H&ouml;hlen</td>
+          <td>&nbsp;</td> -->
+		  <td><a href="main.php{link_rank}">Rank</a></td>
+          <td><a href="main.php{link_name}">Name</a></td>
+          <td>&nbsp;</td>
+          <td><a href="main.php{link_points}">Punktzahl</a></td>
+          <td><a href="main.php{link_fame}">Ruhm</a></td>
+          <td>&nbsp;</td>
+          <td><a href="main.php{link_tribe}">Clan</a></td>
+          <td><a href="main.php{link_caves}">Siedlungen</a></td>
           <td>&nbsp;</td>
         </tr>
         <tmpl:ROWS>
@@ -124,3 +134,27 @@ function swapImage(){
 <tmpl:RELIGIOUS_DISTRIBUTION>
 <p><img src="images/religious_distribution/religious_distribution.php?ugapercent={ugapercent}&aggapercent={aggapercent}" title="Uga: {ugapercent}% Agga: {aggapercent}%"></p>
 </tmpl:RELIGIOUS_DISTRIBUTION>
+<!-- ranking points -->
+<br />
+    <table border="0" align="center" cellpadding="5" cellspacing="0" width="400" style="border: thin groove #000000;">
+        <tr class="ranking_header">
+          <td align="center" colspan="2">eigene Punkteverteilung</td>
+        </tr>
+        <tr class="ranking_alt0">
+          <td align="left">Resourcen:</td>
+          <td align="right">{points_resources}</td>
+        </tr>
+        <tr class="ranking_alt1">
+          <td align="left">Geb&auml;ude:</td>
+          <td align="right">{points_buildings}</td>
+        </tr>
+        <tr class="ranking_alt0">
+          <td align="left">Einheiten:</td>
+          <td align="right">{points_military}</td>
+        </tr>
+        <tr class="ranking_alt1">
+          <td align="left">Forschung:</td>
+          <td align="right">{points_sciences}</td>
+        </tr>
+    </table>
+<!-- end ranking points -->

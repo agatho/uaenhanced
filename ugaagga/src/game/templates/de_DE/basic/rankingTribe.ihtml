@@ -39,17 +39,27 @@ function swapImage(){
 //-->
 </script>
 <p><a href="main.php?modus={modus}&caveID={caveID}">Zum Spielerranking</a></p>
+<p><small><b>letztes Update:</b> {update}</small></p>
 <table border="0" cellspacing="10" cellpadding="0" width="95%">
   <tr>
     <td rowspan="3">
     <table border="0" align="center" cellpadding="5" cellspacing="0" width="95%" style="border: thin groove #000000;">
         <tr align="center" bgcolor="#99CCCC">
-          <td>Rank</td>
+         <!-- <td>Rank</td>
           <td><div align="left">Name</div></td>
           <td><div align="right">Macht</div></td>
           <td>Mitglieder</td>
           <td>Durchschnitt</td>
           <td>H&ouml;hlen</td>
+          <td>&nbsp;</td> -->
+		  <td><a href="main.php{link_rank}">Rank</a></td>
+          <td><a href="main.php{link_tribe}">Name</a></td>
+          <td><a href="main.php{link_points}">Punktzahl</a></td>
+          <td><a href="main.php{link_fame}">Ruhm</a></td>
+          <td><a href="main.php{link_points_rank}">Macht</a></td>
+          <td><a href="main.php{link_members}">Mitglieder</a></td>
+          <td><a href="main.php{link_playerAverage}">Durchschnitt</a></td>
+          <td><a href="main.php{link_caves}">Siedlungen</a></td>
           <td>&nbsp;</td>
         </tr>
         <tmpl:ROWS>

@@ -836,6 +836,23 @@ CREATE TABLE `StartValue` (
 # --------------------------------------------------------
 
 #
+# Tabellenstruktur f¸r Tabelle `stats`
+#
+
+CREATE TABLE `stats` (
+  `runden_start` varchar(14) NOT NULL default '',
+  `kampfberichte` int(11) NOT NULL default '0',
+  `spioberichte` int(11) NOT NULL default '0',
+  `wunderberichte` int(11) NOT NULL default '0',
+  `takeover_success` int(11) NOT NULL default '0',
+  `ticker_downtime` varchar(14) NOT NULL default '0',
+  `max_active` int(11) unsigned NOT NULL default '0',
+  `max_date` varchar(14) NOT NULL default '',
+  `ranking_date` varchar(14) NOT NULL default ''
+) TYPE=MyISAM;
+
+# --------------------------------------------------------
+#
 # Tabellenstruktur fÅr Tabelle `Suggestions`
 #
 

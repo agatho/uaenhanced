@@ -118,7 +118,7 @@ function rankingTribe_checkOffset($offset){
 }
 
 
-function ranking_getRowsByOffset($caveID, $offset){
+function ranking_getRowsByOffset($caveID, $offset, $order = "rank", $direct = "ASC"){
 
   global $db;
 
@@ -127,7 +127,8 @@ function ranking_getRowsByOffset($caveID, $offset){
            "(IF(ISNULL(t.leaderID),0,r.playerID = t.leaderID)) AS is_leader ".
            "FROM Ranking r LEFT JOIN Player p ON r.playerID = p.playerID ".
            "LEFT JOIN Tribe t ON p.tribe = t.tag ".
-           "ORDER BY rank ASC LIMIT " . ($offset - 1) . ", " . RANKING_ROWS;
+           //"ORDER BY rank ASC LIMIT " . ($offset - 1) . ", " . RANKING_ROWS; // chris--- Change for rank sorting
+		   "ORDER BY ".$order." ".$direct." LIMIT " . ($offset - 1) . ", " . RANKING_ROWS;
 
   $db_result = $db->query($query);
   if (!$db_result){
@@ -144,7 +145,12 @@ function ranking_getRowsByOffset($caveID, $offset){
     }
     $row['link']      = "?modus=" . PLAYER_DETAIL . "&detailID=" . $row['link'];
     $row['tribelink'] = "?modus=" . TRIBE_DETAIL  . "&tribe="    . urlencode(unhtmlentities($row['tribe']));
-    $result[] = $row;
+    
+	// ADDED by chris--- for religion
+    if ($row['religion'] == "agga") $row['religion'] = "Dunkelheit";
+    if ($row['religion'] == "uga") $row['religion'] = "Licht";
+	
+	$result[] = $row;
   }
 
   return $result;
@@ -156,7 +162,8 @@ function rankingTribe_getRowsByOffset($caveID, $offset){
 
   $query = "SELECT r.*, r.playerAverage AS average, t.awards ".
            "FROM RankingTribe r LEFT JOIN Tribe t ON r.tribe = t.tag ".
-           "ORDER BY r.rank ASC LIMIT " . ($offset - 1) . ", " . RANKING_ROWS;
+           //"ORDER BY r.rank ASC LIMIT " . ($offset - 1) . ", " . RANKING_ROWS; // chris--- rank sorting
+		   "ORDER BY r.".$order." ".$direct." LIMIT " . ($offset - 1) . ", " . RANKING_ROWS;
 
   $db_result = $db->query($query);
   if (!$db_result){
@@ -195,4 +202,55 @@ function ranking_getReligiousDistribution(){
   }
   return $result;
 }
+
+// ADDED by chris--- for ranking update time
+
+function getUpdateTime() {
+
+  global $db;
+
+  $query = "SELECT ranking_date FROM stats";
+
+  $db_result = $db->query($query);
+  if (!$db_result){
+    echo "Database error!";
+    return;
+  }
+
+$row = $db_result->nextrow(MYSQL_ASSOC);
+$upd_date = $row[ranking_date];
+
+    $t = $upd_date;    
+    $time = $t{6}.$t{7}  .".".
+            $t{4}.$t{5}  .".".
+            $t{0}.$t{1}  .
+            $t{2}.$t{3}  ." - ".
+            $t{8}.$t{9}  .":".
+            $t{10}.$t{11}.":".
+            $t{12}.$t{13};
+return $time;
+}
+// --------------------------------------------------------------
+
+
+// ADDED by chris--- for ranking points
+
+function getRankingPoints($playerID) {
+
+  global $db;
+
+  $query = "SELECT military_rank, resources_rank, buildings_rank, sciences_rank FROM Ranking WHERE playerID = ". $playerID;
+
+  $db_result = $db->query($query);
+  if (!$db_result){
+    echo "Database error!";
+    return;
+  }
+
+$row = $db_result->nextrow(MYSQL_ASSOC);
+
+return $row;
+
+}
+// --------------------------------------------------------------
 ?>

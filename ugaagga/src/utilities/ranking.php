@@ -542,4 +542,14 @@ while($row = $db_rank->nextrow()){
     return -16;
   }
 }
+// ADDED by chris--- for stats, 20.8.2004
+// ----------------------------------------------------------------------------
+// INSERTING update time to stats table
+
+$query = "UPDATE stats SET ranking_date = '".date("YmdHis",time())."'";
+
+if (!$db->query($query)) {
+  echo "Fehler beim eintragen der Update-Zeit in die Stats-Tabelle!\r\n";
+  return -100;
+}
 ?>
