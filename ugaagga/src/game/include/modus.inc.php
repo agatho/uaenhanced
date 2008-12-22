@@ -69,6 +69,7 @@ DEFINE('WEATHER_REPORT',              'weather_report');
 DEFINE('WONDER',                      'wonder');
 DEFINE('WONDER_DETAIL',               'wonder_detail');
 DEFINE('DYK',                         'doYouKnow');
+DEFINE('STATS',                       'stats');
 
 $require_files = array();
 
@@ -126,4 +127,5 @@ $require_files[WEATHER_REPORT]              = array('weather.html.php', 'wonder.
 $require_files[WONDER]                      = array('formula_parser.inc.php', 'wonder.rules.php', 'wonder.html.php', 'wonder.inc.php', 'message.inc.php');
 $require_files[WONDER_DETAIL]               = array('formula_parser.inc.php', 'wonder.rules.php', 'wonderDetail.html.php', 'wonder.inc.php');
 $require_files[DYK]                         = array('doYouKnow.html.php');
+$require_files[STATS]                       = array('stats.inc.php','stats.html.php','formula_parser.inc.php');
 ?>

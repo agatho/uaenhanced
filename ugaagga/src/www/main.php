@@ -411,6 +411,10 @@ switch ($modus){
     $pagetitle = _("Infos rund um Uga-Agga");
     $content = doYouKnow_getContent();
   break;
+  
+  case STATS:
+    $pagetitel = _("Statistiken");
+	$content = stats_stats($params->SESSION->player->playerID);
 
   case LOGOUT:
     session_destroy();

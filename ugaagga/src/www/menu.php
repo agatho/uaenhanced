@@ -134,6 +134,7 @@ class MenuModel {
     $this->icons[] = new InGameMenuItem(DONATIONS, _('Spenden'), 'Index');
     $this->icons[] = new OffGameMenuItem(HELP_PATH, 'help', _('Hilfe'));
     $this->icons[] = new InGameMenuItem(DYK, _('Infos Rund um Uga-Agga'));
+	$this->icons[] = new InGameMenuItem(STATS, _('Statistiken'));
   }
 
   function initItems(){

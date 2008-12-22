@@ -16,6 +16,7 @@ entstehen können. Ich empfehle vor dem Einsatz ein Backup durchzuführen!
 Sortierung der Rankings (implemented)
 Anzeige der Einzelpunkteverteilung im Ranking (für jeweiligen Spieler) (implemented)
 Grafische Anzeige des Punkteverlaufs der letzten 10 Tage (Spieler) (implemented)
+Terraineffekte 
 
 
 Bewegungsmenu Auswahlen: Alle Einheiten, voll beladen
@@ -35,7 +36,7 @@ Nachrichten-Ticker
 Quests 
 Götter 
 Anführer 
-Terraineffekte 
+
 
 
 ÄNDERUNGEN TICKER:
