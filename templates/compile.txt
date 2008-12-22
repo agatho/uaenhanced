@@ -1,0 +1,8 @@
+Maxx, 
+ 
+I made some changes to get tmpl_lib.c to compile with gcc 4.0.1. It seams to work, but I am not sure if what I did is fully correct. My C knowlegde is limited. 
+ 
+I changed the 3 lines that gcc 4 reports the lvalue error on. On those lines you are assigning to a ZV() macro. GCC 4 does not like this and I changed ZV to Z_STRVAL_P. Now it compiles fine and the tests run ok.  
+ 
+Regards, 
+Dick 

@@ -13,9 +13,12 @@ entstehen können. Ich empfehle vor dem Einsatz ein Backup durchzuführen!
 
 ÄNDERUNGEN GAME:
 
-Sortierung der Rankings
+Sortierung der Rankings (implemented)
+Anzeige der Einzelpunkteverteilung im Ranking (für jeweiligen Spieler) (implemented)
+
+
+
 Bewegungsmenu Auswahlen: Alle Einheiten, voll beladen
-Anzeige der Einzelpunkteverteilung im Ranking (für jeweiligen Spieler)
 Anzeige des letzten Logins
 Grafische Anzeige des Punkteverlaufs der letzten 10 Tage (Spieler)
 Farmschutz (erweiterter Anfängerschutz)

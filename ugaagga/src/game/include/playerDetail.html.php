@@ -53,6 +53,9 @@ function player_getContent($caveID, $playerID) {
   $row['age'] = 18 + $timediff['year'];
 
   tmpl_set($template, 'DETAILS', $row);
+  
+  // ADDED by chris--- for rank_history
+  $row['playerID'] = $playerID;
 
   // show player's caves
   $caves = getCaves($playerID);

@@ -46,7 +46,9 @@
             Uga-Agga-Alter: {age}<br>
             ICQ: {icq}<br><br><br>
             <b>Beschreibung:</b><br><br>{description}<br><br>
-            <table class="grid">
+            <br><br><br>
+            <img src="images/rank.png.php?detailID={playerID}" alt="Punkte der letzten Tage" title="Punkte der letzten Tage" border="1">
+			<table class="grid">
               <caption>Höhlen</caption>
               <tbody>
                 <tmpl:CAVES>

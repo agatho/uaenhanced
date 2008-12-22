@@ -763,6 +763,30 @@ CREATE TABLE `RankingTribe` (
 # --------------------------------------------------------
 
 #
+# Table structure for table `Rank_history`
+#
+
+CREATE TABLE `Rank_history` (
+`playerID` INT( 11 ) UNSIGNED DEFAULT '0' NOT NULL ,
+`name` VARCHAR( 90 ) ,
+`day_1` INT( 11 ) UNSIGNED NOT NULL ,
+`day_2` INT( 11 ) UNSIGNED NOT NULL ,
+`day_3` INT( 11 ) UNSIGNED NOT NULL ,
+`day_4` INT( 11 ) UNSIGNED NOT NULL ,
+`day_5` INT( 11 ) UNSIGNED NOT NULL ,
+`day_6` INT( 11 ) UNSIGNED NOT NULL ,
+`day_7` INT( 11 ) UNSIGNED NOT NULL ,
+`day_8` INT( 11 ) UNSIGNED NOT NULL ,
+`day_9` INT( 11 ) UNSIGNED NOT NULL ,
+`day_10` INT( 11 ) UNSIGNED NOT NULL ,
+`curr_day` INT( 1 ) UNSIGNED NOT NULL ,
+UNIQUE (
+`playerID` 
+)
+);
+# ------------------------------------------------------
+
+#
 # Table structure for table `Regions`
 #
 
