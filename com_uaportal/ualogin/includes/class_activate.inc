@@ -104,7 +104,7 @@ class ualogin_activate {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror_activate_1'));
       return FALSE;
     }
 

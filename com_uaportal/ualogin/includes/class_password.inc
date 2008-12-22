@@ -74,7 +74,7 @@ class ualogin_password {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror_password_1'));
       return FALSE;
     }
 

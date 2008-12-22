@@ -82,11 +82,11 @@ class ualogin_BlockStatistik {
     /**
      * count the users
      */
-    $query = 'SELECT COUNT(*) AS count FROM Login';
+    $query = 'SELECT COUNT(*) AS count FROM agatho_login.Login';
     $result = $db_login->query($query);
 
-    if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+    if ( $result == FALSE ) {
+      drupal_set_message(t('ua_dberror_blockstatistik_1'));
       return FALSE;
     }
 
@@ -122,7 +122,7 @@ class ualogin_BlockStatistik {
     $result = $db_game->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror_statistikinc_2'));
       return FALSE;
     }
 

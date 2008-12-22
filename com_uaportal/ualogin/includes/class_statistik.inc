@@ -144,12 +144,12 @@ class ualogin_statistik {
      */
     $query = 'SELECT caveID FROM Cave
                LEFT JOIN Player
-                 ON Cave.playerID = Player.PlayerID
+                 ON Cave.playerID = Player.playerID
                WHERE Player.name IN (' . implode(', ', $this->SecretNames) . ')';
     $result = $db_game->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror1'));
       return FALSE;
     }
 
@@ -185,7 +185,7 @@ class ualogin_statistik {
         $result = $db_game->query($query);
 
         if ( $result === FALSE ) {
-          drupal_set_message(t('ua_dberror'));
+          drupal_set_message(t('ua_dberror2'));
           return FALSE;
         }
 
@@ -250,7 +250,7 @@ class ualogin_statistik {
 
         // db error
         if ( $result === FALSE ) {
-          drupal_set_message(t('ua_dberror'));
+          drupal_set_message(t('ua_dberror3'));
           return FALSE;
         }
 
@@ -324,7 +324,7 @@ class ualogin_statistik {
       $result = $db_game->query($query);
 
       if ( $result === FALSE ) {
-        drupal_set_message(t('ua_dberror'));
+        drupal_set_message(t('ua_dberror4'));
         return FALSE;
       }
 
@@ -350,7 +350,7 @@ class ualogin_statistik {
       $result = $db_game->query($query);
 
       if ( $result === FALSE ) {
-        drupal_set_message(t('ua_dberror'));
+        drupal_set_message(t('ua_dberror5'));
         return FALSE;
       }
 
@@ -412,7 +412,7 @@ class ualogin_statistik {
       $result = $db_game->query($query);
 
       if ( $result === FALSE ) {
-        drupal_set_message(t('ua_dberror'));
+        drupal_set_message(t('ua_dberror6'));
         return FALSE;
       }
 
@@ -481,7 +481,7 @@ class ualogin_statistik {
     $result = db_query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror7'));
       return FALSE;
     }
 

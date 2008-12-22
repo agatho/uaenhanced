@@ -133,14 +133,14 @@ class ualogin_login {
      * fetch user from database
      */
     $query = 'SELECT *, NOW() + 0 AS jetzt, DATE_FORMAT(ban, \'%%e.%%c.%%Y %%k:%%i\') AS time
-               FROM Login
+               FROM agatho_login.Login
                WHERE user = \'' . $db_login->sql_escape_string($this->username) . '\'
                LIMIT 0,1';
     $result = $db_login->query($query);
 
     // db error
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror1'));
       return FALSE;
     }
     else if ( $db_login->numrows($result) != 1 ) {
@@ -210,7 +210,7 @@ class ualogin_login {
       $result = $db_login->query($query);
 
       if ($result === FALSE) {
-        drupal_set_message(t('ua_dberror'));
+        drupal_set_message(t('ua_dberror2'));
         return FALSE;
       }
 
@@ -418,7 +418,7 @@ class ualogin_login {
     $query = 'REPLACE INTO Session
              (' . $db_game->sql_fields . ') VALUES(' . $db_game->sql_values . ')';
     if ( !$db_game->query($query) ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror3'));
       return FALSE;
     }
 

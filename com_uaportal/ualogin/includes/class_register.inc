@@ -24,6 +24,8 @@ define('LOGIN_WRONG_SECURITY_CODE', -1);
 define('LOGIN_ACTIVATE_FIRST',       2);
 define('LOGIN_CREATED',              3);
 
+error_reporting(E_ALL);
+
 class ualogin_register {
 
   var $username, $sex, $easyStart, $password, $password2, $email, $email2, $agb, $regionID, $reg_code, $playerID, $actCode, $tribe, $caveID, $refererID;
@@ -288,16 +290,19 @@ class ualogin_register {
   }
 
   function checkCapacity() {
-    global $db_login;
+    error_reporting(E_ALL);
+	global $db_login;
 
     /**
      * Count all Users
      */
-    $query = 'SELECT COUNT(*) AS n FROM Login';
+    $query = 'SELECT COUNT(*) AS n 
+	          FROM agatho_login.Login';
     $result = $db_login->query($query);
 
-    if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+    if ( $result == FALSE ) 
+   {
+      drupal_set_message(t('ua_dberror_register_1'));
       return FALSE;
     }
 
@@ -347,7 +352,7 @@ class ualogin_register {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror_register_2'));
       return FALSE;
     }
 
@@ -379,7 +384,7 @@ class ualogin_register {
     $result = $db_game->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror3'));
       return FALSE;
     }
 
@@ -438,7 +443,7 @@ class ualogin_register {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror4'));
       return FALSE;
     }
 
@@ -464,7 +469,7 @@ class ualogin_register {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror5'));
       return FALSE;
     }
 
@@ -488,7 +493,7 @@ class ualogin_register {
     $query = 'INSERT INTO Login
                (' . $db_login->sql_fields . ') VALUES(' . $db_login->sql_values . ')';
     if ( !$db_login->query($query) ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror6'));
       return FALSE;
     }
 
@@ -578,7 +583,7 @@ class ualogin_register {
       $result = $db_login->query($query);
 
       if ( $result === FALSE ) {
-        drupal_set_message(t('ua_dberror'));
+        drupal_set_message(t('ua_dberror7'));
         return TRUE;
       }
 
@@ -621,7 +626,7 @@ class ualogin_register {
       $result = $db_game->query($query);
 
       if ( $result === FALSE ) {
-        drupal_set_message(t('ua_dberror'));
+        drupal_set_message(t('ua_dberror8'));
         return FALSE;
       }
 
@@ -681,7 +686,7 @@ class ualogin_register {
                SET ' . $db_game->sql_update . '
                WHERE caveID = ' . intval($this->caveID);
     if ( !$db_game->query($query) ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror9'));
       return FALSE;
     }
 
@@ -704,7 +709,7 @@ class ualogin_register {
                   SET ' . $db_game->sql_update . '
                   WHERE playerID = ' . intval($this->playerID);
       if ( !$db_game->query($query) ) {
-        drupal_set_message(t('ua_dberror'));
+        drupal_set_message(t('ua_dberror10'));
         return FALSE;
       }
     }
@@ -724,7 +729,7 @@ class ualogin_register {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror11'));
       return TRUE;
     }
 
@@ -751,7 +756,7 @@ class ualogin_register {
     $result = $db_game->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror12'));
       return FALSE;
     }
 
@@ -776,7 +781,7 @@ class ualogin_register {
     $result = $db_game->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror13'));
       return FALSE;
     }
 
@@ -796,7 +801,7 @@ class ualogin_register {
     $result = $db_game->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror14'));
       return FALSE;
     }
 
@@ -1009,7 +1014,7 @@ class ualogin_register {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror15'));
       return TRUE;
     }
 
@@ -1024,7 +1029,7 @@ class ualogin_register {
     $result = $db_game->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror16'));
       return TRUE;
     }
 
@@ -1053,7 +1058,7 @@ class ualogin_register {
     $result = $db_login->query($query);
 
     if ( $result === FALSE ) {
-      drupal_set_message(t('ua_dberror'));
+      drupal_set_message(t('ua_dberror17'));
       return TRUE;
     }
 
