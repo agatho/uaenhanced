@@ -15,12 +15,11 @@ entstehen können. Ich empfehle vor dem Einsatz ein Backup durchzuführen!
 
 Sortierung der Rankings (implemented)
 Anzeige der Einzelpunkteverteilung im Ranking (für jeweiligen Spieler) (implemented)
-
+Grafische Anzeige des Punkteverlaufs der letzten 10 Tage (Spieler) (implemented)
 
 
 Bewegungsmenu Auswahlen: Alle Einheiten, voll beladen
 Anzeige des letzten Logins
-Grafische Anzeige des Punkteverlaufs der letzten 10 Tage (Spieler)
 Farmschutz (erweiterter Anfängerschutz)
 Siedlungsliste
 Adressbuch 

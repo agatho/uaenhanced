@@ -52,6 +52,27 @@
   </tmpl:NOEFFECT>
 
    </table>
+   <!-- terrain effects -->
+
+<h2>Das Gel&auml;nde hat folgende Auswirkung:</h2>
+  <table border="0" cellpadding="0" cellspacing="5">
+<tmpl:TERRAINEFFECT>
+    <tr><td>
+      {name}
+    </td><td>
+      {value}
+    </td></tr>
+</tmpl:TERRAINEFFECT>
+  <tmpl:TERRAINNOEFFECT>
+    <tr>
+      <td align="center">{dummy}Das Gel&auml;nde hat keinerlei Auswirkungen auf Eure Siedlung, H&auml;uptling!</td>
+    </tr>
+  </tmpl:TERRAINNOEFFECT>
+
+   </table>
+
+<!-- end terrain effects -->
+
 
     <h2>Aktuelle Farmpunkte</h2>
   <table border="0" cellpadding="0" cellspacing="5">

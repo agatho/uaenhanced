@@ -21,6 +21,7 @@ function effect_getEffectWonderDetailContent($caveID, $caveData){
          $unitTypeList,
          $wonderTypeList,
          $effectTypeList,
+		 $terrainList,
          $config,
          $params,
          $db;
@@ -82,7 +83,25 @@ function effect_getEffectWonderDetailContent($caveID, $caveData){
       }
     } // end iterating through active wonders
   }
+// ADDED by chris--- for terrain effects ****************************
 
+	global $effect, $effectname;
+	$terraineffectData = array();
+      $cave = getCaveByID($caveID);
+	$terrainvalue = $cave['terrain'];
+
+      $terraineffectsData[] = array("name"  => $terrainList[$terrainvalue]['name'].":",
+                             "value" => "");
+
+for ($t=0;$t<count($effect[$terrainvalue]);$t++) {
+	$effectvalue = explode(" = ", $effect[$terrainvalue][$t]);
+	$effectkey[$t] = $effectvalue[0];
+	$effectv[$t] = substr($effectvalue[1],1,-1);
+      $terraineffectsData[] = array("name"  => $effectname[$terrainvalue][$t],
+                             "value" => $effectv[$t]);
+}
+
+// *******************************************************************
   $effectsData = array();
   foreach ($effectTypeList AS $data){
     $value = $caveData[$data->dbFieldName] + 0;
@@ -101,6 +120,11 @@ function effect_getEffectWonderDetailContent($caveID, $caveData){
     $data['NOEFFECT'] = array('dummy' => "");
   else
     $data['EFFECT'] = $effectsData;
+	
+  if (sizeof($terraineffectsData) < 2)
+    $data['TERRAINNOEFFECT'] = array('dummy' => "");
+  else
+    $data['TERRAINEFFECT'] = $terraineffectsData;
 
   // put user, its session and nogfx flag into session
   $_SESSION['player'] =Player::getPlayer($params->SESSION->player->playerID);
