@@ -415,6 +415,7 @@ switch ($modus){
   case STATS:
     $pagetitel = _("Statistiken");
 	$content = stats_stats($params->SESSION->player->playerID);
+  break;
 
   case LOGOUT:
     session_destroy();

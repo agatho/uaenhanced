@@ -9,7 +9,7 @@ function stats_getStats()
     $db;
 
   $stats = array();
-
+  $db = new DB();
 
 // checking if the ticker is running
 
@@ -101,12 +101,13 @@ if (!file_exists($file)) $stats['ticker_status'] = "Unbekannt";
 
 // -----------------------------------------------------------------------
 
-  $query =
-    "SELECT * ".
-    "FROM stats ";
+ // $query =
+ //   "SELECT * ".
+ //   "FROM stats ";
 
-  if (!($result = $db->query($query)) || ($result->isEmpty())) {
-    return;
+  if (!($result = $db->query($query="SELECT * FROM stats")) ) {
+    echo "no db stats";
+	return;
   }
 
 
@@ -147,7 +148,8 @@ $stats['wunder'] = $row[wunderberichte];
   $query = "SELECT count(*) AS anzahl FROM Player WHERE npcID = 0";
 
   if (!($result = $db->query($query)) || ($result->isEmpty())) {
-    return;
+    echo "DB Error 1";
+	return;
   }
 
 
@@ -160,6 +162,7 @@ $stats['spieler'] = $row[anzahl];
   $query = "SELECT count(*) AS anzahl FROM Tribe WHERE name != 'Astaroth'";
 
   if (!($result = $db->query($query)) || ($result->isEmpty())) {
+  echo "DB Error 2";
     return;
   }
 
@@ -173,6 +176,7 @@ $stats['clans'] = $row[anzahl];
   $query = "SELECT count(*) AS anzahl FROM Player WHERE tribe != 'Astaroth' AND tribe != ''";
 
   if (!($result = $db->query($query)) || ($result->isEmpty())) {
+  echo "DB Error 3";
     return;
   }
 
@@ -183,9 +187,10 @@ $stats['player_clans'] = $row[anzahl];
 
 // -------------------------------------------------------------------------
 
-  $query = "SELECT count(*) AS anzahl FROM player WHERE tribe != 'Astaroth' AND tribe = ''";
+  $query = "SELECT count(*) AS anzahl FROM Player WHERE tribe != 'Astaroth' AND tribe = ''";
 
   if (!($result = $db->query($query)) || ($result->isEmpty())) {
+  echo "DB Error 4";
     return;
   }
 
@@ -196,9 +201,10 @@ $stats['player_noclan'] = $row[anzahl];
 
 // -------------------------------------------------------------------------
 
-  $query = "SELECT count(*) AS anzahl FROM ranking WHERE religion = 'none'";
+  $query = "SELECT count(*) AS anzahl FROM Ranking WHERE religion = 'none'";
 
   if (!($result = $db->query($query))) {
+  echo "DB Error 5";
     return;
   }
 
@@ -213,6 +219,7 @@ if ($stats['player_noreligion'] < 1) $stats['player_noreligion'] = "keine";
   $query = "SELECT count(*) AS anzahl FROM Ranking WHERE religion = 'agga'";
 
   if (!($result = $db->query($query))) {
+  echo "DB Error 6";
     return;
   }
 
@@ -227,6 +234,7 @@ if ($stats['player_religion_agga'] < 1) $stats['player_religion_agga'] = "keine"
   $query = "SELECT count(*) AS anzahl FROM Ranking WHERE religion = 'uga'";
 
   if (!($result = $db->query($query))) {
+  echo "DB Error 7";
     return;
   }
 
@@ -239,9 +247,10 @@ if ($stats['player_religion_uga'] < 1) $stats['player_religion_uga'] = "keine";
 
 // -------------------------------------------------------------------------
 
-  $query = "SELECT count(*) AS anzahl FROM Player WHERE science_hex > 1 AND npcID = 0";
+  $query = "SELECT count(*) AS anzahl FROM Player WHERE agga > 1 AND npcID = 0";
 
   if (!($result = $db->query($query))) {
+  echo "DB Error 8";
     return;
   }
 
@@ -266,7 +275,9 @@ if ($i > 0) $query .= "+ ";
 $query .= " AS anzahl FROM Cave WHERE playerID != 1 AND playerID != 2 AND playerID != 3 AND playerID != 4 AND playerID != 5 AND playerID != 6 AND playerID != 7 AND playerID != 0 AND quest_cave = 0";
 
   if (!($result = $db->query($query)) || ($result->isEmpty())) {
-    return;
+    echo "DB Error 9";
+	return;
+	
   }
 
   $row = $result->nextRow(MYSQL_ASSOC);
@@ -489,7 +500,7 @@ $stats['artefact'] = $count;
 
 
 
-return $stats;
+return array($stats);
 
 }
 ?>
