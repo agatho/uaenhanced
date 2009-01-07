@@ -915,6 +915,7 @@ void movement_handler (db_t *database, db_result_t *result)
       /* beginner protection active in target cave? */
       if (cave_is_protected(&cave2))
       {
+	   debug(DEBUG_BATTLE, "Is protected Cave");
 	/* send remaining units back */
 	ds = dstring_new("INSERT INTO Event_movement"
 			 " (caveID, target_caveID, source_caveID, movementID,"
@@ -937,7 +938,7 @@ void movement_handler (db_t *database, db_result_t *result)
 	dstring_append(ds, ")");
 
 	db_query_dstring(database, ds);
-
+     debug(DEBUG_BATTLE,"End Handle Protected Cave attack");
 	/* create and send reports */
 	protected_report(database, &cave1, &player1, &cave2, &player2);
 	break;

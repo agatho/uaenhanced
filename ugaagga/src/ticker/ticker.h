@@ -26,5 +26,6 @@
 #define DB_TABLE_RELATION	"Relation"
 
 #define WONDER_TIME_BASE_FACTOR	60
+#define WEATHER_TIME_BASE_FACTOR 60
 
 #endif /* _TICKER_H_ */
